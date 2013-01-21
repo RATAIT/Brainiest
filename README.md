@@ -1,7 +1,8 @@
 Brainiest
 =========
 
-Brainiest QUIZ
+RATA IT presenterar....
 
+BRAINIEST!
 
-GLÖM INTE COMMITA TYP??
+2012-01-21: Startskott för projektet.
