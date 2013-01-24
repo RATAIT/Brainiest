@@ -13,5 +13,5 @@ g:\dokument\visual studio 2010\Projects\Quizprojekt\Quizprojekt\obj\x86\Debug\Qu
 g:\dokument\visual studio 2010\Projects\Quizprojekt\Quizprojekt\obj\x86\Debug\Quizprojekt.pdb
 g:\dokument\visual studio 2010\Projects\Quizprojekt\Quizprojekt\obj\x86\Debug\Meny.baml
 g:\dokument\visual studio 2010\Projects\Quizprojekt\Quizprojekt\obj\x86\Debug\Meny.g.cs
-C:\Users\Adam\Desktop\PROGRAM\BrainiestTEST\Quizprojekt\obj\x86\Debug\Quizprojekt.exe
-C:\Users\Adam\Desktop\PROGRAM\BrainiestTEST\Quizprojekt\obj\x86\Debug\Quizprojekt.pdb
+G:\Dokument\Visual Studio 2010\Projects\Quizprojekt\Quizprojekt\obj\x86\Debug\bliMedlem.baml
+G:\Dokument\Visual Studio 2010\Projects\Quizprojekt\Quizprojekt\obj\x86\Debug\bliMedlem.g.cs
