@@ -15,3 +15,20 @@ g:\dokument\visual studio 2010\Projects\Quizprojekt\Quizprojekt\obj\x86\Debug\Me
 g:\dokument\visual studio 2010\Projects\Quizprojekt\Quizprojekt\obj\x86\Debug\Meny.g.cs
 G:\Dokument\Visual Studio 2010\Projects\Quizprojekt\Quizprojekt\obj\x86\Debug\bliMedlem.baml
 G:\Dokument\Visual Studio 2010\Projects\Quizprojekt\Quizprojekt\obj\x86\Debug\bliMedlem.g.cs
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.exe
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.pdb
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\bin\Debug\Quizprojekt.exe
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\bin\Debug\Quizprojekt.pdb
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\bliMedlem.baml
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\MainWindow.baml
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\Meny.baml
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\bliMedlem.g.cs
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\MainWindow.g.cs
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\Meny.g.cs
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\App.g.cs
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt_MarkupCompile.cache
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.g.resources
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.Properties.Resources.resources
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\GenerateResource.write.1.tlog
