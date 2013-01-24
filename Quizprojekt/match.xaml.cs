@@ -14,20 +14,13 @@ using System.Windows.Shapes;
 namespace Quizprojekt
 {
     /// <summary>
-    /// Interaction logic for Meny.xaml
+    /// Interaction logic for match.xaml
     /// </summary>
-    public partial class Meny : Window
+    public partial class match : Window
     {
-        public Meny()
+        public match()
         {
             InitializeComponent();
         }
-
-        private void btn_LoggaUt_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-   
     }
 }

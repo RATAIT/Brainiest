@@ -32,3 +32,5 @@ C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.g.reso
 C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.Properties.Resources.resources
 C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\match.baml
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\match.g.cs
