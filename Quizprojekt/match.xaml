@@ -1,9 +1,96 @@
 ﻿<Window x:Class="Quizprojekt.match"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="The Brainiest" Height="600" Width="900" MinHeight="600" MinWidth="900">
+        Title="The Brainiest" Height="500" Width="700" MinHeight="500" MinWidth="700" >
     <Grid>
+
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF171717" Offset="0" />
+                <GradientStop Color="#FF4B4B4B" Offset="0.68" />
+                <GradientStop Color="#FF242424" Offset="0.953" />
+            </LinearGradientBrush>
+        </Grid.Background>
         
-      
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="130" />
+            <RowDefinition Height="130" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+
+        </Grid.ColumnDefinitions>
+        <Image Grid.Row="0" Grid.Column="1" Source="logo.png" Width="210" HorizontalAlignment="Center"/>
+        
+        <TextBox Grid.Row="1" Grid.Column="1" Text="Vem är en av grundarna till företaget Apple?" Foreground="White" HorizontalContentAlignment="Center"
+                 VerticalContentAlignment="Center" Width="405" Height="125" HorizontalAlignment="Center" Background="#00000000"
+                 BorderThickness="0" Name="txtbox_Fraga" FontSize="16.5" FontFamily="Swis721 BT">
+            <!-- Skugga på textboxen -->
+            <TextBox.Effect>
+                <DropShadowEffect ShadowDepth="3" Color="Black" Opacity=".4" RenderingBias="Quality" Direction="-70" />
+            </TextBox.Effect>
+        </TextBox>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Grid.Row="6" Grid.Column="1" Width="150" Content="Inger Palmgren" Height="30" Foreground="White"
+                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Margin="5">
+
+
+                <!-- LinearGradientBrush på knappen -->
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF5EF677" Offset="0" />
+                        <GradientStop Color="#FF1E7C30" Offset="1" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button Grid.Row="6" Grid.Column="1" Width="150" Content="Steve Jobs" Height="30" Foreground="White"
+                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Margin="5">
+
+
+                <!-- LinearGradientBrush på knappen -->
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF5EF677" Offset="0" />
+                        <GradientStop Color="#FF1E7C30" Offset="1" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Grid.Row="6" Grid.Column="1" Width="150" Content="Ragnar Nohre" Height="30" Foreground="White"
+                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Margin="5">
+
+
+                <!-- LinearGradientBrush på knappen -->
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF5EF677" Offset="0" />
+                        <GradientStop Color="#FF1E7C30" Offset="1" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button Grid.Row="6" Grid.Column="1" Width="150" Content="Daniel Håkansson" Height="30" Foreground="White"
+                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Margin="5">
+
+
+                <!-- LinearGradientBrush på knappen -->
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF5EF677" Offset="0" />
+                        <GradientStop Color="#FF1E7C30" Offset="1" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+        </StackPanel>
+            </StackPanel>
+        <StackPanel Grid.Row="4">
+        <Label Grid.Row="4" Content="Tid kvar:" Foreground="white"  FontSize="16.5" FontFamily="Swis721 BT" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Label Grid.Row="4" Content="25" Foreground="white"  FontSize="20" FontFamily="Swis721 BT" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </StackPanel>
+
     </Grid>
 </Window>
