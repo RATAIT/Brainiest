@@ -1,0 +1,7 @@
+C:\Users\liad11am\Desktop\Brainiest\UnitTest\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\liad11am\Desktop\Brainiest\UnitTest\bin\Debug\UnitTest.exe
+C:\Users\liad11am\Desktop\Brainiest\UnitTest\bin\Debug\UnitTest.pdb
+C:\Users\liad11am\Desktop\Brainiest\UnitTest\obj\x86\Debug\UnitTest.exe
+C:\Users\liad11am\Desktop\Brainiest\UnitTest\obj\x86\Debug\UnitTest.pdb
+C:\Users\liad11am\Desktop\Brainiest\UnitTest\bin\Debug\BrainiestDB.accdb
+C:\Users\liad11am\Desktop\Brainiest\UnitTest\bin\Debug\UnitTest.exe.config

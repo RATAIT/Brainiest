@@ -22,6 +22,10 @@ namespace Quizprojekt
     /// </summary>
     public partial class match : Window
     {
+
+
+
+
         public match()
         {
             InitializeComponent();
@@ -30,9 +34,10 @@ namespace Quizprojekt
             readQuestion();
         }
 
+        string idFraga;
 
 
-        // Läser in frågor + svarsalternativ från databasen
+        // Läser in alla frågeIDn från en specifik kategori.
         private void readQuestion()
         {
 
@@ -42,20 +47,51 @@ namespace Quizprojekt
 
             OleDbCommand myOleDbCommand = myOleDbConnection.CreateCommand();
 
-            myOleDbCommand.CommandText = "SELECT FragorID FROM Fragor";
+            myOleDbCommand.CommandText = "SELECT * FROM Fragor WHERE KategoriID = 5";
+            myOleDbConnection.Open();
+
+            OleDbDataReader myOleDbDataReader = myOleDbCommand.ExecuteReader();
+
+
+
+            List<string> idList = new List<string>(); // Deklarerar en lista.
+
+            // Läser alla rader i databasen med kommandot givet ovan.
+            while (myOleDbDataReader.Read())
+            {
+
+                // Lägger till ett ID i idList.
+                idList.Add(Convert.ToString(myOleDbDataReader["FragorID"]));
+            }
+
+            Random random = new Random();
+            int num = random.Next(10);
+
+            idFraga = idList.ElementAtOrDefault(num);
+
+
+            setQuestion();
+
+        }
+
+
+
+        // Skriver ut frågan + svarsalternativen
+        private void setQuestion()
+        {
+
+            string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=BrainiestDB.accdb";
+
+            OleDbConnection myOleDbConnection = new OleDbConnection(connectionString);
+
+            OleDbCommand myOleDbCommand = myOleDbConnection.CreateCommand();
+
+            myOleDbCommand.CommandText = "SELECT * FROM Fragor WHERE FragorID = " + idFraga;
             myOleDbConnection.Open();
 
             OleDbDataReader myOleDbDataReader = myOleDbCommand.ExecuteReader();
 
             myOleDbDataReader.Read();
-            while (myOleDbDataReader.Read())
-            {
-            
-            
-            
-            
-            }
-
 
 
             string fraga = Convert.ToString(myOleDbDataReader["Fraga"]);

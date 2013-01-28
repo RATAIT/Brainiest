@@ -23,16 +23,12 @@
         </Grid.ColumnDefinitions>
         <Image Grid.Row="0" Grid.Column="1" Source="logo.png" Width="210" HorizontalAlignment="Center"/>
         
-        <TextBox Grid.Row="1" Grid.Column="1" Text="" Foreground="White" HorizontalContentAlignment="Center"
+        <TextBox Grid.Row="1" Grid.Column="1" Foreground="White" HorizontalContentAlignment="Center"
                  VerticalContentAlignment="Center" Width="405" Height="125" HorizontalAlignment="Center" Background="#00000000"
-                 BorderThickness="0" Name="txtbox_Fraga" FontSize="16.5" FontFamily="Swis721 BT" Focusable="False">
+                 BorderThickness="0" Name="txtbox_Fraga" FontSize="16.5" FontFamily="Swis721 BT" Focusable="True" TextWrapping="Wrap"/>
             
-            
-            <!-- Skugga på textboxen -->
-            <TextBox.Effect>
-                <DropShadowEffect ShadowDepth="3" Color="Black" Opacity=".4" RenderingBias="Quality" Direction="-70" />
-            </TextBox.Effect>
-        </TextBox>
+
+     
 
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
