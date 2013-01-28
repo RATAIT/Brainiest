@@ -123,7 +123,7 @@
 
             <!-- Lägger till spela-knappen   -->
             <Button Width="80" Content="Spela" Height="30" Foreground="White"
-                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_Spela1" Margin="5">
+                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_Spela1" Margin="5" Click="btn_Spela1_Click">
 
                 <!-- LinearGradientBrush på knappen -->
                 <Button.Background>

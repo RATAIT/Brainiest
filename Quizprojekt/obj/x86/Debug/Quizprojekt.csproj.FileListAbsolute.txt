@@ -34,3 +34,8 @@ C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\GenerateResource.r
 C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\match.baml
 C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\match.g.cs
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt_Content.g.cs
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\bin\Debug\Quizprojekt.exe.config
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\bin\Debug\BrainiestDB.accdb
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\kategori.baml
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\kategori.g.cs
