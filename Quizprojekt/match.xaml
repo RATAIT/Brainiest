@@ -25,7 +25,7 @@
         
         <TextBox Grid.Row="1" Grid.Column="1" Foreground="White" HorizontalContentAlignment="Center"
                  VerticalContentAlignment="Center" Width="405" Height="125" HorizontalAlignment="Center" Background="#00000000"
-                 BorderThickness="0" Name="txtbox_Fraga" FontSize="16.5" FontFamily="Swis721 BT" Focusable="True" TextWrapping="Wrap"/>
+                 BorderThickness="0" Name="txtbox_Fraga" FontSize="16.5" FontFamily="Swis721 BT" Focusable="False" TextWrapping="Wrap"/>
             
 
      
@@ -33,7 +33,7 @@
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button Grid.Row="6" Grid.Column="1" Width="150" Height="30" Foreground="White"
-                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Margin="5" Name="btn_Svar1">
+                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Margin="5" Name="btn_Svar1" Click="btn_Svar1_Click">
 
 
                 <!-- LinearGradientBrush på knappen -->
@@ -45,7 +45,7 @@
                 </Button.Background>
             </Button>
             <Button Grid.Row="6" Grid.Column="1" Width="150" Height="30" Foreground="White"
-                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Margin="5" Name="btn_Svar2">
+                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Margin="5" Name="btn_Svar2" Click="btn_Svar2_Click">
 
 
                 <!-- LinearGradientBrush på knappen -->
@@ -60,7 +60,7 @@
 
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button Grid.Row="6" Grid.Column="1" Width="150" Height="30" Foreground="White"
-                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Margin="5" Name="btn_Svar3">
+                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Margin="5" Name="btn_Svar3" Click="btn_Svar3_Click">
 
 
                 <!-- LinearGradientBrush på knappen -->
@@ -72,7 +72,7 @@
                 </Button.Background>
             </Button>
             <Button Grid.Row="6" Grid.Column="1" Width="150" Height="30" Foreground="White"
-                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Margin="5" Name="btn_Svar4">
+                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Margin="5" Name="btn_Svar4" Click="btn_Svar4_Click">
 
 
                 <!-- LinearGradientBrush på knappen -->
@@ -89,7 +89,7 @@
         <Label Grid.Row="4" Content="Tid kvar:" Foreground="white"  FontSize="16.5" FontFamily="Swis721 BT" VerticalAlignment="Center" HorizontalAlignment="Center"/>
            
  <!-- Progressbar animation för hur lång tid det är kvar -->
-            <ProgressBar Height="20" Margin="5" Width="250" Minimum="0" Maximum="100" Value="0">
+            <ProgressBar Name="progressBar1" Height="20" Margin="5" Width="250" Minimum="0" Maximum="100" Value="0">
                 <ProgressBar.Triggers>
                 <EventTrigger RoutedEvent="Loaded">
                     <BeginStoryboard>
