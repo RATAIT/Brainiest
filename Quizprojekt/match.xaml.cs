@@ -23,7 +23,7 @@ namespace Quizprojekt
     public partial class match : Window
     {
 
-
+        
 
 
         public match()
@@ -92,12 +92,13 @@ namespace Quizprojekt
 
             myOleDbDataReader.Read();
 
-
+            // Lägger in frågan
             string fraga = Convert.ToString(myOleDbDataReader["Fraga"]);
             txtbox_Fraga.Text = fraga;
 
             string[] fragArray = new string[4];
 
+            // Slumpar talen 1-4 in i en array
             var rng = new Random();
             var values = Enumerable.Range(0, 4).OrderBy(x => rng.Next()).ToArray();
             int first = values[0];
@@ -105,11 +106,13 @@ namespace Quizprojekt
             int third = values[2];
             int fourth = values[3];
 
+            // Lägger in svaren från databasen in på den slumpade platsen
             fragArray[first] = Convert.ToString(myOleDbDataReader["Korrekt"]);
             fragArray[second] = Convert.ToString(myOleDbDataReader["Fel1"]);
             fragArray[third] = Convert.ToString(myOleDbDataReader["Fel2"]);
             fragArray[fourth] = Convert.ToString(myOleDbDataReader["Fel3"]);
 
+            // Fyller knapparna med svaren
             btn_Svar1.Content = fragArray[0];
             btn_Svar2.Content = fragArray[1];
             btn_Svar3.Content = fragArray[2];
@@ -117,6 +120,9 @@ namespace Quizprojekt
 
             myOleDbDataReader.Close();
             myOleDbConnection.Close();
+
+            //Startar om progressbaren
+            progBarStart.Begin(progressBar1);
         }
 
 
@@ -167,7 +173,7 @@ namespace Quizprojekt
             OleDbDataReader myOleDbDataReader = myOleDbCommand.ExecuteReader();
 
 
-            myOleDbDataReader.Read();
+            myOleDbDataReader.Read();   
             
             string svar = Convert.ToString(myOleDbDataReader["Korrekt"]);
 
@@ -176,7 +182,8 @@ namespace Quizprojekt
             else
                 MessageBox.Show("FEL");
 
-
+            //progressBarAnimation.BeginAnimation(progressBar1.Value, new DoubleAnimation(0, 100, TimeSpan.FromSeconds(5)));'
+           
             readQuestion();
         }
 

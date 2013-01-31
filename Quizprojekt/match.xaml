@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="The Brainiest" Height="500" Width="700" MinHeight="500" MinWidth="700" >
     <Grid>
-
+        
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FF171717" Offset="0" />
@@ -93,7 +93,7 @@
                 <ProgressBar.Triggers>
                 <EventTrigger RoutedEvent="Loaded">
                     <BeginStoryboard>
-                        <Storyboard>
+                        <Storyboard x:Name="progBarStart">
                             <DoubleAnimation Name="progressBarAnimation" Storyboard.TargetProperty="Value" From="0" To="100" Duration="0:0:15" Completed="progressBarAnimation_Completed"/>
                         </Storyboard>
                     </BeginStoryboard>
