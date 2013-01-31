@@ -35,7 +35,7 @@ namespace Quizprojekt
         }
 
         string idFraga;
-
+        int kategoriID = kategori.kategoriID.id;
 
         // Läser in alla frågeIDn från en specifik kategori.
         private void readQuestion()
@@ -48,7 +48,7 @@ namespace Quizprojekt
             OleDbCommand myOleDbCommand = myOleDbConnection.CreateCommand();
 
             //Query för att hämta alla för en viss kategori
-            myOleDbCommand.CommandText = "SELECT * FROM Fragor WHERE KategoriID = 4";
+            myOleDbCommand.CommandText = "SELECT * FROM Fragor WHERE KategoriID = " + kategoriID;
             myOleDbConnection.Open();
 
             OleDbDataReader myOleDbDataReader = myOleDbCommand.ExecuteReader();
@@ -75,7 +75,6 @@ namespace Quizprojekt
             setQuestion();
         }
 
-
         // Skriver ut frågan + svarsalternativen
         private void setQuestion()
         {
@@ -97,27 +96,34 @@ namespace Quizprojekt
             string fraga = Convert.ToString(myOleDbDataReader["Fraga"]);
             txtbox_Fraga.Text = fraga;
 
-            string korrekt = Convert.ToString(myOleDbDataReader["Korrekt"]);
-            string fel1 = Convert.ToString(myOleDbDataReader["Fel1"]);
-            string fel2 = Convert.ToString(myOleDbDataReader["Fel2"]);
-            string fel3 = Convert.ToString(myOleDbDataReader["Fel3"]);
+            string[] fragArray = new string[4];
 
-            // DESSA SKA SLUMPAS ***********FIXAS*************
-            btn_Svar1.Content = korrekt;
-            btn_Svar2.Content = fel1;
-            btn_Svar3.Content = fel2;
-            btn_Svar4.Content = fel3;
+            var rng = new Random();
+            var values = Enumerable.Range(0, 4).OrderBy(x => rng.Next()).ToArray();
+            int first = values[0];
+            int second = values[1];
+            int third = values[2];
+            int fourth = values[3];
+
+            fragArray[first] = Convert.ToString(myOleDbDataReader["Korrekt"]);
+            fragArray[second] = Convert.ToString(myOleDbDataReader["Fel1"]);
+            fragArray[third] = Convert.ToString(myOleDbDataReader["Fel2"]);
+            fragArray[fourth] = Convert.ToString(myOleDbDataReader["Fel3"]);
+
+            btn_Svar1.Content = fragArray[0];
+            btn_Svar2.Content = fragArray[1];
+            btn_Svar3.Content = fragArray[2];
+            btn_Svar4.Content = fragArray[3];
 
             myOleDbDataReader.Close();
             myOleDbConnection.Close();
         }
 
 
-
         // När tiden gått ut i progressbaren:
         private void progressBarAnimation_Completed(object sender, EventArgs e)
         {
-            MessageBox.Show("Tiden är ute.");
+            //MessageBox.Show("Tiden är ute.");
         }
 
         //Beroende på vad man svarat så skickas denna text till checkAnswer()

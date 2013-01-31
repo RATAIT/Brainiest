@@ -30,8 +30,8 @@ namespace Quizprojekt
 
         private void btn_Spela1_Click(object sender, RoutedEventArgs e)
         {
-            match match1 = new match();
-            match1.Show();
+            kategori kategori = new kategori();
+            kategori.Show();
         }
     
 

@@ -5,3 +5,10 @@ C:\Users\liad11am\Desktop\Brainiest\UnitTest\obj\x86\Debug\UnitTest.exe
 C:\Users\liad11am\Desktop\Brainiest\UnitTest\obj\x86\Debug\UnitTest.pdb
 C:\Users\liad11am\Desktop\Brainiest\UnitTest\bin\Debug\BrainiestDB.accdb
 C:\Users\liad11am\Desktop\Brainiest\UnitTest\bin\Debug\UnitTest.exe.config
+G:\Dokument\GitHub\Brainiest\UnitTest\bin\Debug\BrainiestDB.accdb
+G:\Dokument\GitHub\Brainiest\UnitTest\bin\Debug\UnitTest.exe.config
+G:\Dokument\GitHub\Brainiest\UnitTest\bin\Debug\UnitTest.exe
+G:\Dokument\GitHub\Brainiest\UnitTest\bin\Debug\UnitTest.pdb
+G:\Dokument\GitHub\Brainiest\UnitTest\obj\x86\Debug\ResolveAssemblyReference.cache
+G:\Dokument\GitHub\Brainiest\UnitTest\obj\x86\Debug\UnitTest.exe
+G:\Dokument\GitHub\Brainiest\UnitTest\obj\x86\Debug\UnitTest.pdb
