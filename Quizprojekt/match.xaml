@@ -39,8 +39,8 @@
                 <!-- LinearGradientBrush på knappen -->
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF5EF677" Offset="0" />
-                        <GradientStop Color="#FF1E7C30" Offset="1" />
+                            <GradientStop Color="#FF5EF677" Offset="0" x:Name="btn1Grad1" />
+                            <GradientStop Color="#FF1E7C30" Offset="1" x:Name="btn1Grad2" />
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
@@ -51,8 +51,8 @@
                 <!-- LinearGradientBrush på knappen -->
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF5EF677" Offset="0" />
-                        <GradientStop Color="#FF1E7C30" Offset="1" />
+                            <GradientStop Color="#FF5EF677" Offset="0"  x:Name="btn2Grad1"/>
+                            <GradientStop Color="#FF1E7C30" Offset="1"  x:Name="btn2Grad2"/>
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
@@ -66,8 +66,8 @@
                 <!-- LinearGradientBrush på knappen -->
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF5EF677" Offset="0" />
-                        <GradientStop Color="#FF1E7C30" Offset="1" />
+                            <GradientStop Color="#FF5EF677" Offset="0"  x:Name="btn3Grad1"/>
+                            <GradientStop Color="#FF1E7C30" Offset="1"  x:Name="btn3Grad2"/>
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
@@ -78,8 +78,8 @@
                 <!-- LinearGradientBrush på knappen -->
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF5EF677" Offset="0" />
-                        <GradientStop Color="#FF1E7C30" Offset="1" />
+                            <GradientStop Color="#FF5EF677" Offset="0"  x:Name="btn4Grad1"/>
+                            <GradientStop Color="#FF1E7C30" Offset="1"  x:Name="btn4Grad2"/>
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
@@ -92,9 +92,9 @@
             <ProgressBar Name="progressBar1" Height="20" Margin="5" Width="250" Minimum="0" Maximum="100" Value="0">
                 <ProgressBar.Triggers>
                 <EventTrigger RoutedEvent="Loaded">
-                    <BeginStoryboard>
+                    <BeginStoryboard Name="progbarBegSto">
                         <Storyboard x:Name="progBarStart">
-                            <DoubleAnimation Name="progressBarAnimation" Storyboard.TargetProperty="Value" From="0" To="100" Duration="0:0:15" Completed="progressBarAnimation_Completed"/>
+                            <DoubleAnimation Name="progressBarAnimation" FillBehavior="Stop" Storyboard.TargetProperty="Value" From="0" To="100" Duration="0:0:15" Completed="progressBarAnimation_Completed"/>
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>

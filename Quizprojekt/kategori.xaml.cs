@@ -19,8 +19,8 @@ namespace Quizprojekt
     public partial class kategori : Window
     {
         public int i = 0;
-        public int id1 = -1;
-        public int id2 = -1;
+        public int id1;
+        public int id2;
         public int id3;
 
         public class kategoriID
@@ -32,16 +32,18 @@ namespace Quizprojekt
         {
             InitializeComponent();
 
+            // Skapar array med alla befintliga kategorier
             string[] kat = new string[10] {"Teknologi", "Sport och fritid", "Mat och dryck",
                 "Naturvetenskap", "Data- och TV-spel", "Film", "2000-talet", "Musik", "Jorden runt", "Historia"};
 
-
-            var rand = new Random();
-
+            Random rand = new Random();
 
                 id1 = rand.Next(0, 10);
+
+                // Om någon av knapparna ännu inte fått ett värde körs loopen vidare
                 while (btn_Kat1.Content == null || btn_Kat2.Content == null || btn_Kat3.Content == null)
                 {
+                    // Om i är 0 fylls första knappen
                     if (i == 0)
                     {
                         btn_Kat1.Content = kat[id1];
@@ -50,6 +52,7 @@ namespace Quizprojekt
 
                     id2 = rand.Next(0, 10);
 
+                    // Om i är 1 fylls andra knappen
                     if (i == 1 && id1 != id2)
                     {
                         btn_Kat2.Content = kat[id2];
@@ -58,6 +61,7 @@ namespace Quizprojekt
 
                     id3 = rand.Next(0, 10);
 
+                    // Om i är 2 fylls tredje knappen
                     if (i == 2 && id1 != id3 && id2 != id3)
                     {
                         btn_Kat3.Content = kat[id3];
@@ -66,6 +70,7 @@ namespace Quizprojekt
                 }
         }
 
+        // Vid klick skickas valt kategoriID vidare till matchklassen
         private void btn_Kat1_Click(object sender, RoutedEventArgs e)
         {
             kategoriID.id = id1 + 1;
