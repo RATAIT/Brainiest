@@ -96,26 +96,26 @@ namespace Quizprojekt
             OleDbConnection myOleDbConnection = new OleDbConnection(connectionString);
             OleDbCommand myOleDbCommand = myOleDbConnection.CreateCommand();
 
-            //Query för att hämta allt från en viss fråga
-            myOleDbCommand.CommandText = "SELECT * FROM Medlemmar WHERE Anvandarnamn = " + anvNamn;
+            myOleDbCommand.CommandText = "SELECT * FROM Medlemmar WHERE Anvandarnamn =@username and Losenord =@password";
+            myOleDbCommand.Parameters.AddWithValue("@username", anvNamn);
+            myOleDbCommand.Parameters.AddWithValue("@password", losenord);
             myOleDbConnection.Open();
 
             OleDbDataReader myOleDbDataReader = myOleDbCommand.ExecuteReader();
 
             myOleDbDataReader.Read();
 
-
-            if (losenord == Convert.ToString(myOleDbDataReader["Losenord"]))
+            try
             {
-                Switcher.Switch(new Meny());
+                if (losenord == Convert.ToString(myOleDbDataReader["Losenord"]))
+                {
+                    Switcher.Switch(new Meny());
+                }
             }
-            else
+            catch
             {
                 MessageBox.Show("FEL");
             }
-
-   
-
         }
 
         private void btn_BliMedlem_Click(object sender, RoutedEventArgs e)

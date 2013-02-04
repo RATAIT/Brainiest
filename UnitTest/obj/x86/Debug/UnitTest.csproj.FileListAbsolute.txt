@@ -26,3 +26,10 @@ G:\Dokument\GitHub2\Brainiest\UnitTest\bin\Debug\UnitTest.pdb
 G:\Dokument\GitHub2\Brainiest\UnitTest\obj\x86\Debug\ResolveAssemblyReference.cache
 G:\Dokument\GitHub2\Brainiest\UnitTest\obj\x86\Debug\UnitTest.exe
 G:\Dokument\GitHub2\Brainiest\UnitTest\obj\x86\Debug\UnitTest.pdb
+G:\Dokument\GitHub3\Brainiest\UnitTest\bin\Debug\BrainiestDB.accdb
+G:\Dokument\GitHub3\Brainiest\UnitTest\bin\Debug\UnitTest.exe.config
+G:\Dokument\GitHub3\Brainiest\UnitTest\bin\Debug\UnitTest.exe
+G:\Dokument\GitHub3\Brainiest\UnitTest\bin\Debug\UnitTest.pdb
+G:\Dokument\GitHub3\Brainiest\UnitTest\obj\x86\Debug\ResolveAssemblyReference.cache
+G:\Dokument\GitHub3\Brainiest\UnitTest\obj\x86\Debug\UnitTest.exe
+G:\Dokument\GitHub3\Brainiest\UnitTest\obj\x86\Debug\UnitTest.pdb

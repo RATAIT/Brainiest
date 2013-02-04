@@ -77,19 +77,62 @@ namespace Quizprojekt
         }
         #endregion
 
+        bool losenOk;
         private void txtbox_Password2_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (txtbox_Password.Password == txtbox_Password2.Password)
+            if (txtbox_Password.Password == txtbox_Password2.Password && txtbox_Password.Password.Length > 0)
             {
+                losenOk = true;
                 btn_BliMedlem.Visibility = Visibility.Visible;
                 lbl_MatcharEj.Visibility = Visibility.Hidden;
-       
             }
 
             else
             {
+                losenOk = false;
                 btn_BliMedlem.Visibility = Visibility.Hidden;
                 lbl_MatcharEj.Visibility = Visibility.Visible;
+            }
+
+            if (anvFinns == true || losenOk == false)
+                btn_BliMedlem.Visibility = Visibility.Hidden;
+        }
+
+        bool anvFinns;
+        private void txtbox_Anv_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=BrainiestDB.accdb";
+
+            OleDbConnection myOleDbConnection = new OleDbConnection(connectionString);
+
+            OleDbCommand myOleDbCommand = myOleDbConnection.CreateCommand();
+
+            //Query för att hämta alla för en viss kategori
+            myOleDbCommand.CommandText = "SELECT * FROM Medlemmar";
+            myOleDbConnection.Open();
+
+            OleDbDataReader myOleDbDataReader = myOleDbCommand.ExecuteReader();
+
+            // Läser alla rader i databasen med kommandot givet ovan.
+            while (myOleDbDataReader.Read())
+            {
+                if (txtbox_Anv.Text == Convert.ToString(myOleDbDataReader["Anvandarnamn"]))
+                {
+                    anvFinns = true;
+                    lbl_AnvFinns.Visibility = Visibility.Visible;
+                    btn_BliMedlem.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    anvFinns = false;
+                    lbl_AnvFinns.Visibility = Visibility.Hidden;
+                    btn_BliMedlem.Visibility = Visibility.Visible;
+                }
+
+                if (anvFinns == true || losenOk == false)
+                    btn_BliMedlem.Visibility = Visibility.Hidden;
+
             }
 
 

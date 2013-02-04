@@ -14,10 +14,11 @@
       
 
         <Label Grid.Row="1"  Margin="100,7,0,0" Content="Användarnamn:" Foreground="White" FontFamily="Swis721 BT" FontWeight="DemiBold"></Label>
-
+        <Label Grid.Row="1" HorizontalAlignment="Center" Margin="425, 0, 0, 0" VerticalAlignment="Center"
+               Content="Användarnamnet finns redan" Visibility="Hidden" Name="lbl_AnvFinns" Foreground="#FFFF4141"></Label>
         <TextBox Grid.Row="1" Text="" Foreground="White" HorizontalContentAlignment="Center"
                  VerticalContentAlignment="Center" Width="165" Height="25" HorizontalAlignment="Center" Background="Gray"
-                 BorderThickness="0" Name="txtbox_Anv" Margin="100,0,0,0">
+                 BorderThickness="0" Name="txtbox_Anv" Margin="100,0,0,0" TextChanged="txtbox_Anv_TextChanged">
             <TextBox.Effect>
                 <DropShadowEffect ShadowDepth="5" Color="Black" Opacity=".4" RenderingBias="Quality" Direction="-70" />
             </TextBox.Effect>
@@ -34,7 +35,8 @@
                 <DropShadowEffect ShadowDepth="5" Color="Black" Opacity=".4" RenderingBias="Quality" Direction="-70" />
             </PasswordBox.Effect>
         </PasswordBox>
-        <Label Grid.Row="3" HorizontalAlignment="Center" Margin="425, 0, 0, 0" VerticalAlignment="Center" Content="Lösenorden matchar ej." Visibility="Hidden" Name="lbl_MatcharEj" Foreground="#FFFF4141"></Label>
+        <Label Grid.Row="3" HorizontalAlignment="Center" Margin="425, 0, 0, 0" VerticalAlignment="Center"
+               Content="Lösenorden matchar ej." Visibility="Hidden" Name="lbl_MatcharEj" Foreground="#FFFF4141"></Label>
         
         
         <Label Grid.Row="3"  Margin="100,7,0,0" Content="Lösenord igen:" Foreground="White" FontFamily="Swis721 BT" FontWeight="DemiBold"></Label>
