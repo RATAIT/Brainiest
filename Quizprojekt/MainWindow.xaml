@@ -2,12 +2,21 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Height="500" Width="700" MinHeight="500" MinWidth="700">
-        <Grid>
-            
-  
-            
+    <Grid Name="gridMainWindow">
+        <Grid.Resources>
+            <Storyboard x:Key="lbl_felAnvLos_ani">
+                <DoubleAnimation FillBehavior="Stop" Storyboard.TargetProperty="Height" From="100" To="23" Duration="0:0:0.3"></DoubleAnimation>
+            </Storyboard>
+
+            <Storyboard x:Key="lbl_felAnvLos_ani2">
+                <DoubleAnimation FillBehavior="Stop" Storyboard.TargetProperty="Height" From="23" To="35" Duration="0:0:0.1"></DoubleAnimation>
+                <DoubleAnimation FillBehavior="Stop" Storyboard.TargetProperty="Height" From="35" To="23" Duration="0:0:0.1"></DoubleAnimation>
+            </Storyboard>
+        </Grid.Resources>
+
+
         <!-- Definierar raderna i grid -->
-        <Grid.RowDefinitions> 
+        <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="90" />
             <RowDefinition Height="auto" />
@@ -17,13 +26,13 @@
             <RowDefinition Height="60"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-            
+
         <!-- Lägger logo.png på andra raden, andra kolumnen -->
         <Image Grid.Row="1" Grid.Column="1" Source="logo.png" Width="210" HorizontalAlignment="Center"/>
-            
+
         <!-- Lägger textbox på fjärde raden, andra kolumnen -->
         <TextBox Grid.Row="3" Grid.Column="1" Text="Användarnamn" Foreground="White" HorizontalContentAlignment="Center"
-                 VerticalContentAlignment="Center" Width="165" Height="25" HorizontalAlignment="Center" Background="Gray"
+                 VerticalContentAlignment="Center" Width="165" Height="25" HorizontalAlignment="Center" Background="#FF6A6A6A"
                  BorderThickness="0" Name="txtbox_Anv" GotFocus="txtbox_Anv_GotFocus" LostFocus="txtbox_Anv_LostFocus">
             <!-- Skugga på textboxen -->
             <TextBox.Effect>
@@ -34,13 +43,13 @@
         <!-- Lägger till passwordbox på femte raden, andra kolumnen -->
         <PasswordBox PasswordChar="*" Name="txtbox_Password" Height="25" Foreground="White" HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center" Grid.Row="5" Grid.Column="1" Width="165" HorizontalAlignment="Center"
-                     Background="Gray" BorderThickness="0" Password="Password" GotFocus="txtbox_Password_GotFocus" LostFocus="txtbox_Password_LostFocus">
+                     Background="#FF6A6A6A" BorderThickness="0" Password="Password" GotFocus="txtbox_Password_GotFocus" LostFocus="txtbox_Password_LostFocus">
 
             <!-- Skugga på passwordboxen -->
             <PasswordBox.Effect>
                 <DropShadowEffect ShadowDepth="5" Color="Black" Opacity=".4" RenderingBias="Quality" Direction="-70" />
             </PasswordBox.Effect>
-            
+
         </PasswordBox>
 
         <!-- Lägger till Logga in-knappen på sjunde raden, andra kolumnen  -->
@@ -54,7 +63,7 @@
                     <GradientStop Color="#FF1E7C30" Offset="1" />
                 </LinearGradientBrush>
             </Button.Background>
-            
+
         </Button>
 
         <!-- Lägger till Bli Medlem-knappen på sjunde raden, andra kolumnen  -->
@@ -68,8 +77,10 @@
                     <GradientStop Color="#FF1E7C30" Offset="1" />
                 </LinearGradientBrush>
             </Button.Background>
-            
+
         </Button>
-            
+
+        <Label Name="lbl_felAnvLos" Grid.Row="7" Content="Fel användarnamn eller lösenord, försök igen."
+               HorizontalAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Foreground="#FFFF4444" Visibility="Hidden"/>
     </Grid>
 </UserControl>

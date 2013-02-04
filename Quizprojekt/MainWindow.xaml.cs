@@ -106,22 +106,36 @@ namespace Quizprojekt
             myOleDbDataReader.Read();
 
             try
+                // Om lösenord är rätt kommer man in
             {
                 if (losenord == Convert.ToString(myOleDbDataReader["Losenord"]))
                 {
-                    Switcher.Switch(new Meny());
+                    Meny meny = new Meny();
+                    meny.btn_LoggaUt.Content = "Logga ut " + Convert.ToString(myOleDbDataReader["Anvandarnamn"]);
+                    meny.btn_LoggaUt.Width = ("Logga ut " + Convert.ToString(myOleDbDataReader["Anvandarnamn"])).Length * 8;
+                    Switcher.Switch(meny);
                 }
             }
+                // Om lösenord är fel får du reda på detta med animerad label
             catch
             {
-                MessageBox.Show("FEL");
+                if (lbl_felAnvLos.Visibility != Visibility.Visible)
+                {
+                    lbl_felAnvLos.Visibility = Visibility.Visible;
+                    Storyboard lbl_felAnvLos_ani = (Storyboard)gridMainWindow.Resources["lbl_felAnvLos_ani"];
+                    lbl_felAnvLos_ani.Begin(lbl_felAnvLos);
+                }
+                else
+                {
+                    Storyboard lbl_felAnvLos_ani2 = (Storyboard)gridMainWindow.Resources["lbl_felAnvLos_ani2"];
+                    lbl_felAnvLos_ani2.Begin(lbl_felAnvLos);
+                }
             }
         }
 
         private void btn_BliMedlem_Click(object sender, RoutedEventArgs e)
         {
             Switcher.Switch(new bliMedlem());
-
         }
 
         #region ISwitchable Members

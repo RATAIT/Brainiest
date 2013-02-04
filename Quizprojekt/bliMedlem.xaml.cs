@@ -66,6 +66,12 @@ namespace Quizprojekt
             myCommand2.ExecuteNonQuery();
 
             thisConnection.Close();
+
+            // Tar med sig användarnamn och lösenord spelaren valt till loginmenyn
+            MainWindow newMain = new MainWindow();
+            newMain.txtbox_Anv.Text = txtbox_Anv.Text;
+            newMain.txtbox_Password.Password = txtbox_Password.Password;
+            Switcher.Switch(newMain);
         }
 
 
@@ -77,31 +83,25 @@ namespace Quizprojekt
         }
         #endregion
 
-        bool losenOk;
-        private void txtbox_Password2_PasswordChanged(object sender, RoutedEventArgs e)
+        bool losenOk; // Sparar värde om lösenordet är ok eller ej
+        bool anvFinns; // Sparar värde om användarnamn finns eller ej
+
+        // Om du ändrar lösenord i första boxen nollställs det i andra
+        private void txtbox_Password_PasswordChanged_1(object sender, RoutedEventArgs e)
         {
-            if (txtbox_Password.Password == txtbox_Password2.Password && txtbox_Password.Password.Length > 0)
-            {
-                losenOk = true;
-                btn_BliMedlem.Visibility = Visibility.Visible;
-                lbl_MatcharEj.Visibility = Visibility.Hidden;
-            }
-
-            else
-            {
-                losenOk = false;
-                btn_BliMedlem.Visibility = Visibility.Hidden;
-                lbl_MatcharEj.Visibility = Visibility.Visible;
-            }
-
-            if (anvFinns == true || losenOk == false)
-                btn_BliMedlem.Visibility = Visibility.Hidden;
+            txtbox_Password2.Password = null;
         }
 
-        bool anvFinns;
+        
+        // Om andra lösenordsboxen ändras kollas detta mot första vid varje knapptryck
+        private void txtbox_Password2_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            kolla();
+        }
+
+        // Om användarnamnsboxen ändras kollas detta hela tiden mot användardatabasen för att se om användaren redan finns eller ej
         private void txtbox_Anv_TextChanged(object sender, TextChangedEventArgs e)
         {
-
             string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=BrainiestDB.accdb";
 
             OleDbConnection myOleDbConnection = new OleDbConnection(connectionString);
@@ -114,28 +114,68 @@ namespace Quizprojekt
 
             OleDbDataReader myOleDbDataReader = myOleDbCommand.ExecuteReader();
 
+            anvFinns = false;
             // Läser alla rader i databasen med kommandot givet ovan.
-            while (myOleDbDataReader.Read())
+            while (myOleDbDataReader.Read() && anvFinns == false)
             {
-                if (txtbox_Anv.Text == Convert.ToString(myOleDbDataReader["Anvandarnamn"]))
+                // Kollar oberoende på om du har stora eller små bokstäver om användarnamnet finns redan eller inte
+                if (txtbox_Anv.Text.IndexOf(Convert.ToString(myOleDbDataReader["Anvandarnamn"]), StringComparison.InvariantCultureIgnoreCase) > -1)  
                 {
                     anvFinns = true;
                     lbl_AnvFinns.Visibility = Visibility.Visible;
                     btn_BliMedlem.Visibility = Visibility.Hidden;
+                    kolla();
                 }
                 else
                 {
                     anvFinns = false;
                     lbl_AnvFinns.Visibility = Visibility.Hidden;
                     btn_BliMedlem.Visibility = Visibility.Visible;
+                    kolla();
                 }
 
                 if (anvFinns == true || losenOk == false)
                     btn_BliMedlem.Visibility = Visibility.Hidden;
-
             }
 
 
         }
+
+        private void kolla()
+        {
+            if (txtbox_Password.Password == txtbox_Password2.Password && txtbox_Password.Password.Length > 0)
+            {
+                if (txtbox_Anv.Text != "")
+                {
+                    losenOk = true;
+                    btn_BliMedlem.Visibility = Visibility.Visible;
+                    lbl_MatcharEj.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    losenOk = true;
+                    btn_BliMedlem.Visibility = Visibility.Hidden;
+                    lbl_MatcharEj.Visibility = Visibility.Hidden;
+                }
+            }
+            else if (txtbox_Password.Password != txtbox_Password2.Password)
+            {
+                if (txtbox_Password.Password != null)
+                {
+                    losenOk = false;
+                    btn_BliMedlem.Visibility = Visibility.Hidden;
+                    lbl_MatcharEj.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    losenOk = false;
+                    btn_BliMedlem.Visibility = Visibility.Hidden;
+                    lbl_MatcharEj.Visibility = Visibility.Hidden;
+                }
+            }
+            if (anvFinns == true || losenOk == false)
+                btn_BliMedlem.Visibility = Visibility.Hidden;
+        }
+
     }
 }

@@ -13,11 +13,11 @@
         </Grid.RowDefinitions>
       
 
-        <Label Grid.Row="1"  Margin="100,7,0,0" Content="Användarnamn:" Foreground="White" FontFamily="Swis721 BT" FontWeight="DemiBold"></Label>
+        <Label Grid.Row="1"  Margin="200,7,0,0" Content="Användarnamn:" Foreground="White" FontFamily="Swis721 BT" FontWeight="DemiBold"></Label>
         <Label Grid.Row="1" HorizontalAlignment="Center" Margin="425, 0, 0, 0" VerticalAlignment="Center"
                Content="Användarnamnet finns redan" Visibility="Hidden" Name="lbl_AnvFinns" Foreground="#FFFF4141"></Label>
         <TextBox Grid.Row="1" Text="" Foreground="White" HorizontalContentAlignment="Center"
-                 VerticalContentAlignment="Center" Width="165" Height="25" HorizontalAlignment="Center" Background="Gray"
+                 VerticalContentAlignment="Center" Width="165" Height="25" HorizontalAlignment="Center" Background="#FF6A6A6A"
                  BorderThickness="0" Name="txtbox_Anv" Margin="100,0,0,0" TextChanged="txtbox_Anv_TextChanged">
             <TextBox.Effect>
                 <DropShadowEffect ShadowDepth="5" Color="Black" Opacity=".4" RenderingBias="Quality" Direction="-70" />
@@ -25,10 +25,10 @@
         </TextBox>
 
 
-        <Label Grid.Row="2"  Margin="100,7,0,0" Content="Lösenord:"  Foreground="White" FontFamily="Swis721 BT" FontWeight="DemiBold"></Label>
+        <Label Grid.Row="2"  Margin="200,7,0,0" Content="Lösenord:"  Foreground="White" FontFamily="Swis721 BT" FontWeight="DemiBold"></Label>
         <PasswordBox PasswordChar="*" Name="txtbox_Password" Height="25" Foreground="White" HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Width="165" HorizontalAlignment="Center"
-                     Background="Gray" BorderThickness="0" Password="" Margin="100,0,0,0">
+                     Background="#FF6A6A6A" BorderThickness="0" Password="" Margin="100,0,0,0" PasswordChanged="txtbox_Password_PasswordChanged_1">
 
             <!-- Skugga på passwordboxen -->
             <PasswordBox.Effect>
@@ -37,12 +37,12 @@
         </PasswordBox>
         <Label Grid.Row="3" HorizontalAlignment="Center" Margin="425, 0, 0, 0" VerticalAlignment="Center"
                Content="Lösenorden matchar ej." Visibility="Hidden" Name="lbl_MatcharEj" Foreground="#FFFF4141"></Label>
-        
-        
-        <Label Grid.Row="3"  Margin="100,7,0,0" Content="Lösenord igen:" Foreground="White" FontFamily="Swis721 BT" FontWeight="DemiBold"></Label>
+
+
+        <Label Grid.Row="3"  Margin="200,7,0,0" Content="Lösenord igen:" Foreground="White" FontFamily="Swis721 BT" FontWeight="DemiBold"></Label>
         <PasswordBox PasswordChar="*" Name="txtbox_Password2" Height="25" Foreground="White" HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Width="165" HorizontalAlignment="Center"
-                     Background="Gray" BorderThickness="0" Password="" Margin="100,0,0,0" PasswordChanged="txtbox_Password2_PasswordChanged">
+                     Background="#FF6A6A6A" BorderThickness="0" Password="" Margin="100,0,0,0" PasswordChanged="txtbox_Password2_PasswordChanged">
 
             <!-- Skugga på passwordboxen -->
             <PasswordBox.Effect>
@@ -66,7 +66,7 @@
         </Button>
 
         <!-- Lägger till Logga in-knappen på sjunde raden, andra kolumnen  -->
-        <Button Grid.Row="4" Grid.Column="1" Width="80" Content="Avbryt" Height="30" Margin="85,0,0,0" Foreground="White"
+        <Button Grid.Row="4" Grid.Column="1" Width="80" Content="Tillbaka" Height="30" Margin="85,0,0,0" Foreground="White"
                 FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_Avbryt" Click="btn_Avbryt_Click">
 
             <!-- LinearGradientBrush på knappen -->

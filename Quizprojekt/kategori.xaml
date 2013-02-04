@@ -40,5 +40,18 @@
             <Button Width="150" Height="30" Foreground="White"
                 FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Margin="5" Style="{StaticResource Button}" Name="btn_Kat3" Click="btn_Kat3_Click" />
         </StackPanel>
+
+        <Button Grid.Row="3" Width="80" Content="Tillbaka" Height="30" VerticalAlignment="Top" Margin="30" Foreground="White"
+                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Click="Button_Click_1">
+
+            <!-- LinearGradientBrush på knappen -->
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5EF677" Offset="0" />
+                    <GradientStop Color="#FF1E7C30" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+
+        </Button>
     </Grid>
 </UserControl>

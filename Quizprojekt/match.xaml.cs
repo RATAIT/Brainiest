@@ -149,7 +149,7 @@ namespace Quizprojekt
             progBarStart.Begin(progressBar1);
         }
 
-        // När tiden gått ut i progressbaren:
+        // När tiden gått ut i progressbaren sätts alla knappar till rött:
         private void progressBarAnimation_Completed(object sender, EventArgs e)
         {
             btn1Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
@@ -167,17 +167,30 @@ namespace Quizprojekt
             fragaOver();
         }
 
+        // När man svarat på en fråga ska detta hända
         private void fragaOver()
         {
      
-
+            // Om man ännu inte svarat på 3 frågor visas "Nästa fråga"-knappen
             if (fraga < 3)
             {
-                progressBar1.Visibility = Visibility.Visible;
-                btn_NastaFraga.Visibility = Visibility.Visible;
-                lbl_TidKvar.Visibility = Visibility.Hidden;
+                if (fraga < 2)
+                {
+                    progressBar1.Visibility = Visibility.Hidden;
+                    btn_NastaFraga.Visibility = Visibility.Visible;
+                    lbl_TidKvar.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    progressBar1.Visibility = Visibility.Hidden;
+                    btn_NastaFraga.Visibility = Visibility.Visible;
+                    lbl_TidKvar.Visibility = Visibility.Hidden;
+                    btn_NastaFraga.Content = "Tillbaka";
+                }
+
 
             }
+            // Annars går man tillbaka till kategori
             else
             {
                 Switcher.Switch(new kategori());
@@ -186,14 +199,17 @@ namespace Quizprojekt
 
         }
 
+        // Klick på "Nästa Fråga"-knappen
         private void btn_NastaFraga_Click(object sender, RoutedEventArgs e)
         {
-
+            // Knappen döljs och progressbar+tidkvar kommer tillbaka
             progressBar1.Visibility = System.Windows.Visibility.Visible;
             btn_NastaFraga.Visibility = System.Windows.Visibility.Collapsed;
             lbl_TidKvar.Visibility = Visibility.Visible;
 
             fraga++;
+
+            // En ny fråga kommer fram
             pickThreeQuestions(idList, antalID, fraga);
 
         }
@@ -237,12 +253,7 @@ namespace Quizprojekt
         // Ändrar färgerna på fel svar till rött och rätt svar till grönt
         private void changeBtnCol(string btnID, string svar)
         {
-            string content1 = Convert.ToString(btn_Svar1.Content);
-            string content2 = Convert.ToString(btn_Svar2.Content);
-            string content3 = Convert.ToString(btn_Svar3.Content);
-            string content4 = Convert.ToString(btn_Svar4.Content);
-
-            if (content1 == svar)
+            if (Convert.ToString(btn_Svar1.Content) == svar)
             {
                 btn2Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
                 btn2Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
@@ -253,7 +264,7 @@ namespace Quizprojekt
                 btn4Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
                 btn4Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
             }
-            else if (content2 == svar)
+            else if (Convert.ToString(btn_Svar2.Content) == svar)
             {
                 btn1Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
                 btn1Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
@@ -264,7 +275,7 @@ namespace Quizprojekt
                 btn4Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
                 btn4Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
             }
-            else if (content3 == svar)
+            else if (Convert.ToString(btn_Svar3.Content) == svar)
             {
                 btn2Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
                 btn2Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
@@ -275,7 +286,7 @@ namespace Quizprojekt
                 btn4Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
                 btn4Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
             }
-            else if (content4 == svar)
+            else if (Convert.ToString(btn_Svar4.Content) == svar)
             {
                 btn2Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
                 btn2Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
