@@ -16,7 +16,7 @@ namespace Quizprojekt
     /// <summary>
     /// Interaction logic for kategori.xaml
     /// </summary>
-    public partial class kategori : Window
+    public partial class kategori : UserControl, ISwitchable
     {
         public int i = 0;
         public int id1;
@@ -72,30 +72,32 @@ namespace Quizprojekt
         {
             id = id1 + 1;
 
-            match match1 = new match();
-            match1.Show();
-            this.Close();
+            Switcher.Switch(new match());
+          
         }
 
         private void btn_Kat2_Click(object sender, RoutedEventArgs e)
         {
             id = id2 + 1;
 
-            match match1 = new match();
-            match1.Show();
-            this.Close();
+            Switcher.Switch(new match());
         }
 
         private void btn_Kat3_Click(object sender, RoutedEventArgs e)
         {
             id = id3 + 1;
 
-            match match1 = new match();
-            match1.Show();
-            this.Close();
+            Switcher.Switch(new match());
         }
 
+        #region ISwitchable Members
 
+        public void UtilizeState(object state)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
 
     }
 }

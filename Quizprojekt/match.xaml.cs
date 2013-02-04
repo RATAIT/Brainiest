@@ -20,7 +20,7 @@ namespace Quizprojekt
     /// <summary>
     /// Interaction logic for match.xaml
     /// </summary>
-    public partial class match : Window
+    public partial class match : UserControl, ISwitchable
     {
 
         public match()
@@ -37,9 +37,8 @@ namespace Quizprojekt
         int fraga = 0; // Kollar vilken fråga man är på just nu
         List<string> idList = new List<string>(); // Lista med frågor från en viss kategori
         int antalID = 0;
-    
 
-                // Läser in alla frågeIDn från en specifik kategori.
+        // Läser in alla frågeIDn från en specifik kategori.
         private void readQuestion()
         {
 
@@ -55,8 +54,6 @@ namespace Quizprojekt
 
             OleDbDataReader myOleDbDataReader = myOleDbCommand.ExecuteReader();
 
-
-
             // Läser alla rader i databasen med kommandot givet ovan.
             while (myOleDbDataReader.Read())
             {
@@ -71,34 +68,32 @@ namespace Quizprojekt
 
         // Väljer ut tre frågor till en array från en list som läses in i readQuestion()
         private void pickThreeQuestions(List<string> idList, int antalID, int fraga)
-    {
-        // Om man svarat på tre frågor stängs fönstret.
-        if (fraga > 2)
         {
-            kategori kategori = new kategori(); // *** FIXAS: Ska ej öppnas om du valt kategori  tidigare ***
-            kategori.Show();
-            this.Close();
-        }
-        // Hämtar ny fråga om man svarat på första frågan
-        else if (fraga > 0)
-            setQuestion(idFragaArray[fraga]);
-        // Slumpar ut tre frågor från en lista som skapats i readQuestion()
-        else
-        {
-            for (int i = 0; i < 3; i++)
+  
+            // Om man svarat på tre frågor stängs fönstret.
+            if (fraga > 2)
             {
-                Random random = new Random();
-                int num = random.Next(antalID);
-
-                //Tar FragorID på positionen num
-                idFragaArray[i] = idList.ElementAtOrDefault(num);
-                idList.RemoveAt(num);
-                antalID--;
+                Switcher.Switch(new kategori());
             }
-            setQuestion(idFragaArray[fraga]);
-        }
-    }
+            // Hämtar ny fråga om man svarat på första frågan
+            else if (fraga > 0)
+                setQuestion(idFragaArray[fraga]);
+            // Slumpar ut tre frågor från en lista som skapats i readQuestion()
+            else
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    Random random = new Random();
+                    int num = random.Next(antalID);
 
+                    //Tar FragorID på positionen num
+                    idFragaArray[i] = idList.ElementAtOrDefault(num);
+                    idList.RemoveAt(num);
+                    antalID--;
+                }
+                setQuestion(idFragaArray[fraga]);
+            }
+        }
 
         // Skriver ut frågan + svarsalternativen
         private void setQuestion(string idFraga)
@@ -108,7 +103,6 @@ namespace Quizprojekt
             string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=BrainiestDB.accdb";
 
             OleDbConnection myOleDbConnection = new OleDbConnection(connectionString);
-
             OleDbCommand myOleDbCommand = myOleDbConnection.CreateCommand();
 
             //Query för att hämta allt från en viss fråga
@@ -155,12 +149,53 @@ namespace Quizprojekt
             progBarStart.Begin(progressBar1);
         }
 
-
         // När tiden gått ut i progressbaren:
         private void progressBarAnimation_Completed(object sender, EventArgs e)
         {
+            btn1Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
+            btn1Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
 
-            //MessageBox.Show("Tiden är ute.");
+            btn2Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
+            btn2Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
+
+            btn3Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
+            btn3Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
+
+            btn4Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
+            btn4Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
+
+            fragaOver();
+        }
+
+        private void fragaOver()
+        {
+     
+
+            if (fraga < 3)
+            {
+                progressBar1.Visibility = Visibility.Visible;
+                btn_NastaFraga.Visibility = Visibility.Visible;
+                lbl_TidKvar.Visibility = Visibility.Hidden;
+
+            }
+            else
+            {
+                Switcher.Switch(new kategori());
+             
+            }
+
+        }
+
+        private void btn_NastaFraga_Click(object sender, RoutedEventArgs e)
+        {
+
+            progressBar1.Visibility = System.Windows.Visibility.Visible;
+            btn_NastaFraga.Visibility = System.Windows.Visibility.Collapsed;
+            lbl_TidKvar.Visibility = Visibility.Visible;
+
+            fraga++;
+            pickThreeQuestions(idList, antalID, fraga);
+
         }
 
         //Beroende på vad man svarat så skickas denna text till checkAnswer()
@@ -191,18 +226,12 @@ namespace Quizprojekt
         //Kollar om ditt svar och det rätta svaret är samma
         private void checkAnswer(string btnAnswer, string btnID)
         {
+            progBarStart.Stop(progressBar1);
             // Ändrar färgerna på fel svar till rött och rätt svar till grönt
             changeBtnCol(btnID, corAns);
 
-            // Berättar om vi fått fel eller rätt
-            if (corAns == btnAnswer)
-                MessageBox.Show("RÄTT");
-            else
-                MessageBox.Show("FEL");
-
             // Läser in en ny fråga
-            fraga++;
-            pickThreeQuestions(idList, antalID, fraga);
+            fragaOver();
         }
 
         // Ändrar färgerna på fel svar till rött och rätt svar till grönt
@@ -212,7 +241,7 @@ namespace Quizprojekt
             string content2 = Convert.ToString(btn_Svar2.Content);
             string content3 = Convert.ToString(btn_Svar3.Content);
             string content4 = Convert.ToString(btn_Svar4.Content);
-            
+
             if (content1 == svar)
             {
                 btn2Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
@@ -275,6 +304,15 @@ namespace Quizprojekt
             btn4Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF1E7C30"));
         }
 
+
+        #region ISwitchable Members
+
+        public void UtilizeState(object state)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
 
     }
 }

@@ -1,7 +1,6 @@
-﻿<Window x:Class="Quizprojekt.bliMedlem"
+﻿<UserControl x:Class="Quizprojekt.bliMedlem"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="bliMedlem" Height="300" Width="450" MaxHeight="300" MinHeight="300" MaxWidth="500" MinWidth="500">
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Height="500" Width="700" MinHeight="500" MinWidth="700">
     <Grid>
         
         <Grid.RowDefinitions>
@@ -12,13 +11,7 @@
             <RowDefinition Height="40" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF171717" Offset="0" />
-                <GradientStop Color="#FF4B4B4B" Offset="0.68" />
-                <GradientStop Color="#FF242424" Offset="0.953" />
-            </LinearGradientBrush>
-        </Grid.Background>
+      
 
         <Label Grid.Row="1"  Margin="100,7,0,0" Content="Användarnamn:" Foreground="White" FontFamily="Swis721 BT" FontWeight="DemiBold"></Label>
 
@@ -30,6 +23,7 @@
             </TextBox.Effect>
         </TextBox>
 
+
         <Label Grid.Row="2"  Margin="100,7,0,0" Content="Lösenord:"  Foreground="White" FontFamily="Swis721 BT" FontWeight="DemiBold"></Label>
         <PasswordBox PasswordChar="*" Name="txtbox_Password" Height="25" Foreground="White" HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Width="165" HorizontalAlignment="Center"
@@ -40,22 +34,24 @@
                 <DropShadowEffect ShadowDepth="5" Color="Black" Opacity=".4" RenderingBias="Quality" Direction="-70" />
             </PasswordBox.Effect>
         </PasswordBox>
-
+        <Label Grid.Row="3" HorizontalAlignment="Center" Margin="425, 0, 0, 0" VerticalAlignment="Center" Content="Lösenorden matchar ej." Visibility="Hidden" Name="lbl_MatcharEj" Foreground="#FFFF4141"></Label>
+        
+        
         <Label Grid.Row="3"  Margin="100,7,0,0" Content="Lösenord igen:" Foreground="White" FontFamily="Swis721 BT" FontWeight="DemiBold"></Label>
         <PasswordBox PasswordChar="*" Name="txtbox_Password2" Height="25" Foreground="White" HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Width="165" HorizontalAlignment="Center"
-                     Background="Gray" BorderThickness="0" Password="" Margin="100,0,0,0">
+                     Background="Gray" BorderThickness="0" Password="" Margin="100,0,0,0" PasswordChanged="txtbox_Password2_PasswordChanged">
 
             <!-- Skugga på passwordboxen -->
             <PasswordBox.Effect>
                 <DropShadowEffect ShadowDepth="5" Color="Black" Opacity=".4" RenderingBias="Quality" Direction="-70" />
             </PasswordBox.Effect>
         </PasswordBox>
+    
 
-
-        <!-- Lägger till Bli Medlem-knappen på sjunde raden, andra kolumnen  -->
+            <!-- Lägger till Bli Medlem-knappen på sjunde raden, andra kolumnen  -->
         <Button Grid.Row="4" Grid.Column="1" Width="80" Content="Bli Medlem" Height="30" Margin="0,0,85,0" Foreground="White"
-                FontFamily="Swis721 BT" BorderThickness="0" BorderBrush="#00000000" Name="btn_BliMedlem">
+                FontFamily="Swis721 BT" BorderThickness="0" BorderBrush="#00000000" Name="btn_BliMedlem" Visibility="Hidden" Click="btn_BliMedlem_Click">
 
             <!-- LinearGradientBrush på knappen -->
             <Button.Background>
@@ -82,4 +78,4 @@
         </Button>
 
     </Grid>
-</Window>
+</UserControl>

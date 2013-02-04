@@ -11,13 +11,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
+using System.Data.Common;
+using System.Data.OleDb;
+using System.Windows.Media.Animation;
+using System.Security.Cryptography;
 
 namespace Quizprojekt
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : UserControl, ISwitchable
     {
         public MainWindow()
         {
@@ -67,19 +72,66 @@ namespace Quizprojekt
                 txtbox_Password.Password = passStand;
         }
 
+
+        // Krypterar lösenordet till md5.
+        public String md5Hash(String input)
+        {
+            String result = "";
+
+            using (MD5 md5 = new MD5CryptoServiceProvider())
+            {
+                result = BitConverter.ToString(md5.ComputeHash(ASCIIEncoding.Default.GetBytes(input)));
+            }
+
+            return result;
+        }
+
         private void btn_LoggaIn_Click(object sender, RoutedEventArgs e)
         {
-            // Öppnar ett nytt Meny.xaml-fönster
-            Meny menyWin = new Meny();
-            menyWin.Show();
-            this.Close();
+            string anvNamn = txtbox_Anv.Text;
+            string losenord = md5Hash(txtbox_Password.Password);
+
+            string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=BrainiestDB.accdb";
+
+            OleDbConnection myOleDbConnection = new OleDbConnection(connectionString);
+            OleDbCommand myOleDbCommand = myOleDbConnection.CreateCommand();
+
+            //Query för att hämta allt från en viss fråga
+            myOleDbCommand.CommandText = "SELECT * FROM Medlemmar WHERE Anvandarnamn = " + anvNamn;
+            myOleDbConnection.Open();
+
+            OleDbDataReader myOleDbDataReader = myOleDbCommand.ExecuteReader();
+
+            myOleDbDataReader.Read();
+
+
+            if (losenord == Convert.ToString(myOleDbDataReader["Losenord"]))
+            {
+                Switcher.Switch(new Meny());
+            }
+            else
+            {
+                MessageBox.Show("FEL");
+            }
+
+   
+
         }
 
         private void btn_BliMedlem_Click(object sender, RoutedEventArgs e)
         {
-            bliMedlem medlemWin = new bliMedlem();
-            medlemWin.Show();
+            Switcher.Switch(new bliMedlem());
 
         }
+
+        #region ISwitchable Members
+
+        public void UtilizeState(object state)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
     }
 }

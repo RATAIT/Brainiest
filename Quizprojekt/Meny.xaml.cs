@@ -16,7 +16,7 @@ namespace Quizprojekt
     /// <summary>
     /// Interaction logic for Meny.xaml
     /// </summary>
-    public partial class Meny : Window
+    public partial class Meny : UserControl, ISwitchable
     {
         public Meny()
         {
@@ -25,16 +25,24 @@ namespace Quizprojekt
 
         private void btn_LoggaUt_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Switcher.Switch(new MainWindow());
         }
 
         private void btn_Spela1_Click(object sender, RoutedEventArgs e)
         {
-            kategori kategori = new kategori();
-            kategori.Show();
-        }
-    
 
+            Switcher.Switch(new kategori());
+     
+        }
+
+        #region ISwitchable Members
+
+        public void UtilizeState(object state)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
    
     }
 }
