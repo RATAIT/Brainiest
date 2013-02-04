@@ -22,11 +22,8 @@ namespace Quizprojekt
         public int id1;
         public int id2;
         public int id3;
+        public static int id = 0;
 
-        public class kategoriID
-        {
-            public static int id = 0;
-        }
 
         public kategori()
         {
@@ -73,7 +70,7 @@ namespace Quizprojekt
         // Vid klick skickas valt kategoriID vidare till matchklassen
         private void btn_Kat1_Click(object sender, RoutedEventArgs e)
         {
-            kategoriID.id = id1 + 1;
+            id = id1 + 1;
 
             match match1 = new match();
             match1.Show();
@@ -82,7 +79,7 @@ namespace Quizprojekt
 
         private void btn_Kat2_Click(object sender, RoutedEventArgs e)
         {
-            kategoriID.id = id2 + 1;
+            id = id2 + 1;
 
             match match1 = new match();
             match1.Show();
@@ -91,7 +88,7 @@ namespace Quizprojekt
 
         private void btn_Kat3_Click(object sender, RoutedEventArgs e)
         {
-            kategoriID.id = id3 + 1;
+            id = id3 + 1;
 
             match match1 = new match();
             match1.Show();

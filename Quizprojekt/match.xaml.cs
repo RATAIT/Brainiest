@@ -23,9 +23,6 @@ namespace Quizprojekt
     public partial class match : Window
     {
 
-        
-
-
         public match()
         {
             InitializeComponent();
@@ -34,11 +31,15 @@ namespace Quizprojekt
             readQuestion();
         }
 
-        string idFraga;
-        int kategoriID = kategori.kategoriID.id;
-        string corAns;
+        string[] idFragaArray = new string[3]; // Array för pickThreeQuestions
+        int kategoriID = kategori.id;
+        string corAns; // Rätta svaret
+        int fraga = 0; // Kollar vilken fråga man är på just nu
+        List<string> idList = new List<string>(); // Lista med frågor från en viss kategori
+        int antalID = 0;
+    
 
-        // Läser in alla frågeIDn från en specifik kategori.
+                // Läser in alla frågeIDn från en specifik kategori.
         private void readQuestion()
         {
 
@@ -56,9 +57,6 @@ namespace Quizprojekt
 
 
 
-            List<string> idList = new List<string>(); // Deklarerar en lista.
-
-            int antalID = 0;
             // Läser alla rader i databasen med kommandot givet ovan.
             while (myOleDbDataReader.Read())
             {
@@ -67,17 +65,43 @@ namespace Quizprojekt
                 antalID++;
             }
 
-            Random random = new Random();
-            int num = random.Next(antalID);
-
-            //Tar FragorID på positionen num
-            idFraga = idList.ElementAtOrDefault(num);
-
-            setQuestion();
+            // Skickar vidare idList, antalID och fraga (vilken av de tre frågorna som ska skickas) till pickThreeQuestions metoden
+            pickThreeQuestions(idList, antalID, fraga);
         }
 
+        // Väljer ut tre frågor till en array från en list som läses in i readQuestion()
+        private void pickThreeQuestions(List<string> idList, int antalID, int fraga)
+    {
+        // Om man svarat på tre frågor stängs fönstret.
+        if (fraga > 2)
+        {
+            kategori kategori = new kategori(); // *** FIXAS: Ska ej öppnas om du valt kategori  tidigare ***
+            kategori.Show();
+            this.Close();
+        }
+        // Hämtar ny fråga om man svarat på första frågan
+        else if (fraga > 0)
+            setQuestion(idFragaArray[fraga]);
+        // Slumpar ut tre frågor från en lista som skapats i readQuestion()
+        else
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                Random random = new Random();
+                int num = random.Next(antalID);
+
+                //Tar FragorID på positionen num
+                idFragaArray[i] = idList.ElementAtOrDefault(num);
+                idList.RemoveAt(num);
+                antalID--;
+            }
+            setQuestion(idFragaArray[fraga]);
+        }
+    }
+
+
         // Skriver ut frågan + svarsalternativen
-        private void setQuestion()
+        private void setQuestion(string idFraga)
         {
             changeBtnColReset();
 
@@ -177,7 +201,8 @@ namespace Quizprojekt
                 MessageBox.Show("FEL");
 
             // Läser in en ny fråga
-            readQuestion();
+            fraga++;
+            pickThreeQuestions(idList, antalID, fraga);
         }
 
         // Ändrar färgerna på fel svar till rött och rätt svar till grönt
