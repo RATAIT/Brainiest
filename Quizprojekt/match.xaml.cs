@@ -37,6 +37,7 @@ namespace Quizprojekt
         int fraga = 0; // Kollar vilken fråga man är på just nu
         List<string> idList = new List<string>(); // Lista med frågor från en viss kategori
         int antalID = 0;
+        int questAnswered = 0;
         
 
         // Läser in alla frågeIDn från en specifik kategori.
@@ -150,28 +151,19 @@ namespace Quizprojekt
             startAniProg();
         }
 
-        int aniOn = 0;
+        
         private void startAniProg()
         {
+            questAnswered = 0;
             BeginStoryboard progBarStart = (BeginStoryboard)gridMatch.Resources["progBarStart"];
-            PauseStoryboard progBarStop = (PauseStoryboard)gridMatch.Resources["progBarStop"];
-
-            if (aniOn == 0)
-            {
-                
-                progBarStart.Storyboard.Begin(progressBar1);
-                aniOn++;
-            }
-            else if (aniOn == 1)
-            {
-                progBarStart.Storyboard.Pause(progressBar1);
-                aniOn--;
-            }
+            progBarStart.Storyboard.Begin(progressBar1);
         }
 
         // När tiden gått ut i progressbaren sätts alla knappar till rött:
         private void progressBarAnimation_Completed(object sender, EventArgs e)
         {
+            if (questAnswered == 0)
+            {
             btn1Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
             btn1Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
 
@@ -183,6 +175,7 @@ namespace Quizprojekt
 
             btn4Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
             btn4Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
+            }
 
             fragaOver();
         }
@@ -196,7 +189,7 @@ namespace Quizprojekt
             {
                 if (fraga < 2)
                 {
-                    progressBar1.Visibility = Visibility.Visible;
+                    progressBar1.Visibility = Visibility.Collapsed;
                     btn_NastaFraga.Visibility = Visibility.Visible;
                     lbl_TidKvar.Visibility = Visibility.Hidden;
                 }
@@ -214,7 +207,6 @@ namespace Quizprojekt
             else
             {
                 Switcher.Switch(new kategori());
-             
             }
 
         }
@@ -262,9 +254,7 @@ namespace Quizprojekt
         //Kollar om ditt svar och det rätta svaret är samma
         private void checkAnswer(string btnAnswer, string btnID)
         {
-
-            startAniProg();
-            
+            questAnswered = 1;
             // Ändrar färgerna på fel svar till rött och rätt svar till grönt
             changeBtnCol(btnID, corAns);
 

@@ -142,3 +142,5 @@ C:\Users\Andreas\Documents\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\PageSwitch
 C:\Users\Andreas\Documents\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\PageSwitcher.g.cs
 G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\PageSwitcher.baml
 G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\PageSwitcher.g.cs
+G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\PageSwitcher.baml
+G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\PageSwitcher.g.cs
