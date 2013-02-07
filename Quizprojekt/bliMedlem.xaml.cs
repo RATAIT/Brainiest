@@ -99,8 +99,8 @@ namespace Quizprojekt
             kolla();
         }
 
-        // Om användarnamnsboxen ändras kollas detta hela tiden mot användardatabasen för att se om användaren redan finns eller ej
-        private void txtbox_Anv_TextChanged(object sender, TextChangedEventArgs e)
+        // Om användarnamnsboxen tappar fokus kollas detta mot användardatabasen för att se om användaren redan finns eller ej
+        private void txtbox_Anv_LostFocus(object sender, RoutedEventArgs e)
         {
             string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=BrainiestDB.accdb";
 
@@ -119,7 +119,8 @@ namespace Quizprojekt
             while (myOleDbDataReader.Read() && anvFinns == false)
             {
                 // Kollar oberoende på om du har stora eller små bokstäver om användarnamnet finns redan eller inte
-                if (txtbox_Anv.Text.IndexOf(Convert.ToString(myOleDbDataReader["Anvandarnamn"]), StringComparison.InvariantCultureIgnoreCase) > -1)  
+                //txtbox_Anv.Text.IndexOf(Convert.ToString(myOleDbDataReader["Anvandarnamn"]), StringComparison.CurrentCultureIgnoreCase) > -1
+                if (String.Compare(txtbox_Anv.Text, Convert.ToString(myOleDbDataReader["Anvandarnamn"]), true) == 0)
                 {
                     anvFinns = true;
                     lbl_AnvFinns.Visibility = Visibility.Visible;
@@ -137,9 +138,7 @@ namespace Quizprojekt
                 if (anvFinns == true || losenOk == false)
                     btn_BliMedlem.Visibility = Visibility.Hidden;
             }
-
-
-        }
+        }      
 
         private void kolla()
         {
@@ -176,6 +175,8 @@ namespace Quizprojekt
             if (anvFinns == true || losenOk == false)
                 btn_BliMedlem.Visibility = Visibility.Hidden;
         }
+
+       
 
     }
 }

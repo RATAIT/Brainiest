@@ -1,7 +1,17 @@
 ﻿<UserControl x:Class="Quizprojekt.match"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Height="500" Width="700" MinHeight="500" MinWidth="700">
-    <Grid>
+    <Grid Name="gridMatch">
+        <Grid.Resources>
+            <BeginStoryboard x:Key="progBarStart">
+                <Storyboard>
+                    <DoubleAnimation Name="progressBarAnimation" FillBehavior="Stop" Storyboard.TargetProperty="Value"
+                                     From="0" To="100" Duration="0:0:15" Completed="progressBarAnimation_Completed"/>
+                </Storyboard>
+            </BeginStoryboard>
+            <PauseStoryboard BeginStoryboardName="progBarStart" x:Key="progBarStop">
+            </PauseStoryboard>
+        </Grid.Resources>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -87,15 +97,7 @@ FontFamily="Swis721 BT" BorderThickness="0" BorderBrush="#00000000" Name="btn_Na
 
             <!-- Progressbar animation för hur lång tid det är kvar -->
             <ProgressBar Name="progressBar1" Height="20" Margin="5" Width="250" Minimum="0" Maximum="100" Value="0">
-                <ProgressBar.Triggers>
-                    <EventTrigger RoutedEvent="Loaded">
-                        <BeginStoryboard Name="progbarBegSto">
-                            <Storyboard x:Name="progBarStart">
-                                <DoubleAnimation Name="progressBarAnimation" FillBehavior="Stop" Storyboard.TargetProperty="Value" From="0" To="100" Duration="0:0:15" Completed="progressBarAnimation_Completed"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </ProgressBar.Triggers>
+
                 <ProgressBar.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FF5EF677" Offset="0" />

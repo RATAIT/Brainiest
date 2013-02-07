@@ -18,7 +18,7 @@
                Content="Användarnamnet finns redan" Visibility="Hidden" Name="lbl_AnvFinns" Foreground="#FFFF4141"></Label>
         <TextBox Grid.Row="1" Text="" Foreground="White" HorizontalContentAlignment="Center"
                  VerticalContentAlignment="Center" Width="165" Height="25" HorizontalAlignment="Center" Background="#FF6A6A6A"
-                 BorderThickness="0" Name="txtbox_Anv" Margin="100,0,0,0" TextChanged="txtbox_Anv_TextChanged">
+                 BorderThickness="0" Name="txtbox_Anv" Margin="100,0,0,0" LostFocus="txtbox_Anv_LostFocus">
             <TextBox.Effect>
                 <DropShadowEffect ShadowDepth="5" Color="Black" Opacity=".4" RenderingBias="Quality" Direction="-70" />
             </TextBox.Effect>

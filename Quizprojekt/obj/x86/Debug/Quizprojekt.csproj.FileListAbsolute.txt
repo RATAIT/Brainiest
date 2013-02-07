@@ -140,3 +140,5 @@ G:\Dokument\GitHub3\Brainiest\Quizprojekt\obj\x86\Debug\GenerateResource.read.1.
 G:\Dokument\GitHub3\Brainiest\Quizprojekt\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\Andreas\Documents\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\PageSwitcher.baml
 C:\Users\Andreas\Documents\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\PageSwitcher.g.cs
+G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\PageSwitcher.baml
+G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\PageSwitcher.g.cs

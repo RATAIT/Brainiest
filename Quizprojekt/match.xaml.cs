@@ -26,7 +26,7 @@ namespace Quizprojekt
         public match()
         {
             InitializeComponent();
-
+            
             // Läser in fråga när man öppnar fönstret
             readQuestion();
         }
@@ -37,6 +37,7 @@ namespace Quizprojekt
         int fraga = 0; // Kollar vilken fråga man är på just nu
         List<string> idList = new List<string>(); // Lista med frågor från en viss kategori
         int antalID = 0;
+        
 
         // Läser in alla frågeIDn från en specifik kategori.
         private void readQuestion()
@@ -146,7 +147,26 @@ namespace Quizprojekt
             myOleDbConnection.Close();
 
             //Startar om progressbaren
-            progBarStart.Begin(progressBar1);
+            startAniProg();
+        }
+
+        int aniOn = 0;
+        private void startAniProg()
+        {
+            BeginStoryboard progBarStart = (BeginStoryboard)gridMatch.Resources["progBarStart"];
+            PauseStoryboard progBarStop = (PauseStoryboard)gridMatch.Resources["progBarStop"];
+
+            if (aniOn == 0)
+            {
+                
+                progBarStart.Storyboard.Begin(progressBar1);
+                aniOn++;
+            }
+            else if (aniOn == 1)
+            {
+                progBarStart.Storyboard.Pause(progressBar1);
+                aniOn--;
+            }
         }
 
         // När tiden gått ut i progressbaren sätts alla knappar till rött:
@@ -176,7 +196,7 @@ namespace Quizprojekt
             {
                 if (fraga < 2)
                 {
-                    progressBar1.Visibility = Visibility.Hidden;
+                    progressBar1.Visibility = Visibility.Visible;
                     btn_NastaFraga.Visibility = Visibility.Visible;
                     lbl_TidKvar.Visibility = Visibility.Hidden;
                 }
@@ -242,7 +262,9 @@ namespace Quizprojekt
         //Kollar om ditt svar och det rätta svaret är samma
         private void checkAnswer(string btnAnswer, string btnID)
         {
-            progBarStart.Stop(progressBar1);
+
+            startAniProg();
+            
             // Ändrar färgerna på fel svar till rött och rätt svar till grönt
             changeBtnCol(btnID, corAns);
 
