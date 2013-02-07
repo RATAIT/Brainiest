@@ -231,25 +231,34 @@ namespace Quizprojekt
         {
             string content = Convert.ToString(btn_Svar1.Content);
             checkAnswer(content, "1");
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer("fail.wav");
+            player.Play();
         }
 
         private void btn_Svar2_Click(object sender, RoutedEventArgs e)
         {
             string content = Convert.ToString(btn_Svar2.Content);
             checkAnswer(content, "2");
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer("fail.wav");
+            player.Play();
         }
 
         private void btn_Svar3_Click(object sender, RoutedEventArgs e)
         {
             string content = Convert.ToString(btn_Svar3.Content);
             checkAnswer(content, "3");
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer("fail.wav");
+            player.Play();
         }
 
         private void btn_Svar4_Click(object sender, RoutedEventArgs e)
         {
             string content = Convert.ToString(btn_Svar4.Content);
             checkAnswer(content, "4");
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer("fail.wav");
+            player.Play();
         }
+
 
         //Kollar om ditt svar och det rätta svaret är samma
         private void checkAnswer(string btnAnswer, string btnID)
