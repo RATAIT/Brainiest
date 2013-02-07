@@ -14,6 +14,7 @@ using System.Data;
 using System.Data.Common;
 using System.Data.OleDb;
 using System.Windows.Media.Animation;
+using System.Media;
 
 namespace Quizprojekt
 {
@@ -231,33 +232,24 @@ namespace Quizprojekt
         {
             string content = Convert.ToString(btn_Svar1.Content);
             checkAnswer(content, "1");
-
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer("C:/Users/Robert/Documents/GitHub/Brainiest/Quizprojekt/wrong.wav");
-            player.Play();
         }
 
         private void btn_Svar2_Click(object sender, RoutedEventArgs e)
         {
             string content = Convert.ToString(btn_Svar2.Content);
             checkAnswer(content, "2");
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer("C:/Users/Robert/Documents/GitHub/Brainiest/Quizprojekt/correct.wav");
-            player.Play();
         }
 
         private void btn_Svar3_Click(object sender, RoutedEventArgs e)
         { 
             string content = Convert.ToString(btn_Svar3.Content);
             checkAnswer(content, "3");
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer("C:/Users/Robert/Documents/GitHub/Brainiest/Quizprojekt/wrong.wav");
-            player.Play();
         }
 
         private void btn_Svar4_Click(object sender, RoutedEventArgs e)
         {
             string content = Convert.ToString(btn_Svar4.Content);
             checkAnswer(content, "4");
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer("C:/Users/Robert/Documents/GitHub/Brainiest/Quizprojekt/correct.wav");
-            player.Play();
         }
 
 
@@ -265,15 +257,32 @@ namespace Quizprojekt
         private void checkAnswer(string btnAnswer, string btnID)
         {
             questAnswered = 1;
+
+            if (btnAnswer == corAns)
+            {
+                System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
+                System.IO.Stream s = a.GetManifestResourceStream("Quizprojekt.correct.wav");
+                SoundPlayer player = new SoundPlayer(s);
+                player.Play();
+            }
+            else
+            {
+                System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
+                System.IO.Stream s = a.GetManifestResourceStream("Quizprojekt.wrong.wav");
+                SoundPlayer player = new SoundPlayer(s);
+                player.Play();
+            }
+
+
             // Ändrar färgerna på fel svar till rött och rätt svar till grönt
-            changeBtnCol(btnID, corAns);
+            changeBtnCol(corAns);
 
             // Läser in en ny fråga
             fragaOver();
         }
 
         // Ändrar färgerna på fel svar till rött och rätt svar till grönt
-        private void changeBtnCol(string btnID, string svar)
+        private void changeBtnCol(string svar)
         {
             if (Convert.ToString(btn_Svar1.Content) == svar)
             {
