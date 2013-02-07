@@ -59,14 +59,5 @@ namespace Quizprojekt.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream fail {
-            get {
-                return ResourceManager.GetStream("fail", resourceCulture);
-            }
-        }
     }
 }

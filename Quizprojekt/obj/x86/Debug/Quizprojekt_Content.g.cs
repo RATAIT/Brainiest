@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("brainiestdb.accdb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("fail.wav")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("correct.wav")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("wrong.wav")]
 
 
