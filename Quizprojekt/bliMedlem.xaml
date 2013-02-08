@@ -1,7 +1,22 @@
 ﻿<UserControl x:Class="Quizprojekt.bliMedlem"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Height="500" Width="700" MinHeight="500" MinWidth="700">
-    <Grid>
+    <Grid Name="gridBliMedlem">
+        <Grid.Resources>
+            <Storyboard x:Key="lblAni_kommaIn">
+                <ThicknessAnimation FillBehavior="Stop" Completed="lblAni_kommaIn_Completed" Storyboard.TargetProperty="Margin" From="750, 0, 0, 0" To="445, 0, 0, 0" Duration="0:0:0.4"></ThicknessAnimation>
+            </Storyboard>
+
+            <Storyboard x:Key="lblAni_akaUt">
+                <ThicknessAnimation FillBehavior="Stop" Completed="lblAni_akaUt_Completed" Storyboard.TargetProperty="Margin" From="445, 0, 0, 0" To="750, 0, 0, 0" Duration="0:0:0.4"></ThicknessAnimation>
+            </Storyboard>
+
+            <Storyboard x:Key="lblAni_skaka">
+                <ThicknessAnimation FillBehavior="Stop" Storyboard.TargetProperty="Margin" From="425, 0, 0, 0" To="445, 0, 0, 0" Duration="0:0:0.1"></ThicknessAnimation>
+                <ThicknessAnimation FillBehavior="Stop" Storyboard.TargetProperty="Margin" From="445, 0, 0, 0" To="425, 0, 0, 0" Duration="0:0:0.1"></ThicknessAnimation>
+            </Storyboard>
+        </Grid.Resources>
+        
         
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -13,9 +28,11 @@
         </Grid.RowDefinitions>
       
 
-        <Label Grid.Row="1"  Margin="200,7,0,0" Content="Användarnamn:" Foreground="White" FontFamily="Swis721 BT" FontWeight="DemiBold"></Label>
-        <Label Grid.Row="1" HorizontalAlignment="Center" Margin="425, 0, 0, 0" VerticalAlignment="Center"
+        <Label Grid.Row="1" Margin="200,7,0,0" Content="Användarnamn:" Foreground="White" FontFamily="Swis721 BT" FontWeight="DemiBold"></Label>
+        
+        <Label Grid.Row="1" HorizontalAlignment="Center" Margin="445, 0, 0, 0" VerticalAlignment="Center"
                Content="Användarnamnet finns redan" Visibility="Hidden" Name="lbl_AnvFinns" Foreground="#FFFF4141"></Label>
+        
         <TextBox Grid.Row="1" Text="" Foreground="White" HorizontalContentAlignment="Center"
                  VerticalContentAlignment="Center" Width="165" Height="25" HorizontalAlignment="Center" Background="#FF6A6A6A"
                  BorderThickness="0" Name="txtbox_Anv" Margin="100,0,0,0" LostFocus="txtbox_Anv_LostFocus">

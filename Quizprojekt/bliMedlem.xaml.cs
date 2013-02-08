@@ -123,14 +123,25 @@ namespace Quizprojekt
                 if (String.Compare(txtbox_Anv.Text, Convert.ToString(myOleDbDataReader["Anvandarnamn"]), true) == 0)
                 {
                     anvFinns = true;
-                    lbl_AnvFinns.Visibility = Visibility.Visible;
+                    if (lbl_AnvFinns.Visibility != Visibility.Visible)
+                    {
+                        lbl_AnvFinns.Visibility = Visibility.Visible;
+                        Storyboard lblAni_kommaIn = (Storyboard)gridBliMedlem.Resources["lblAni_kommaIn"];
+                        lblAni_kommaIn.Begin(lbl_AnvFinns);
+                    }
+                    else
+                    {
+                    }
                     btn_BliMedlem.Visibility = Visibility.Hidden;
                     kolla();
                 }
                 else
                 {
                     anvFinns = false;
-                    lbl_AnvFinns.Visibility = Visibility.Hidden;
+
+                    Storyboard lblAni_akaUt = (Storyboard)gridBliMedlem.Resources["lblAni_akaUt"];
+                    lblAni_akaUt.Begin(lbl_AnvFinns);
+
                     btn_BliMedlem.Visibility = Visibility.Visible;
                     kolla();
                 }
@@ -164,6 +175,9 @@ namespace Quizprojekt
                     losenOk = false;
                     btn_BliMedlem.Visibility = Visibility.Hidden;
                     lbl_MatcharEj.Visibility = Visibility.Visible;
+
+                    Storyboard lblAni_skaka = (Storyboard)gridBliMedlem.Resources["lblAni_skaka"];
+                    lblAni_skaka.Begin(lbl_MatcharEj);
                 }
                 else
                 {
@@ -176,7 +190,16 @@ namespace Quizprojekt
                 btn_BliMedlem.Visibility = Visibility.Hidden;
         }
 
-       
 
+
+        private void lblAni_akaUt_Completed(object sender, EventArgs e)
+        {
+            lbl_AnvFinns.Visibility = Visibility.Hidden;
+        }
+
+        private void lblAni_kommaIn_Completed(object sender, EventArgs e)
+        {
+            lbl_AnvFinns.Visibility = Visibility.Visible;
+        }    
     }
 }
