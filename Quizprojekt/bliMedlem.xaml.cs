@@ -15,6 +15,7 @@ using System.Data.Common;
 using System.Data.OleDb;
 using System.Windows.Media.Animation;
 using System.Security.Cryptography;
+using MySql.Data.MySqlClient;
 
 namespace Quizprojekt
 {
@@ -50,22 +51,22 @@ namespace Quizprojekt
 
         private void btn_BliMedlem_Click(object sender, RoutedEventArgs e)
         {
-            OleDbConnection thisConnection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=BrainiestDB.accdb");
+            // Öppnar connection med databasen.
+            MySqlConnection connection = new MySqlConnection(@"Server=projweb.hj.se;Database=test;Uid=liad11am;Pwd=Pnlx717;Port=3306");
+            MySqlCommand com = new MySqlCommand("INSERT INTO Medlemmar (Anvandarnamn, Losenord) VALUES (@Anv, @Los)", connection);
 
-            thisConnection.Open();
 
-            //string Cmd3 = "INSERT INTO Medlemmar(Anvandarnamn, Losenord) VALUES (" + txtbox_Anv.Text + ", " + txtbox_Password.Password + ")";
-            string Cmd3 = "INSERT INTO Medlemmar(Anvandarnamn, Losenord) VALUES (?, ?)";
+            com.Parameters.Add("@Anv", MySqlDbType.VarChar);
+            com.Parameters.Add("@Los", MySqlDbType.VarChar);
+            com.Parameters["@Anv"].Value = txtbox_Anv.Text;
+            com.Parameters["@Los"].Value = md5Hash(txtbox_Password.Password);
+            
+            
+            connection.Open();
+            com.ExecuteNonQuery();
+            connection.Close();
 
-            OleDbCommand myCommand2 = new OleDbCommand(Cmd3, thisConnection);
-            OleDbParameter para1 = myCommand2.Parameters.Add("@InputParm", OleDbType.VarChar, 255);
-            para1.Value = txtbox_Anv.Text;
-            OleDbParameter para2 = myCommand2.Parameters.Add("@InputParm", OleDbType.VarChar, 255);
-            para2.Value = md5Hash(txtbox_Password.Password);
 
-            myCommand2.ExecuteNonQuery();
-
-            thisConnection.Close();
 
             // Tar med sig användarnamn och lösenord spelaren valt till loginmenyn
             MainWindow newMain = new MainWindow();
@@ -102,25 +103,17 @@ namespace Quizprojekt
         // Om användarnamnsboxen tappar fokus kollas detta mot användardatabasen för att se om användaren redan finns eller ej
         private void txtbox_Anv_LostFocus(object sender, RoutedEventArgs e)
         {
-            string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=BrainiestDB.accdb";
 
-            OleDbConnection myOleDbConnection = new OleDbConnection(connectionString);
-
-            OleDbCommand myOleDbCommand = myOleDbConnection.CreateCommand();
-
-            //Query för att hämta alla för en viss kategori
-            myOleDbCommand.CommandText = "SELECT * FROM Medlemmar";
-            myOleDbConnection.Open();
-
-            OleDbDataReader myOleDbDataReader = myOleDbCommand.ExecuteReader();
+            DBconnect.openDB("SELECT * FROM Medlemmar");
 
             anvFinns = false;
+
             // Läser alla rader i databasen med kommandot givet ovan.
-            while (myOleDbDataReader.Read() && anvFinns == false)
+            while (DBconnect.DataReader.Read() && anvFinns == false)
             {
                 // Kollar oberoende på om du har stora eller små bokstäver om användarnamnet finns redan eller inte
                 //txtbox_Anv.Text.IndexOf(Convert.ToString(myOleDbDataReader["Anvandarnamn"]), StringComparison.CurrentCultureIgnoreCase) > -1
-                if (String.Compare(txtbox_Anv.Text, Convert.ToString(myOleDbDataReader["Anvandarnamn"]), true) == 0)
+                if (String.Compare(txtbox_Anv.Text, Convert.ToString(DBconnect.DataReader["Anvandarnamn"]), true) == 0)
                 {
                     anvFinns = true;
                     if (lbl_AnvFinns.Visibility != Visibility.Visible)

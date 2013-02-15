@@ -15,6 +15,7 @@ using System.Data.Common;
 using System.Data.OleDb;
 using System.Windows.Media.Animation;
 using System.Media;
+using MySql.Data.MySqlClient;
 
 namespace Quizprojekt
 {
@@ -44,24 +45,15 @@ namespace Quizprojekt
         // Läser in alla frågeIDn från en specifik kategori.
         private void readQuestion()
         {
-
-            string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=BrainiestDB.accdb";
-
-            OleDbConnection myOleDbConnection = new OleDbConnection(connectionString);
-
-            OleDbCommand myOleDbCommand = myOleDbConnection.CreateCommand();
-
+           
             //Query för att hämta alla för en viss kategori
-            myOleDbCommand.CommandText = "SELECT * FROM Fragor WHERE KategoriID = " + kategoriID;
-            myOleDbConnection.Open();
-
-            OleDbDataReader myOleDbDataReader = myOleDbCommand.ExecuteReader();
+            DBconnect.openDB("SELECT * FROM Fragor WHERE KategoriID = " + kategoriID);
 
             // Läser alla rader i databasen med kommandot givet ovan.
-            while (myOleDbDataReader.Read())
+            while (DBconnect.DataReader.Read())
             {
                 // Lägger till ett ID i idList.
-                idList.Add(Convert.ToString(myOleDbDataReader["FragorID"]));
+                idList.Add(Convert.ToString(DBconnect.DataReader["FragorID"]));
                 antalID++;
             }
 
@@ -103,21 +95,13 @@ namespace Quizprojekt
         {
             changeBtnColReset();
 
-            string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=BrainiestDB.accdb";
+            //Query för att hämta alla för en viss kategori
+            DBconnect.openDB("SELECT * FROM Fragor WHERE FragorID = " + idFraga);
 
-            OleDbConnection myOleDbConnection = new OleDbConnection(connectionString);
-            OleDbCommand myOleDbCommand = myOleDbConnection.CreateCommand();
-
-            //Query för att hämta allt från en viss fråga
-            myOleDbCommand.CommandText = "SELECT * FROM Fragor WHERE FragorID = " + idFraga;
-            myOleDbConnection.Open();
-
-            OleDbDataReader myOleDbDataReader = myOleDbCommand.ExecuteReader();
-
-            myOleDbDataReader.Read();
+            DBconnect.DataReader.Read();
 
             // Lägger in frågan
-            string fraga = Convert.ToString(myOleDbDataReader["Fraga"]);
+            string fraga = Convert.ToString(DBconnect.DataReader["Fraga"]);
             txtbox_Fraga.Text = fraga;
 
             string[] fragArray = new string[4];
@@ -131,13 +115,13 @@ namespace Quizprojekt
             int fourth = values[3];
 
             // Lägger in svaren från databasen in på den slumpade platsen
-            fragArray[first] = Convert.ToString(myOleDbDataReader["Korrekt"]);
-            fragArray[second] = Convert.ToString(myOleDbDataReader["Fel1"]);
-            fragArray[third] = Convert.ToString(myOleDbDataReader["Fel2"]);
-            fragArray[fourth] = Convert.ToString(myOleDbDataReader["Fel3"]);
+            fragArray[first] = Convert.ToString(DBconnect.DataReader["Korrekt"]);
+            fragArray[second] = Convert.ToString(DBconnect.DataReader["Fel1"]);
+            fragArray[third] = Convert.ToString(DBconnect.DataReader["Fel2"]);
+            fragArray[fourth] = Convert.ToString(DBconnect.DataReader["Fel3"]);
 
             // Sparar det rätta svaret i corAns, för att kunna kollas senare
-            corAns = Convert.ToString(myOleDbDataReader["Korrekt"]);
+            corAns = Convert.ToString(DBconnect.DataReader["Korrekt"]);
 
             // Fyller knapparna med svaren
             btn_Svar1.Content = fragArray[0];
@@ -145,8 +129,9 @@ namespace Quizprojekt
             btn_Svar3.Content = fragArray[2];
             btn_Svar4.Content = fragArray[3];
 
-            myOleDbDataReader.Close();
-            myOleDbConnection.Close();
+            DBconnect.DataReader.Close();
+            DBconnect.Connection.Close();
+    
 
             //Startar om progressbaren
             startAniProg();

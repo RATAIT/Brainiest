@@ -16,6 +16,7 @@ using System.Data.Common;
 using System.Data.OleDb;
 using System.Windows.Media.Animation;
 using System.Security.Cryptography;
+using MySql.Data.MySqlClient;
 
 namespace Quizprojekt
 {
@@ -91,28 +92,29 @@ namespace Quizprojekt
             string anvNamn = txtbox_Anv.Text;
             string losenord = md5Hash(txtbox_Password.Password);
 
-            string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=BrainiestDB.accdb";
+            string connectionString = @"Server=projweb.hj.se;Database=test;Uid=liad11am;Pwd=Pnlx717;Port=3306;";
 
-            OleDbConnection myOleDbConnection = new OleDbConnection(connectionString);
-            OleDbCommand myOleDbCommand = myOleDbConnection.CreateCommand();
+            MySqlConnection Connection = new MySqlConnection(connectionString);
+            MySqlCommand Command = Connection.CreateCommand();
 
-            myOleDbCommand.CommandText = "SELECT * FROM Medlemmar WHERE Anvandarnamn =@username and Losenord =@password";
-            myOleDbCommand.Parameters.AddWithValue("@username", anvNamn);
-            myOleDbCommand.Parameters.AddWithValue("@password", losenord);
-            myOleDbConnection.Open();
+            Command.CommandText = "SELECT * FROM Medlemmar WHERE Anvandarnamn =@username and Losenord =@password";
+            Command.Parameters.AddWithValue("@username", anvNamn);
+            Command.Parameters.AddWithValue("@password", losenord);
+            Connection.Open();
 
-            OleDbDataReader myOleDbDataReader = myOleDbCommand.ExecuteReader();
 
-            myOleDbDataReader.Read();
+            MySqlDataReader DataReader = Command.ExecuteReader();
+
+            DataReader.Read();
 
             try
                 // Om lösenord är rätt kommer man in
             {
-                if (losenord == Convert.ToString(myOleDbDataReader["Losenord"]))
+                if (losenord == Convert.ToString(DataReader["Losenord"]))
                 {
                     Meny meny = new Meny();
-                    meny.btn_LoggaUt.Content = "Logga ut " + Convert.ToString(myOleDbDataReader["Anvandarnamn"]);
-                    meny.btn_LoggaUt.Width = ("Logga ut " + Convert.ToString(myOleDbDataReader["Anvandarnamn"])).Length * 8;
+                    meny.btn_LoggaUt.Content = "Logga ut " + Convert.ToString(DataReader["Anvandarnamn"]);
+                    meny.btn_LoggaUt.Width = ("Logga ut " + Convert.ToString(DataReader["Anvandarnamn"])).Length * 8;
                     Switcher.Switch(meny);
                 }
             }
