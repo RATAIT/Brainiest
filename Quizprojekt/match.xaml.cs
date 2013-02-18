@@ -31,6 +31,10 @@ namespace Quizprojekt
             
             // Läser in fråga när man öppnar fönstret
             readQuestion();
+
+            App.Current.Deactivated += Passiverad; // Current refererar till applikationsobjektet,
+            // i application finns ett event som hanterar deaktivering.
+
         }
 
         string[] idFragaArray = new string[3]; // Array för pickThreeQuestions
@@ -329,6 +333,10 @@ namespace Quizprojekt
             btn4Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF1E7C30"));
         }
 
+        void Passiverad(Object sender, EventArgs args)
+        {
+            progressBarAnimation_Completed(null, null);
+        }
 
         #region ISwitchable Members
 
