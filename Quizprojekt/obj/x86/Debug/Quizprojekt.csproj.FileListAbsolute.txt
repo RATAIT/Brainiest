@@ -40,7 +40,6 @@ C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\kategori.g.cs
 G:\Dokument\GitHub\Brainiest\Quizprojekt\bin\Debug\Quizprojekt.exe.config
 G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.exe
 G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.pdb
-G:\Dokument\GitHub\Brainiest\Quizprojekt\bin\Debug\BrainiestDB.accdb
 G:\Dokument\GitHub\Brainiest\Quizprojekt\bin\Debug\Quizprojekt.exe
 G:\Dokument\GitHub\Brainiest\Quizprojekt\bin\Debug\Quizprojekt.pdb
 G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\ResolveAssemblyReference.cache
@@ -55,7 +54,6 @@ G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\MainWindow.g.cs
 G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\match.g.cs
 G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Meny.g.cs
 G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\App.g.cs
-G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt_Content.g.cs
 G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt_MarkupCompile.cache
 G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.g.resources
 G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.Properties.Resources.resources
@@ -169,3 +167,5 @@ C:\Users\Robert\Documents\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt
 C:\Users\Robert\Documents\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.csproj.GenerateResource.Cache
 C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\NyttSpel.baml
 C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\NyttSpel.g.cs
+G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\NyttSpel.baml
+G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\NyttSpel.g.cs

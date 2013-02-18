@@ -76,7 +76,7 @@
             </Button.Background>
         </Button>
         <StackPanel Grid.Row="6" HorizontalAlignment="Center" Orientation="Horizontal">
-            <TextBox Grid.Row="6" Height="25" HorizontalAlignment="Center" Name="txtbox_Sok" VerticalAlignment="Center" Width="120" />
+            <TextBox Grid.Row="6" Height="25" HorizontalAlignment="Center" Name="txtbox_Sok" VerticalAlignment="Center" Width="110" />
         <Button AllowDrop="False" Margin="10, 0, 0, 0" BorderBrush="#00000000" BorderThickness="0" Content="Sök" FontFamily="Swis721 BT" Foreground="White" Height="30" VerticalAlignment="Center" Width="80" Grid.Row="6">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
