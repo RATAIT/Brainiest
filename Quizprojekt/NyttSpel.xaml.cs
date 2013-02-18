@@ -46,16 +46,16 @@ namespace Quizprojekt
 
         private void btn_Soek_Click(object sender, RoutedEventArgs e)
         {
+            listBox1.Items.Clear();
             try
             {
                 string soekAnv = txtbox_Sok.Text;
 
-                DBconnect.openDB("SELECT * FROM Medlemmar WHERE MedlemmarID = " + soekAnv);
+                DBconnect.openDB("SELECT * FROM Medlemmar WHERE Anvandarnamn LIKE  '%" + soekAnv + "%'");
                 while (DBconnect.DataReader.Read())
                 {
 
                     listBox1.Items.Add(Convert.ToString(DBconnect.DataReader["Anvandarnamn"]));
-
                 }
 
                 DBconnect.Connection.Close();
