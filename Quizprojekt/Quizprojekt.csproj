@@ -57,6 +57,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DBconnect.cs" />
+    <Compile Include="NyttSpel.xaml.cs">
+      <DependentUpon>NyttSpel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Switcher.cs" />
     <Page Include="bliMedlem.xaml">
       <SubType>Designer</SubType>
@@ -90,6 +93,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Meny.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NyttSpel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

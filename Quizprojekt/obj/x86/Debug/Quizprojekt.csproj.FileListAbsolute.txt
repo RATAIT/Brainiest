@@ -168,3 +168,5 @@ C:\Users\Robert\Documents\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt
 C:\Users\Robert\Documents\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.g.resources
 C:\Users\Robert\Documents\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.Properties.Resources.resources
 C:\Users\Robert\Documents\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.csproj.GenerateResource.Cache
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\NyttSpel.baml
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\NyttSpel.g.cs

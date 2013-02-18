@@ -30,7 +30,7 @@
 
         <!-- Lägger till nytt spel-knapp -->
         <Button Grid.Row="1" Grid.Column="1" Width="200" Content="Nytt spel" Height="30" Foreground="White"
-                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_NyttSpel">
+                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_NyttSpel" Click="btn_NyttSpel_Click">
 
             <!-- LinearGradientBrush på knappen -->
             <Button.Background>

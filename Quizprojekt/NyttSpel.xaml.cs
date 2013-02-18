@@ -14,40 +14,26 @@ using System.Windows.Shapes;
 namespace Quizprojekt
 {
     /// <summary>
-    /// Interaction logic for Meny.xaml
+    /// Interaction logic for NyttSpel.xaml
     /// </summary>
-    public partial class Meny : UserControl, ISwitchable
+    public partial class NyttSpel : UserControl, ISwitchable
     {
-        public Meny()
+        public NyttSpel()
         {
             InitializeComponent();
         }
 
-        private void btn_LoggaUt_Click(object sender, RoutedEventArgs e)
-        {
-            Switcher.Switch(new MainWindow());
-        }
-
-        private void btn_Spela1_Click(object sender, RoutedEventArgs e)
-        {
-
-            Switcher.Switch(new kategori());
-     
-        }
-
         #region ISwitchable Members
-
         public void UtilizeState(object state)
         {
             throw new NotImplementedException();
         }
-
         #endregion
 
-        private void btn_NyttSpel_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Switcher.Switch(new NyttSpel());
+            Switcher.Switch(new Meny());
         }
-   
+
     }
 }
