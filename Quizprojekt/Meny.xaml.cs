@@ -48,6 +48,12 @@ namespace Quizprojekt
         {
             Switcher.Switch(new NyttSpel());
         }
+
+        private void btn_HurSpelarMan_Click(object sender, RoutedEventArgs e)
+        {
+            Switcher.Switch(new Info());
+     
+        }
    
     }
 }

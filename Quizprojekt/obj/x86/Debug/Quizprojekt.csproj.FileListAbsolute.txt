@@ -169,3 +169,5 @@ C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\NyttSpel.baml
 C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\NyttSpel.g.cs
 G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\NyttSpel.baml
 G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\NyttSpel.g.cs
+G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Info.baml
+G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Info.g.cs

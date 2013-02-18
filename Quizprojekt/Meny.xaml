@@ -44,7 +44,7 @@
 
         <!-- Lägger till hur gör man-knapp  -->
         <Button Grid.Row="2" Grid.Column="1" Width="200" Content="Hur spelar man?" Height="30" Foreground="White"
-                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_HurSpelarMan">
+                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_HurSpelarMan" Click="btn_HurSpelarMan_Click">
 
             <!-- LinearGradientBrush på knappen -->
             <Button.Background>
