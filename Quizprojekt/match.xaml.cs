@@ -245,16 +245,14 @@ namespace Quizprojekt
 
             if (btnAnswer == corAns)
             {
-                System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
-                System.IO.Stream s = a.GetManifestResourceStream("Quizprojekt.correct.wav");
-                SoundPlayer player = new SoundPlayer(s);
+                System.IO.Stream correct = GetType().Assembly.GetManifestResourceStream("Quizprojekt.correct.wav");
+                SoundPlayer player = new SoundPlayer(correct);
                 player.Play();
             }
             else
             {
-                System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
-                System.IO.Stream s = a.GetManifestResourceStream("Quizprojekt.wrong.wav");
-                SoundPlayer player = new SoundPlayer(s);
+                System.IO.Stream wrong = GetType().Assembly.GetManifestResourceStream("Quizprojekt.wrong.wav");
+                SoundPlayer player = new SoundPlayer(wrong);
                 player.Play();
             }
 
