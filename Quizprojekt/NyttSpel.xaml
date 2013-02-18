@@ -35,7 +35,7 @@
         <!-- Lägger till passwordbox på femte raden, andra kolumnen -->
         <!-- Lägger till Logga in-knappen på sjunde raden, andra kolumnen  -->
         <Button Grid.Row="3" Width="200" Content="Slumpa motståndare" Height="30" Foreground="White"
-                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_Slumpa">
+                FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_Slumpa" Click="btn_Slumpa_Click">
 
             <!-- LinearGradientBrush på knappen -->
             <Button.Background>
@@ -59,14 +59,11 @@
             </Button.Background>
         </Button>
 
-       
-        <ListBox Grid.Row="5" Height="150" HorizontalAlignment="Center"  Name="listBox1" VerticalAlignment="Center" Width="200" Background="White" Foreground="Black">
-            <ListBoxItem>Pelle</ListBoxItem>
-            <ListBoxItem>Pelle2</ListBoxItem>
 
+        <ListBox Grid.Row="5" Height="150" HorizontalAlignment="Center"  Name="listBox1" VerticalAlignment="Center" Width="200" Background="White" Foreground="Black">
         </ListBox>
-        
-        
+
+
         <Button AllowDrop="False" BorderBrush="#00000000" BorderThickness="0" Content="Tillbaka" FontFamily="Swis721 BT" Foreground="White" Height="30" VerticalAlignment="Center" Width="80" Grid.Row="8" Click="Button_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -77,18 +74,20 @@
         </Button>
         <StackPanel Grid.Row="6" HorizontalAlignment="Center" Orientation="Horizontal">
             <TextBox Grid.Row="6" Height="25" HorizontalAlignment="Center" Name="txtbox_Sok" VerticalAlignment="Center" Width="110" />
-        <Button AllowDrop="False" Margin="10, 0, 0, 0" BorderBrush="#00000000" BorderThickness="0" Content="Sök" FontFamily="Swis721 BT" Foreground="White" Height="30" VerticalAlignment="Center" Width="80" Grid.Row="6">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF5EF677" Offset="0" />
-                    <GradientStop Color="#FF1E7C30" Offset="1" />
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-            
+            <Button AllowDrop="False" Margin="10, 0, 0, 0" BorderBrush="#00000000" BorderThickness="0" Content="Sök"
+                FontFamily="Swis721 BT" Foreground="White" Height="30" Name="btn_Soek"
+                VerticalAlignment="Center" Width="80" Grid.Row="6" Click="btn_Soek_Click">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF5EF677" Offset="0" />
+                        <GradientStop Color="#FF1E7C30" Offset="1" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+
         </StackPanel>
 
     </Grid>
-    
-    
-    </UserControl>
+
+
+</UserControl>
