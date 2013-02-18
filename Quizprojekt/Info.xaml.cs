@@ -31,5 +31,10 @@ namespace Quizprojekt
         }
 
         #endregion
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Switcher.Switch(new Meny());
+        }
     }
 }

@@ -15,12 +15,22 @@
             <Run Text="När du spelar lagras även statistik över dina resultat, dessa kommer du åt genom knappen statistik." Foreground="White" />
         </TextBlock>
 
+        <Button AllowDrop="False" BorderBrush="#00000000" BorderThickness="0" Content="Tillbaka" FontFamily="Swis721 BT" Foreground="White" Height="30" VerticalAlignment="Center" Width="80" Grid.Row="3" Grid.Column="1" Click="Button_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5EF677" Offset="0" />
+                    <GradientStop Color="#FF1E7C30" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
 
         <!-- Definierar raderna i grid -->
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="100" />
-            <RowDefinition Height="300" />
+            <RowDefinition Height="200" />
+            <RowDefinition Height="40" />
           
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
