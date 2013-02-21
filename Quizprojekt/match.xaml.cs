@@ -16,6 +16,7 @@ using System.Data.OleDb;
 using System.Windows.Media.Animation;
 using System.Media;
 using MySql.Data.MySqlClient;
+using System.Windows.Threading;
 
 namespace Quizprojekt
 {
@@ -171,16 +172,46 @@ namespace Quizprojekt
             fragaOver();
         }
 
-        // När tiden gått ut i progressbaren sätts alla knappar till rött:
-        private void progressBarAnimation_Completed(object sender, EventArgs e)
+
+        private DispatcherTimer timer;
+
+        void match_Loaded(object sender, RoutedEventArgs e)
         {
-            SetAllRed();
+            //timer.Elapsed += timer1_Tick
+            //timer.AutoReset = false;
+
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(15);
+            timer.Tick += timer1_Tick;
+
+            timer.Start();
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+            timer.Stop();
+            SetAllRed();
+        
+
+
+
+
+
+
+            //Switcher.Switch(new kategori());
+
+
+
+        }
+
+
+      
         // När man svarat på en fråga ska detta hända
         private void fragaOver()
         {
-     
+
+            timer.Start();
             // Om man ännu inte svarat på 3 frågor visas "Nästa fråga"-knappen
             if (fraga < 3)
             {
@@ -253,7 +284,8 @@ namespace Quizprojekt
         //Kollar om ditt svar och det rätta svaret är samma
         private void checkAnswer(string btnAnswer, string btnID)
         {
-            
+            questAnswered = 1;
+            timer.Stop();
             if(questAnswered == 0)
             {
                 if (btnAnswer == corAns)
@@ -271,7 +303,8 @@ namespace Quizprojekt
                 } 
             }
 
-            questAnswered = 1;
+            
+
 
             // Ändrar färgerna på fel svar till rött och rätt svar till grönt
             changeBtnCol(corAns);

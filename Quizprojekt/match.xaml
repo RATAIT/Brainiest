@@ -6,7 +6,7 @@
             <BeginStoryboard x:Key="progBarStart">
                 <Storyboard>
                     <DoubleAnimation Name="progressBarAnimation" FillBehavior="Stop" Storyboard.TargetProperty="Value"
-                                     From="0" To="100" Duration="0:0:15" Completed="progressBarAnimation_Completed"/>
+                                     From="0" To="100" Duration="0:0:15" />
                 </Storyboard>
             </BeginStoryboard>
             <PauseStoryboard BeginStoryboardName="progBarStart" x:Key="progBarStop"/>

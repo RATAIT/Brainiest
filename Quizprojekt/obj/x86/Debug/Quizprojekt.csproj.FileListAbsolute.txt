@@ -85,7 +85,6 @@ C:\Users\Andreas\Documents\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojek
 G:\Dokument\GitHub2\Brainiest\Quizprojekt\bin\Debug\Quizprojekt.exe.config
 G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.exe
 G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.pdb
-G:\Dokument\GitHub2\Brainiest\Quizprojekt\bin\Debug\BrainiestDB.accdb
 G:\Dokument\GitHub2\Brainiest\Quizprojekt\bin\Debug\Quizprojekt.exe
 G:\Dokument\GitHub2\Brainiest\Quizprojekt\bin\Debug\Quizprojekt.pdb
 G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\ResolveAssemblyReference.cache
@@ -100,7 +99,6 @@ G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\MainWindow.g.cs
 G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\match.g.cs
 G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\Meny.g.cs
 G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\App.g.cs
-G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt_Content.g.cs
 G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt_MarkupCompile.cache
 G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.g.resources
 G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.Properties.Resources.resources
@@ -229,3 +227,7 @@ C:\Users\liad11am\Desktop\werwer\Brainiest\Quizprojekt\obj\x86\Debug\GenerateRes
 C:\Users\liad11am\Desktop\werwer\Brainiest\Quizprojekt\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\Info.baml
 C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\Info.g.cs
+G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\Info.baml
+G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\NyttSpel.baml
+G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\Info.g.cs
+G:\Dokument\GitHub2\Brainiest\Quizprojekt\obj\x86\Debug\NyttSpel.g.cs
