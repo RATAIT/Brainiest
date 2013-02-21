@@ -8,6 +8,9 @@ namespace Quizprojekt
 {
     public class DBconnect
     {
+        // hemlig KODDDD
+        // tåbbe är en liten fisk
+
 
         public static MySqlCommand Command;
         public static MySqlDataReader DataReader;
