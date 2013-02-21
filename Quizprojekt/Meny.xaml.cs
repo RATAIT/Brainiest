@@ -54,6 +54,7 @@ namespace Quizprojekt
             Switcher.Switch(new Info());
      
         }
+
    
     }
 }
