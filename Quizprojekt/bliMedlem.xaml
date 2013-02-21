@@ -83,7 +83,7 @@
         </Button>
 
         <!-- Lägger till Logga in-knappen på sjunde raden, andra kolumnen  -->
-        <Button Grid.Row="4" Grid.Column="1" Width="80" Content="Tillbaka" Height="30" Margin="85,0,0,0" Foreground="White"
+        <Button Grid.Row="4" Grid.Column="1" Width="80" Content="Tillbaka" Height="30" Margin="85,0,0,0" Foreground="White" Focusable="False"
                 FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_Avbryt" Click="btn_Avbryt_Click">
 
             <!-- LinearGradientBrush på knappen -->

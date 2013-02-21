@@ -149,5 +149,13 @@ namespace Quizprojekt
 
         #endregion
 
+        private void txtbox_Password_KeyDown(object sender, KeyEventArgs e)
+        {
+            btn_LoggaIn_Click(null, null); 
+        }
+
+        
+
+     
     }
 }

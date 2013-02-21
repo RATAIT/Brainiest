@@ -43,7 +43,7 @@
         <!-- Lägger till passwordbox på femte raden, andra kolumnen -->
         <PasswordBox PasswordChar="*" Name="txtbox_Password" Height="25" Foreground="White" HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center" Grid.Row="5" Grid.Column="1" Width="165" HorizontalAlignment="Center"
-                     Background="#FF6A6A6A" BorderThickness="0" Password="Password" GotFocus="txtbox_Password_GotFocus" LostFocus="txtbox_Password_LostFocus">
+                     Background="#FF6A6A6A" BorderThickness="0" Password="Password" GotFocus="txtbox_Password_GotFocus" LostFocus="txtbox_Password_LostFocus" KeyDown="txtbox_Password_KeyDown">
 
             <!-- Skugga på passwordboxen -->
             <PasswordBox.Effect>
@@ -53,7 +53,7 @@
         </PasswordBox>
 
         <!-- Lägger till Logga in-knappen på sjunde raden, andra kolumnen  -->
-        <Button Grid.Row="6" Grid.Column="1" Width="80" Content="Logga In" Height="30" Margin="0,0,85,0" Foreground="White"
+        <Button Grid.Row="6" Grid.Column="1" Width="80" Content="Logga In" Height="30" Margin="0,0,85,0" Foreground="White" Focusable="False"
                 FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_LoggaIn" Click="btn_LoggaIn_Click">
 
             <!-- LinearGradientBrush på knappen -->

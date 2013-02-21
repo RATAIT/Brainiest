@@ -72,6 +72,8 @@ namespace Quizprojekt
             // Om man svarat på tre frågor stängs fönstret.
             if (fraga > 2)
             {
+                fraga = 0;
+                questAnswered = 0;
                 Switcher.Switch(new kategori());
             }
             // Hämtar ny fråga om man svarat på första frågan
@@ -149,25 +151,30 @@ namespace Quizprojekt
             progBarStart.Storyboard.Begin(progressBar1);
         }
 
-        // När tiden gått ut i progressbaren sätts alla knappar till rött:
-        private void progressBarAnimation_Completed(object sender, EventArgs e)
+        private void SetAllRed()
         {
             if (questAnswered == 0)
             {
-            btn1Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
-            btn1Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
+                btn1Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
+                btn1Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
 
-            btn2Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
-            btn2Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
+                btn2Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
+                btn2Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
 
-            btn3Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
-            btn3Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
+                btn3Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
+                btn3Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
 
-            btn4Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
-            btn4Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
+                btn4Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
+                btn4Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
             }
 
             fragaOver();
+        }
+
+        // När tiden gått ut i progressbaren sätts alla knappar till rött:
+        private void progressBarAnimation_Completed(object sender, EventArgs e)
+        {
+            SetAllRed();
         }
 
         // När man svarat på en fråga ska detta hända
@@ -208,6 +215,7 @@ namespace Quizprojekt
             progressBar1.Visibility = System.Windows.Visibility.Visible;
             btn_NastaFraga.Visibility = System.Windows.Visibility.Collapsed;
             lbl_TidKvar.Visibility = Visibility.Visible;
+           
 
             fraga++;
 
@@ -245,21 +253,25 @@ namespace Quizprojekt
         //Kollar om ditt svar och det rätta svaret är samma
         private void checkAnswer(string btnAnswer, string btnID)
         {
+            
+            if(questAnswered == 0)
+            {
+                if (btnAnswer == corAns)
+                {
+                    System.IO.Stream correct = GetType().Assembly.GetManifestResourceStream("Quizprojekt.correct.wav");
+                    SoundPlayer player = new SoundPlayer(correct);
+                    player.Play();
+                }
+                else
+                {
+                    System.IO.Stream wrong = GetType().Assembly.GetManifestResourceStream("Quizprojekt.wrong.wav");
+                    SoundPlayer player = new SoundPlayer(wrong);
+                    player.Play();
+
+                } 
+            }
+
             questAnswered = 1;
-
-            if (btnAnswer == corAns)
-            {
-                System.IO.Stream correct = GetType().Assembly.GetManifestResourceStream("Quizprojekt.correct.wav");
-                SoundPlayer player = new SoundPlayer(correct);
-                player.Play();
-            }
-            else
-            {
-                System.IO.Stream wrong = GetType().Assembly.GetManifestResourceStream("Quizprojekt.wrong.wav");
-                SoundPlayer player = new SoundPlayer(wrong);
-                player.Play();
-            }
-
 
             // Ändrar färgerna på fel svar till rött och rätt svar till grönt
             changeBtnCol(corAns);
@@ -267,6 +279,8 @@ namespace Quizprojekt
             // Läser in en ny fråga
             fragaOver();
         }
+
+
 
         // Ändrar färgerna på fel svar till rött och rätt svar till grönt
         private void changeBtnCol(string svar)
@@ -335,7 +349,7 @@ namespace Quizprojekt
 
         void Passiverad(Object sender, EventArgs args)
         {
-            progressBarAnimation_Completed(null, null);
+            SetAllRed();
         }
 
         #region ISwitchable Members
