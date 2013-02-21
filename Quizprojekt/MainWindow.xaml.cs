@@ -112,9 +112,12 @@ namespace Quizprojekt
             {
                 if (losenord == Convert.ToString(DataReader["Losenord"]))
                 {
+
+                    UserName.userName = Convert.ToString(DataReader["Anvandarnamn"]);
+                    UserName.userID = Convert.ToString(DataReader["MedlemmarID"]);
+
                     Meny meny = new Meny();
-                    meny.btn_LoggaUt.Content = "Logga ut " + Convert.ToString(DataReader["Anvandarnamn"]);
-                    meny.btn_LoggaUt.Width = ("Logga ut " + Convert.ToString(DataReader["Anvandarnamn"])).Length * 8;
+
                     Switcher.Switch(meny);
                 }
             }
@@ -151,7 +154,10 @@ namespace Quizprojekt
 
         private void txtbox_Password_KeyDown(object sender, KeyEventArgs e)
         {
-            btn_LoggaIn_Click(null, null); 
+            if (e.Key == Key.Enter)
+            {
+                btn_LoggaIn_Click(null, null);
+            }
         }
 
         

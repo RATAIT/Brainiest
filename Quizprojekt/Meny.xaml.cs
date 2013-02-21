@@ -18,9 +18,22 @@ namespace Quizprojekt
     /// </summary>
     public partial class Meny : UserControl, ISwitchable
     {
+
+        public string anvNamn;
+   
+
         public Meny()
         {
+
             InitializeComponent();
+             
+          
+            anvNamn = UserName.userName;
+            txtbox_Spelare1.Text = UserName.userID;
+
+            btn_LoggaUt.Content = "Logga ut " + anvNamn;
+            btn_LoggaUt.Width = ("Logga ut " + anvNamn).Length * 8;
+
         }
 
         private void btn_LoggaUt_Click(object sender, RoutedEventArgs e)

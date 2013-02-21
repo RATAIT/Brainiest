@@ -6,8 +6,8 @@
 
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF171717" Offset="0" />
-            <GradientStop Color="#FF4B4B4B" Offset="0.68" />
-            <GradientStop Color="#FF242424" Offset="0.953" />
+            <GradientStop Color="#FF4B4B4B" Offset="0.5" />
+            <GradientStop Color="#FF242424" Offset="1" />
         </LinearGradientBrush>
     </Window.Background>
     <Grid>

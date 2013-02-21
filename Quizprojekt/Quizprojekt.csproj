@@ -64,6 +64,7 @@
       <DependentUpon>NyttSpel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Switcher.cs" />
+    <Compile Include="UserName.cs" />
     <Page Include="bliMedlem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

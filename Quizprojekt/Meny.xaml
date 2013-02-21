@@ -93,7 +93,8 @@
         <!-- Stackpanel för spelare 1 man möter -->
         <StackPanel Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" Orientation="Horizontal">
             <!-- Lägger textbox på fjärde raden, andra kolumnen -->
-            <TextBox Text="Gunhilld Jonsson" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="120" Height="25" HorizontalAlignment="Center" Background="Gray"                 BorderThickness="0" Name="txtbox_Spelare1" Margin="5" Focusable="False">
+            <TextBox Text="Gunhilld Jonsson" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="120" Height="25" HorizontalAlignment="Center" Background="Gray" 
+                     BorderThickness="0" Name="txtbox_Spelare1" Margin="5" Focusable="False">
                 <!-- Skugga på textboxen -->
                 <TextBox.Effect>
                     <DropShadowEffect ShadowDepth="5" Color="Black" Opacity=".4" RenderingBias="Quality" Direction="-70" />
