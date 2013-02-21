@@ -36,6 +36,7 @@ namespace Quizprojekt
             App.Current.Deactivated += Passiverad; // Current refererar till applikationsobjektet,
             // i application finns ett event som hanterar deaktivering.
 
+            Loaded += new RoutedEventHandler(match_Loaded);
         }
 
         string[] idFragaArray = new string[3]; // Array för pickThreeQuestions
