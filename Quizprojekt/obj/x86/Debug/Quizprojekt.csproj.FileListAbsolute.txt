@@ -227,3 +227,5 @@ C:\Users\liad11am\Desktop\werwer\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt
 C:\Users\liad11am\Desktop\werwer\Brainiest\Quizprojekt\obj\x86\Debug\Quizprojekt.Properties.Resources.resources
 C:\Users\liad11am\Desktop\werwer\Brainiest\Quizprojekt\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\liad11am\Desktop\werwer\Brainiest\Quizprojekt\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\Info.baml
+C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\Info.g.cs

@@ -18,7 +18,7 @@ namespace Quizprojekt
         {
 
             // Connectionstringen för att connecta till databasen.
-            string connectionString = @"Server=projweb.hj.se;Database=test;Uid=liad11am;Pwd=Pnlx717;Port=3306;";
+            string connectionString = @"Server=83.168.226.169;Database=db1131745_BrainiestDB;Uid=u1131745_admin;Pwd=kidco[0lao;Port=3306;";
 
             Connection = new MySqlConnection(connectionString);
 

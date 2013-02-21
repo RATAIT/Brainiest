@@ -52,7 +52,7 @@ namespace Quizprojekt
         private void btn_BliMedlem_Click(object sender, RoutedEventArgs e)
         {
             // Öppnar connection med databasen.
-            MySqlConnection connection = new MySqlConnection(@"Server=projweb.hj.se;Database=test;Uid=liad11am;Pwd=Pnlx717;Port=3306");
+            MySqlConnection connection = new MySqlConnection(@"Server=83.168.226.169;Database=db1131745_BrainiestDB;Uid=u1131745_admin;Pwd=kidco[0lao;Port=3306;");
             MySqlCommand com = new MySqlCommand("INSERT INTO Medlemmar (Anvandarnamn, Losenord) VALUES (@Anv, @Los)", connection);
 
 
