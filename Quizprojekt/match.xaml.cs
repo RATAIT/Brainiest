@@ -267,13 +267,12 @@ namespace Quizprojekt
             string content = Convert.ToString(btn_Svar4.Content);
             checkAnswer(content, "4");
         }
-
-
+        
         //Kollar om ditt svar och det rätta svaret är samma
         private void checkAnswer(string btnAnswer, string btnID)
         {
-            questAnswered = 1;
             timer.Stop();
+
             if(questAnswered == 0)
             {
                 if (btnAnswer == corAns)
@@ -290,6 +289,8 @@ namespace Quizprojekt
 
                 } 
             }
+
+            questAnswered = 1;
 
             // Ändrar färgerna på fel svar till rött och rätt svar till grönt
             changeBtnCol(corAns);
