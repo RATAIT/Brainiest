@@ -116,6 +116,8 @@ namespace Quizprojekt
                     UserName.userName = Convert.ToString(DataReader["Anvandarnamn"]);
                     UserName.userID = Convert.ToString(DataReader["MedlemmarID"]);
 
+                    Connection.Close();
+
                     Meny meny = new Meny();
 
                     Switcher.Switch(meny);
@@ -129,11 +131,15 @@ namespace Quizprojekt
                     lbl_felAnvLos.Visibility = Visibility.Visible;
                     Storyboard lbl_felAnvLos_ani = (Storyboard)gridMainWindow.Resources["lbl_felAnvLos_ani"];
                     lbl_felAnvLos_ani.Begin(lbl_felAnvLos);
+
+                    Connection.Close();
                 }
                 else
                 {
                     Storyboard lbl_felAnvLos_ani2 = (Storyboard)gridMainWindow.Resources["lbl_felAnvLos_ani2"];
                     lbl_felAnvLos_ani2.Begin(lbl_felAnvLos);
+
+                    Connection.Close();
                 }
             }
         }

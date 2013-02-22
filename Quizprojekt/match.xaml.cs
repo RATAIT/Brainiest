@@ -33,6 +33,7 @@ namespace Quizprojekt
             // Läser in fråga när man öppnar fönstret
             readQuestion();
 
+            // Vid load körs denna metod, för att starta timer
             Loaded += new RoutedEventHandler(match_Loaded);
         }
 
@@ -142,7 +143,7 @@ namespace Quizprojekt
             startAniProg();
         }
 
-        
+        // Startar progressbaren.
         private void startAniProg()
         {
             questAnswered = 0;
@@ -150,6 +151,7 @@ namespace Quizprojekt
             progBarStart.Storyboard.Begin(progressBar1);
         }
 
+        // Sätter alla knappar till röda om man inte redan svarat på frågan.
         private void SetAllRed()
         {
             if (questAnswered == 0)
@@ -173,11 +175,9 @@ namespace Quizprojekt
 
         private DispatcherTimer timer;
 
+        // När match-objectet skapas startar ett timerobject på 15 sek
         void match_Loaded(object sender, RoutedEventArgs e)
         {
-            //timer.Elapsed += timer1_Tick
-            //timer.AutoReset = false;
-
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(15);
             timer.Tick += timer1_Tick;
@@ -185,22 +185,11 @@ namespace Quizprojekt
             timer.Start();
         }
 
+        // När timern har gått till 15 sec stoppas timern och alla knappar sätts till röda
         private void timer1_Tick(object sender, EventArgs e)
         {
-
             timer.Stop();
             SetAllRed();
-        
-
-
-
-
-
-
-            //Switcher.Switch(new kategori());
-
-
-
         }
 
 
@@ -209,12 +198,13 @@ namespace Quizprojekt
         private void fragaOver()
         {
 
-            timer.Start();
+            
             // Om man ännu inte svarat på 3 frågor visas "Nästa fråga"-knappen
             if (fraga < 3)
             {
                 if (fraga < 2)
                 {
+                    timer.Start();
                     progressBar1.Visibility = Visibility.Collapsed;
                     btn_NastaFraga.Visibility = Visibility.Visible;
                     lbl_TidKvar.Visibility = Visibility.Hidden;
@@ -300,9 +290,6 @@ namespace Quizprojekt
 
                 } 
             }
-
-            
-
 
             // Ändrar färgerna på fel svar till rött och rätt svar till grönt
             changeBtnCol(corAns);
