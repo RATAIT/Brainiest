@@ -45,7 +45,8 @@ namespace Quizprojekt
         int antalID = 0;
         int questAnswered = 0;
         int mute = 0;
-  
+        int fragaNummer;
+        int antalRatt;
 
         
 
@@ -277,6 +278,7 @@ namespace Quizprojekt
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             mute = 1;
+     
         
         }
 
@@ -285,7 +287,7 @@ namespace Quizprojekt
         private void checkAnswer(string btnAnswer, string btnID)
         {
             timer.Stop();
-
+            
 
             // Är värdet noll spelas något av ljuden
             if (mute == 0)
@@ -298,12 +300,56 @@ namespace Quizprojekt
                         System.IO.Stream correct = GetType().Assembly.GetManifestResourceStream("Quizprojekt.correct.wav");
                         SoundPlayer player1 = new SoundPlayer(correct);
                         player1.Play();
+                        fragaNummer++;
+
+                        if (fragaNummer == 1)
+                        {
+                            bt1Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF5EF677"));
+                            bt1Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF1E7C30"));
+                            antalRatt++;
+
+                        }
+
+                        else if (fragaNummer == 2)
+                        {
+                            bt2Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF5EF677"));
+                            bt2Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF1E7C30"));
+                            antalRatt++;
+                        }
+
+                        else if (fragaNummer == 3)
+                        {
+                            bt3Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF5EF677"));
+                            bt3Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF1E7C30"));
+                            antalRatt++;
+                        }
+
                     }
                     else
                     {
                         System.IO.Stream wrong = GetType().Assembly.GetManifestResourceStream("Quizprojekt.wrong.wav");
                         SoundPlayer player2 = new SoundPlayer(wrong);
                         player2.Play();
+                        fragaNummer++;
+
+
+                        if (fragaNummer == 1)
+                        {
+                            bt1Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
+                            bt1Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
+                        }
+
+                        else if (fragaNummer == 2)
+                        {
+                            bt2Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
+                            bt2Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
+                        }
+
+                        else if (fragaNummer == 3)
+                        {
+                            bt3Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
+                            bt3Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
+                        }
 
                     }
 
@@ -325,7 +371,7 @@ namespace Quizprojekt
             fragaOver();
         }
 
-
+        
 
         // Ändrar färgerna på fel svar till rött och rätt svar till grönt
         private void changeBtnCol(string svar)

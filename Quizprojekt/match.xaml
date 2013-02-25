@@ -11,17 +11,54 @@
             </BeginStoryboard>
             <PauseStoryboard BeginStoryboardName="progBarStart" x:Key="progBarStop"/>
         </Grid.Resources>
+       
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="130" />
+            <RowDefinition Height="120" />
             <RowDefinition Height="130" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
 
         </Grid.ColumnDefinitions>
-        <Image Grid.Row="0" Grid.Column="1" Source="logo.png" Width="210" HorizontalAlignment="Center"/>
+        <StackPanel Orientation="Vertical">
+        <Image Grid.Row="0" Grid.Column="1" Source="logo.png" Height="111" Width="210" HorizontalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Name="btn1" Foreground="Green" Width="70" FontSize="48" Height="10" Margin="2" VerticalContentAlignment="Center" Focusable="False">
+
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFB6BAB6" Offset="0" x:Name="bt1Grad1" />
+                    <GradientStop Color="#FF414141" Offset="1" x:Name="bt1Grad2" />
+                </LinearGradientBrush>
+            </Button.Background>
+
+        </Button>
+
+                <Button Name="btn2" Foreground="Green" Width="70" Height="10" Margin="2" FontSize="48" VerticalContentAlignment="Center" Focusable="False">
+
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFB6BAB6" Offset="0" x:Name="bt2Grad1" />
+                    <GradientStop Color="#FF414141" Offset="1" x:Name="bt2Grad2" />
+                </LinearGradientBrush>
+            </Button.Background>
+
+        </Button>
+
+                <Button Name="btn3" Foreground="Green" Width="70" Height="10" Margin="2" FontSize="48" VerticalContentAlignment="Center" Focusable="False">
+
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFB6BAB6" Offset="0" x:Name="bt3Grad1" />
+                    <GradientStop Color="#FF414141" Offset="1" x:Name="bt3Grad2" />
+                </LinearGradientBrush>
+            </Button.Background>
+            
+        </Button>
+</StackPanel>
+        </StackPanel>
 
         <TextBox Grid.Row="1" Grid.Column="1" Foreground="White" HorizontalContentAlignment="Center"
 VerticalContentAlignment="Center" Width="405" Height="125" HorizontalAlignment="Center" Background="#00000000"
@@ -113,14 +150,7 @@ FontFamily="Swis721 BT" BorderThickness="0" BorderBrush="#00000000" Name="btn_Na
             
         </StackPanel>
 
-        <Button Margin="0,37,46,63" HorizontalAlignment="Right" Width="20" Height="20" Click="Button_Click" Grid.Row="3">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF5EF677" Offset="0" />
-                    <GradientStop Color="#FF1E7C30" Offset="1" />
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
+        <Button Margin="0,37,47,66" HorizontalAlignment="Right" Width="19" Name="ljudlos" Click="Button_Click" Grid.Row="3" Background="#FFD44141"></Button>
 
 
     </Grid>
