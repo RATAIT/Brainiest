@@ -8,11 +8,13 @@
         <Image Grid.Row="1" Grid.Column="1" Source="logo.png" Width="210" HorizontalAlignment="Center"  />
 
         <TextBlock FontFamily="Berlin Sans FB" FontSize="15" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="700">
-            <Run Text="Så här spelar du Brainiest" Foreground="#5ef677"/>
+            <Run FontSize="20" Text="Så här spelar du Brainiest" Foreground="#5ef677"/>
             <Run Text="&#13;&#13;Starta nytt spel: " Foreground="#5ef677"/>
-            <Run Text="För att starta ett nytt spel klickar du på knappen Starta nytt spel. &#13;Du får då två val: du kan antingen söka efter valfri motståndare eller slumpa fram en moståndare " Foreground="White"/>
+            <Run Text="För att starta ett nytt spel klickar du på knappen Starta nytt spel. &#13;Du får då två val: du kan antingen söka efter valfri motståndare eller slumpa fram en moståndare. " Foreground="White"/>
             <Run Text="&#13;&#13;Statistik:" Foreground="#5ef677" />
             <Run Text="När du spelar lagras även statistik över dina resultat, dessa kommer du åt genom knappen statistik." Foreground="White" />
+            <Run Text="&#13;&#13;Matcher:" Foreground="#5ef677" />
+            <Run Text="När du startar en match kommer den visas i en lista i din meny.&#13;Varje match du startar kommer synas här tillsammans med resultat.&#13;Som första spelare har man möjligheten att välja kategori.&#13;Denna möjlighet har man tre gånger var." Foreground="White" />
         </TextBlock>
 
         <Button AllowDrop="False" BorderBrush="#00000000" BorderThickness="0" Content="Tillbaka" FontFamily="Swis721 BT" Foreground="White" Height="30" VerticalAlignment="Center" Width="80" Grid.Row="3" Grid.Column="1" Click="Button_Click">

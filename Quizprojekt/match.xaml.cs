@@ -44,6 +44,9 @@ namespace Quizprojekt
         List<string> idList = new List<string>(); // Lista med frågor från en viss kategori
         int antalID = 0;
         int questAnswered = 0;
+        int mute = 0;
+  
+
         
 
         // Läser in alla frågeIDn från en specifik kategori.
@@ -267,27 +270,50 @@ namespace Quizprojekt
             string content = Convert.ToString(btn_Svar4.Content);
             checkAnswer(content, "4");
         }
+
+
+
+        // Knapp som sätter värdet till ett och ändrar till mute
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            mute = 1;
+        
+        }
+
         
         //Kollar om ditt svar och det rätta svaret är samma
         private void checkAnswer(string btnAnswer, string btnID)
         {
             timer.Stop();
 
-            if(questAnswered == 0)
-            {
-                if (btnAnswer == corAns)
-                {
-                    System.IO.Stream correct = GetType().Assembly.GetManifestResourceStream("Quizprojekt.correct.wav");
-                    SoundPlayer player = new SoundPlayer(correct);
-                    player.Play();
-                }
-                else
-                {
-                    System.IO.Stream wrong = GetType().Assembly.GetManifestResourceStream("Quizprojekt.wrong.wav");
-                    SoundPlayer player = new SoundPlayer(wrong);
-                    player.Play();
 
-                } 
+            // Är värdet noll spelas något av ljuden
+            if (mute == 0)
+            {
+                
+                if (questAnswered == 0)
+                {
+                    if (btnAnswer == corAns)
+                    {
+                        System.IO.Stream correct = GetType().Assembly.GetManifestResourceStream("Quizprojekt.correct.wav");
+                        SoundPlayer player1 = new SoundPlayer(correct);
+                        player1.Play();
+                    }
+                    else
+                    {
+                        System.IO.Stream wrong = GetType().Assembly.GetManifestResourceStream("Quizprojekt.wrong.wav");
+                        SoundPlayer player2 = new SoundPlayer(wrong);
+                        player2.Play();
+
+                    }
+
+
+                
+                }
+
+                   
+            
+
             }
 
             questAnswered = 1;
@@ -377,5 +403,10 @@ namespace Quizprojekt
 
         #endregion
 
+      
+
+    
     }
-}
+
+    }
+
