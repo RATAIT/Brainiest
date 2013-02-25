@@ -51,28 +51,52 @@ namespace Quizprojekt
 
         private void btn_BliMedlem_Click(object sender, RoutedEventArgs e)
         {
+            int numRow = countRows();
+
             // Öppnar connection med databasen.
             MySqlConnection connection = new MySqlConnection(@"Server=83.168.226.169;Database=db1131745_BrainiestDB;Uid=u1131745_admin;Pwd=kidco[0lao;Port=3306;");
-            MySqlCommand com = new MySqlCommand("INSERT INTO Medlemmar (Anvandarnamn, Losenord) VALUES (@Anv, @Los)", connection);
+            connection.Open();
 
-
+            MySqlCommand com = new MySqlCommand("INSERT INTO Medlemmar (Anvandarnamn, Losenord) VALUES (@Anv, @Los); INSERT INTO Spelare1 (Anvandarnamn, MedlemmarID) VALUES (@Anv, @Med); INSERT INTO Spelare2 (Anvandarnamn, MedlemmarID) VALUES (@Anv, @Med)", connection);
+            
             com.Parameters.Add("@Anv", MySqlDbType.VarChar);
             com.Parameters.Add("@Los", MySqlDbType.VarChar);
+            com.Parameters.Add("@Med", MySqlDbType.VarChar);
             com.Parameters["@Anv"].Value = txtbox_Anv.Text;
             com.Parameters["@Los"].Value = md5Hash(txtbox_Password.Password);
+            com.Parameters["@Med"].Value = numRow + 1;
             
-            
-            connection.Open();
             com.ExecuteNonQuery();
             connection.Close();
-
-
 
             // Tar med sig användarnamn och lösenord spelaren valt till loginmenyn
             MainWindow newMain = new MainWindow();
             newMain.txtbox_Anv.Text = txtbox_Anv.Text;
             newMain.txtbox_Password.Password = txtbox_Password.Password;
             Switcher.Switch(newMain);
+        }
+
+        // Kollar vad den sista raden har för ID.
+        private int countRows()
+        {
+            int count;
+
+            DBconnect.openDB("SELECT * FROM Medlemmar WHERE MedlemmarID = (SELECT MAX(MedlemmarID)  FROM Medlemmar)");
+            DBconnect.DataReader.Read();
+
+            if (DBconnect.DataReader["MedlemmarID"] == null)
+            {
+                count = 1;
+            }
+            else
+            {
+                count = Convert.ToInt16(DBconnect.DataReader["MedlemmarID"]);
+            }
+
+
+            DBconnect.Connection.Close();
+
+            return count;
         }
 
 

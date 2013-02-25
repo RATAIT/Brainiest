@@ -35,6 +35,9 @@ namespace Quizprojekt
 
             // Vid load körs denna metod, för att starta timer
             Loaded += new RoutedEventHandler(match_Loaded);
+
+            On1.Visibility = Visibility.Visible;
+            Off1.Visibility = Visibility.Hidden;
         }
 
         string[] idFragaArray = new string[3]; // Array för pickThreeQuestions
@@ -278,6 +281,8 @@ namespace Quizprojekt
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             mute = 1;
+            Off1.Visibility = Visibility.Visible;
+            On1.Visibility = Visibility.Hidden;
      
         
         }
@@ -290,16 +295,18 @@ namespace Quizprojekt
             
 
             // Är värdet noll spelas något av ljuden
-            if (mute == 0)
-            {
+           
                 
                 if (questAnswered == 0)
                 {
                     if (btnAnswer == corAns)
                     {
-                        System.IO.Stream correct = GetType().Assembly.GetManifestResourceStream("Quizprojekt.correct.wav");
-                        SoundPlayer player1 = new SoundPlayer(correct);
+                        if (mute == 0)
+                        {
+                            System.IO.Stream correct = GetType().Assembly.GetManifestResourceStream("Quizprojekt.correct.wav");
+                            SoundPlayer player1 = new SoundPlayer(correct);
                         player1.Play();
+                        }
                         fragaNummer++;
 
                         if (fragaNummer == 1)
@@ -327,9 +334,12 @@ namespace Quizprojekt
                     }
                     else
                     {
+                        if (mute == 0)
+                        {
                         System.IO.Stream wrong = GetType().Assembly.GetManifestResourceStream("Quizprojekt.wrong.wav");
                         SoundPlayer player2 = new SoundPlayer(wrong);
                         player2.Play();
+                        }
                         fragaNummer++;
 
 
@@ -358,9 +368,7 @@ namespace Quizprojekt
                 }
 
                    
-            
-
-            }
+           
 
             questAnswered = 1;
 
@@ -449,8 +457,13 @@ namespace Quizprojekt
 
         #endregion
 
-      
 
+        private void Off1_Click(object sender, RoutedEventArgs e)
+        {
+            mute = 0;
+            On1.Visibility = Visibility.Visible;
+            Off1.Visibility = Visibility.Hidden;
+        }
     
     }
 

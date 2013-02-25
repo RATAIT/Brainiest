@@ -20,33 +20,64 @@ namespace Quizprojekt
     {
         public string anvNamn;
         public string userID;
+        public int spelare1;
+        public int spelare2;
 
         public Meny()
         {
             InitializeComponent();
-             
+         
             // Användarnamn hämtas från det du loggat in med
             anvNamn = UserName.userName;
             userID = UserName.userID;
-            txtbox_Spelare1.Text = UserName.userID;
 
             // Lägger till ditt användarnamn efter "Logga ut"
             btn_LoggaUt.Content = "Logga ut " + anvNamn;
             btn_LoggaUt.Width = ("Logga ut " + anvNamn).Length * 8;
 
-            //Loaded += new RoutedEventHandler(getMatch);
+
+
+            kollaMatcher();
+            
+
         }
 
-        // Framtida metod för att få fram matcherna
-        private void getMatch(object sender, RoutedEventArgs e)
+
+        // Kollar vilka matcher en spelare har igång och skriver ut dom.
+        private void kollaMatcher()
         {
-            DBconnect.openDB("SELECT * FROM Match WHERE MatchID = 1");
-            DBconnect.DataReader.Read();
+            try
+            {
+                // Kollar vilka matcher som den inloggade har igång.
+                DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare1 = " + UserName.userID);
+                DBconnect.DataReader.Read();
 
-            txtbox_Resultat1.Text = Convert.ToString(DBconnect.DataReader["ResultatSpelare1"]);
+                spelare2 = Convert.ToInt16(DBconnect.DataReader["Spelare2"]);
 
-            DBconnect.Connection.Close();
+                // Skriver ut båda spelarnas resultat i matchen. (Ställningen)
+                txtbox_Resultat1.Text = (Convert.ToString(DBconnect.DataReader["ResultatSpelare1"]) + "-" + Convert.ToString(DBconnect.DataReader["ResultatSpelare2"]));
+
+
+                // Kollar vad den inloggades motståndare har för användarnamn.
+                DBconnect.openDB("SELECT * FROM `Medlemmar` WHERE MedlemmarID = " + spelare2);
+                DBconnect.DataReader.Read();
+
+
+                txtbox_Spelare1.Text = Convert.ToString(DBconnect.DataReader["Anvandarnamn"]);
+                DBconnect.Connection.Close();
+            }
+
+
+            catch
+            {
+                txtbox_Spelare1.Text = "Ingen match hittades";
+                txtbox_Spelare2.Text = "Ingen match hittades";
+                txtbox_Spelare3.Text = "Ingen match hittades";
+            }
+         
+                
         }
+
 
         // Loggar ut
         private void btn_LoggaUt_Click(object sender, RoutedEventArgs e)
@@ -80,6 +111,13 @@ namespace Quizprojekt
         }
 
         #endregion
+
+        private void btn_Spela2_Click(object sender, RoutedEventArgs e)
+        {
+          
+        }
+
+    
 
     }
 }
