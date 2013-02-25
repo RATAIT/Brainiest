@@ -19,6 +19,9 @@ namespace Quizprojekt
     /// </summary>
     public partial class NyttSpel : UserControl, ISwitchable
     {
+        int spelare1;
+        int spelare2;
+
         public NyttSpel()
         {
             InitializeComponent();
@@ -40,13 +43,37 @@ namespace Quizprojekt
         {
             DBconnect.openDB("SELECT * FROM Medlemmar ORDER BY rand() LIMIT 1");
             DBconnect.DataReader.Read();
-            txtbox_Sok.Text = Convert.ToString(DBconnect.DataReader["MedlemmarID"]);
+
+            spelare2 = Convert.ToInt16(DBconnect.DataReader["MedlemmarID"]);
             DBconnect.Connection.Close();
+
+
+            // Spelare1 tilldelas de medlemmarID som man loggat in med.
+            spelare1 = Convert.ToInt16(UserName.userID);
+            
+            // Öppnar connection med databasen.
+            MySqlConnection connection = new MySqlConnection(@"Server=83.168.226.169;Database=db1131745_BrainiestDB;Uid=u1131745_admin;Pwd=kidco[0lao;Port=3306;");
+
+            MySqlCommand com = new MySqlCommand("INSERT INTO `Match` (Spelare1, Spelare2) VALUES (@Spel1, @Spel2)", connection);
+
+            com.Parameters.Add("@Spel1", MySqlDbType.Int16);
+            com.Parameters.Add("@Spel2", MySqlDbType.Int16);
+            com.Parameters["@Spel1"].Value = spelare1;
+            com.Parameters["@Spel2"].Value = spelare2;
+
+
+            connection.Open();
+            com.ExecuteNonQuery();
+            connection.Close();
+
+            Switcher.Switch(new Meny());
+
         }
 
         private void btn_Soek_Click(object sender, RoutedEventArgs e)
         {
-            listBox1.Items.Clear();
+            lstBox_sok.Items.Clear();
+
             try
             {
                 string soekAnv = txtbox_Sok.Text;
@@ -54,8 +81,8 @@ namespace Quizprojekt
                 DBconnect.openDB("SELECT * FROM Medlemmar WHERE Anvandarnamn LIKE  '%" + soekAnv + "%'");
                 while (DBconnect.DataReader.Read())
                 {
-
-                    listBox1.Items.Add(Convert.ToString(DBconnect.DataReader["Anvandarnamn"]));
+                   
+                   lstBox_sok.Items.Add(Convert.ToString(DBconnect.DataReader["Anvandarnamn"]));
                 }
 
                 DBconnect.Connection.Close();
@@ -64,6 +91,46 @@ namespace Quizprojekt
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+
+        // Väljer en motståndare
+        private void btn_Valj_Click(object sender, RoutedEventArgs e)
+        {
+            // Väljer det selectade i listboxen.
+            string selectedItem = Convert.ToString(lstBox_sok.SelectedItem);
+
+            // Tar medlemmarID ifrån de användarnamnet som valts i listboxen.
+            DBconnect.openDB("SELECT * FROM Medlemmar WHERE Anvandarnamn = '" + selectedItem + "'");
+            DBconnect.DataReader.Read();
+
+            // Tilldelar variablen spelare2 de medlemmarID som tidigare valts.
+            spelare2 = Convert.ToInt16(DBconnect.DataReader["MedlemmarID"]);
+            DBconnect.Connection.Close();
+
+            // Spelare1 tilldelas de medlemmarID som man loggat in med.
+            spelare1 = Convert.ToInt16(UserName.userID);
+      
+                
+            // Öppnar connection med databasen.
+            MySqlConnection connection = new MySqlConnection(@"Server=83.168.226.169;Database=db1131745_BrainiestDB;Uid=u1131745_admin;Pwd=kidco[0lao;Port=3306;");
+         
+            MySqlCommand com = new MySqlCommand("INSERT INTO `Match` (Spelare1, Spelare2) VALUES (@Spel1, @Spel2)", connection);
+            
+            com.Parameters.Add("@Spel1", MySqlDbType.Int16);
+            com.Parameters.Add("@Spel2", MySqlDbType.Int16);
+            com.Parameters["@Spel1"].Value = spelare1;
+            com.Parameters["@Spel2"].Value = spelare2;
+
+
+            connection.Open();
+            com.ExecuteNonQuery();
+            connection.Close();
+
+
+            Switcher.Switch(new Meny());
+
+
         }
 
 

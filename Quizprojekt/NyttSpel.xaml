@@ -49,7 +49,7 @@
 
         <!-- Lägger till Bli Medlem-knappen på sjunde raden, andra kolumnen  -->
         <Button Grid.Row="7" Width="200" Content="Välj motståndare" Height="30" Foreground="White"
-                FontFamily="Swis721 BT" BorderThickness="0" BorderBrush="#00000000" Name="btn_Valj">
+                FontFamily="Swis721 BT" BorderThickness="0" BorderBrush="#00000000" Name="btn_Valj" Click="btn_Valj_Click">
             <!-- LinearGradientBrush på knappen -->
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -60,7 +60,7 @@
         </Button>
 
 
-        <ListBox Grid.Row="5" Height="150" HorizontalAlignment="Center"  Name="listBox1" VerticalAlignment="Center" Width="200" Background="White" Foreground="Black">
+        <ListBox Grid.Row="5" Height="150" HorizontalAlignment="Center"  Name="lstBox_sok" VerticalAlignment="Center" Width="200" Background="White" Foreground="Black">
         </ListBox>
 
 
