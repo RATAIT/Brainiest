@@ -19,6 +19,7 @@ BRAINIEST!
 
 
 Att fixa:
+
 1. Fixa så att det blir samma ID i spelare 1 och 2 som i MedlemsID
 
 2. När man tar nyttspel skall en ny match skapas och spelare 1 skall bli den som startade och spelare 2 random eller vald.
