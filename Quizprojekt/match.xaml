@@ -113,7 +113,7 @@ FontFamily="Swis721 BT" BorderThickness="0" BorderBrush="#00000000" Name="btn_Na
             
         </StackPanel>
 
-        <Button Margin="35" HorizontalAlignment="Right" Width="20" Height="20" Click="Button_Click" Grid.Row="3">
+        <Button Margin="0,37,46,63" HorizontalAlignment="Right" Width="20" Height="20" Click="Button_Click" Grid.Row="3">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF5EF677" Offset="0" />
