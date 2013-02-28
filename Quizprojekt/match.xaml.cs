@@ -56,7 +56,7 @@ namespace Quizprojekt
         // Läser in alla frågeIDn från en specifik kategori.
         private void readQuestion()
         {
-           
+            
             //Query för att hämta alla för en viss kategori
             DBconnect.openDB("SELECT * FROM Fragor WHERE KategoriID = " + kategoriID);
 
@@ -81,6 +81,8 @@ namespace Quizprojekt
             {
                 fraga = 0;
                 questAnswered = 0;
+
+                timer.Stop();
                 Switcher.Switch(new kategori());
             }
             // Hämtar ny fråga om man svarat på första frågan
@@ -174,9 +176,69 @@ namespace Quizprojekt
 
                 btn4Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
                 btn4Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
+
+                FargaknapparRoda();
             }
 
+
+         
+
             fragaOver();
+        }
+
+        // Sätter röd färg på poängvisare
+        private void FargaknapparRoda()
+        {
+
+            fragaNummer++;
+
+
+            if (fragaNummer == 1)
+            {
+                bt1Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
+                bt1Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
+            }
+
+            else if (fragaNummer == 2)
+            {
+                bt2Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
+                bt2Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
+            }
+
+            else if (fragaNummer == 3)
+            {
+                bt3Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
+                bt3Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
+            }
+        }
+
+        // Sätter grön färg på poängvisare
+
+        private void FargaknapparnaGrona()
+        {
+            fragaNummer++;
+
+            if (fragaNummer == 1)
+            {
+                bt1Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF5EF677"));
+                bt1Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF1E7C30"));
+                antalRatt++;
+
+            }
+
+            else if (fragaNummer == 2)
+            {
+                bt2Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF5EF677"));
+                bt2Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF1E7C30"));
+                antalRatt++;
+            }
+
+            else if (fragaNummer == 3)
+            {
+                bt3Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF5EF677"));
+                bt3Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF1E7C30"));
+                antalRatt++;
+            }
         }
 
 
@@ -186,7 +248,7 @@ namespace Quizprojekt
         void match_Loaded(object sender, RoutedEventArgs e)
         {
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(15);
+            timer.Interval = TimeSpan.FromSeconds(4);
             timer.Tick += timer1_Tick;
 
             timer.Start();
@@ -211,7 +273,6 @@ namespace Quizprojekt
             {
                 if (fraga < 2)
                 {
-                    timer.Start();
                     progressBar1.Visibility = Visibility.Collapsed;
                     btn_NastaFraga.Visibility = Visibility.Visible;
                     lbl_TidKvar.Visibility = Visibility.Hidden;
@@ -229,6 +290,8 @@ namespace Quizprojekt
             // Annars går man tillbaka till kategori
             else
             {
+                questAnswered = 0;
+                fraga = 0;
                 Switcher.Switch(new kategori());
             }
 
@@ -237,6 +300,8 @@ namespace Quizprojekt
         // Klick på "Nästa Fråga"-knappen
         private void btn_NastaFraga_Click(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
+            timer.Start();
             // Knappen döljs och progressbar+tidkvar kommer tillbaka
             progressBar1.Visibility = System.Windows.Visibility.Visible;
             btn_NastaFraga.Visibility = System.Windows.Visibility.Collapsed;
@@ -307,29 +372,8 @@ namespace Quizprojekt
                             SoundPlayer player1 = new SoundPlayer(correct);
                         player1.Play();
                         }
-                        fragaNummer++;
 
-                        if (fragaNummer == 1)
-                        {
-                            bt1Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF5EF677"));
-                            bt1Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF1E7C30"));
-                            antalRatt++;
-
-                        }
-
-                        else if (fragaNummer == 2)
-                        {
-                            bt2Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF5EF677"));
-                            bt2Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF1E7C30"));
-                            antalRatt++;
-                        }
-
-                        else if (fragaNummer == 3)
-                        {
-                            bt3Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF5EF677"));
-                            bt3Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF1E7C30"));
-                            antalRatt++;
-                        }
+                        FargaknapparnaGrona();
 
                     }
                     else
@@ -340,35 +384,10 @@ namespace Quizprojekt
                         SoundPlayer player2 = new SoundPlayer(wrong);
                         player2.Play();
                         }
-                        fragaNummer++;
 
-
-                        if (fragaNummer == 1)
-                        {
-                            bt1Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
-                            bt1Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
-                        }
-
-                        else if (fragaNummer == 2)
-                        {
-                            bt2Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
-                            bt2Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
-                        }
-
-                        else if (fragaNummer == 3)
-                        {
-                            bt3Grad1.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FFF65E5E"));
-                            bt3Grad2.SetValue(GradientStop.ColorProperty, (Color)ColorConverter.ConvertFromString("#FF7C1E1E"));
-                        }
-
+                        FargaknapparRoda();
                     }
-
-
-                
                 }
-
-                   
-           
 
             questAnswered = 1;
 

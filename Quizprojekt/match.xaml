@@ -150,9 +150,13 @@ FontFamily="Swis721 BT" BorderThickness="0" BorderBrush="#00000000" Name="btn_Na
             
         </StackPanel>
 
+
+
         <Button Name="On1"  BorderThickness="0" Margin="0,34,72,71" HorizontalAlignment="Right" Width="20" Height="20" Click="Button_Click" Grid.Row="3">
             <Image Source="speaker1.2.png"/>
         </Button>
+
+
 
         <Button Name="Off1"  BorderThickness="0" Margin="0,34,72,71" HorizontalAlignment="Right" Width="20" Height="20" Click="Off1_Click" Grid.Row="3">
             <Image Source="speakerrmute.png" />

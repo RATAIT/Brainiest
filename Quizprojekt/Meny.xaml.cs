@@ -42,14 +42,13 @@ namespace Quizprojekt
 
         }
 
-
         // Kollar vilka matcher en spelare har igång och skriver ut dom.
         private void kollaMatcher()
         {
             try
             {
                 // Kollar vilka matcher som den inloggade har igång.
-                DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare1 = " + UserName.userID);
+                DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare1 = " + UserName.userID + " AND Runda < 4");
                 DBconnect.DataReader.Read();
 
                 spelare2 = Convert.ToInt16(DBconnect.DataReader["Spelare2"]);
@@ -74,7 +73,36 @@ namespace Quizprojekt
                 txtbox_Spelare2.Text = "Ingen match hittades";
                 txtbox_Spelare3.Text = "Ingen match hittades";
             }
-         
+
+            try
+            {
+                // Kollar vilka matcher som den inloggade har igång.
+                DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare2 = " + UserName.userID + " AND Runda < 4");
+                DBconnect.DataReader.Read();
+
+                spelare1 = Convert.ToInt16(DBconnect.DataReader["Spelare1"]);
+
+                // Skriver ut båda spelarnas resultat i matchen. (Ställningen)
+                txtbox_Resultat2.Text = (Convert.ToString(DBconnect.DataReader["ResultatSpelare2"]) + "-" + Convert.ToString(DBconnect.DataReader["ResultatSpelare1"]));
+
+
+                // Kollar vad den inloggades motståndare har för användarnamn.
+                DBconnect.openDB("SELECT * FROM `Medlemmar` WHERE MedlemmarID = " + spelare1);
+                DBconnect.DataReader.Read();
+
+
+                txtbox_Spelare2.Text = Convert.ToString(DBconnect.DataReader["Anvandarnamn"]);
+                DBconnect.Connection.Close();
+            }
+
+
+            catch
+            {
+
+                txtbox_Spelare2.Text = "Ingen match hittades";
+                txtbox_Spelare3.Text = "Ingen match hittades";
+            }
+            txtbox_Spelare3.Text = "Ingen match hittades";
                 
         }
 
