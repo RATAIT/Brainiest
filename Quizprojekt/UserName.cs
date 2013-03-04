@@ -17,13 +17,20 @@ namespace Quizprojekt
 
         private static string m_userID = "";
 
+
         public static string userID
         {
             get { return m_userID; }
             set { m_userID = value; }
         }
 
+        private static string m_matchID = "";
 
+        public static string MatchID
+        {
+            get { return m_matchID; }
+            set { m_matchID = value; }
+        }
     
       
 

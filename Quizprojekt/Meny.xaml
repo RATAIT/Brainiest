@@ -101,7 +101,7 @@
                 </TextBox.Effect>
             </TextBox>
             <!-- Textbox för resultat i match1 -->
-            <TextBox Text="" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="28" Height="28"  Background="Gray"                 BorderThickness="0" Name="txtbox_Resultat1" Margin="5" Focusable="False">
+            <TextBox Text="" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="35" Height="28"  Background="Gray"                 BorderThickness="0" Name="txtbox_Resultat1" Margin="5" Focusable="False">
                 <!-- Skugga på textboxen -->
                 <TextBox.Effect>
                     <DropShadowEffect ShadowDepth="5" Color="Black" Opacity=".4" RenderingBias="Quality" Direction="-70" />
@@ -132,7 +132,7 @@
                 </TextBox.Effect>
             </TextBox>
             <!-- Textbox för resultat i match1 -->
-            <TextBox Text="" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="28" Height="28"  Background="Gray" BorderThickness="0" Name="txtbox_Resultat2" Margin="5" Focusable="False">
+            <TextBox Text="" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="35" Height="28"  Background="Gray" BorderThickness="0" Name="txtbox_Resultat2" Margin="5" Focusable="False">
                 <!-- Skugga på textboxen -->
                 <TextBox.Effect>
                     <DropShadowEffect ShadowDepth="5" Color="Black" Opacity=".4" RenderingBias="Quality" Direction="-70" />
@@ -163,14 +163,14 @@
                 </TextBox.Effect>
             </TextBox>
             <!-- Textbox för resultat i match1 -->
-            <TextBox Text="" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="28" Height="28"  Background="Gray"                 BorderThickness="0" Name="txtbox_Resultat3" Margin="5" Focusable="False">
+            <TextBox Text="" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="35" Height="28"  Background="Gray" BorderThickness="0" Name="txtbox_Resultat3" Margin="5" Focusable="False">
                 <!-- Skugga på textboxen -->
                 <TextBox.Effect>
                     <DropShadowEffect ShadowDepth="5" Color="Black" Opacity=".4" RenderingBias="Quality" Direction="-70" />
                 </TextBox.Effect>
             </TextBox>
             <!-- Lägger till spela-knappen   -->
-            <Button Width="80" Content="Spela" Height="30" Foreground="White" FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_Spela3" Margin="5">
+            <Button Width="80" Content="Spela" Height="30" Foreground="White" FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_Spela3" Margin="5" Click="btn_Spela3_Click">
                 <!-- LinearGradientBrush på knappen -->
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

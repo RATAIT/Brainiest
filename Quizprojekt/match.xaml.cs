@@ -83,11 +83,14 @@ namespace Quizprojekt
                 questAnswered = 0;
 
                 timer.Stop();
-                Switcher.Switch(new kategori());
+
+                Switcher.Switch(new Meny());
             }
+
             // Hämtar ny fråga om man svarat på första frågan
             else if (fraga > 0)
                 setQuestion(idFragaArray[fraga]);
+
             // Slumpar ut tre frågor från en lista som skapats i readQuestion()
             else
             {
@@ -100,7 +103,10 @@ namespace Quizprojekt
                     idFragaArray[i] = idList.ElementAtOrDefault(num);
                     idList.RemoveAt(num);
                     antalID--;
+
+
                 }
+
                 setQuestion(idFragaArray[fraga]);
             }
         }
@@ -248,7 +254,7 @@ namespace Quizprojekt
         void match_Loaded(object sender, RoutedEventArgs e)
         {
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(4);
+            timer.Interval = TimeSpan.FromSeconds(15);
             timer.Tick += timer1_Tick;
 
             timer.Start();
@@ -283,6 +289,21 @@ namespace Quizprojekt
                     btn_NastaFraga.Visibility = Visibility.Visible;
                     lbl_TidKvar.Visibility = Visibility.Hidden;
                     btn_NastaFraga.Content = "Tillbaka";
+
+                    DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
+                    DBconnect.DataReader.Read();
+                    if (Convert.ToString(DBconnect.DataReader["Spelare1"]) == UserName.userID)
+                    {
+                        DBconnect.openDB("UPDATE `Match` SET ResultatSpelare1 = ResultatSpelare1+" + antalRatt + " WHERE MatchID = " + UserName.MatchID);
+                        DBconnect.DataReader.Read();
+                    }
+                    else
+                    {
+                        DBconnect.openDB("UPDATE `Match` SET ResultatSpelare2 = ResultatSpelare2+" + antalRatt + " WHERE MatchID = " + UserName.MatchID);
+                        DBconnect.DataReader.Read();
+                    }
+
+                    DBconnect.Connection.Close();
                 }
 
 
@@ -292,7 +313,7 @@ namespace Quizprojekt
             {
                 questAnswered = 0;
                 fraga = 0;
-                Switcher.Switch(new kategori());
+                Switcher.Switch(new Meny());
             }
 
         }

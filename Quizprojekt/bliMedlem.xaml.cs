@@ -57,14 +57,12 @@ namespace Quizprojekt
             MySqlConnection connection = new MySqlConnection(@"Server=83.168.226.169;Database=db1131745_BrainiestDB;Uid=u1131745_admin;Pwd=kidco[0lao;Port=3306;");
             connection.Open();
 
-            MySqlCommand com = new MySqlCommand("INSERT INTO Medlemmar (Anvandarnamn, Losenord) VALUES (@Anv, @Los); INSERT INTO Spelare1 (Anvandarnamn, MedlemmarID) VALUES (@Anv, @Med); INSERT INTO Spelare2 (Anvandarnamn, MedlemmarID) VALUES (@Anv, @Med)", connection);
+            MySqlCommand com = new MySqlCommand("INSERT INTO Medlemmar (Anvandarnamn, Losenord) VALUES (@Anv, @Los)", connection);
             
             com.Parameters.Add("@Anv", MySqlDbType.VarChar);
             com.Parameters.Add("@Los", MySqlDbType.VarChar);
-            com.Parameters.Add("@Med", MySqlDbType.VarChar);
             com.Parameters["@Anv"].Value = txtbox_Anv.Text;
             com.Parameters["@Los"].Value = md5Hash(txtbox_Password.Password);
-            com.Parameters["@Med"].Value = numRow + 1;
             
             com.ExecuteNonQuery();
             connection.Close();
