@@ -41,6 +41,7 @@ namespace Quizprojekt
         }
 
         string[] idFragaArray = new string[3]; // Array för pickThreeQuestions
+        public string[] arrayFragorRunda = new string[3];
         int kategoriID = kategori.id;
         string corAns; // Rätta svaret
         int fraga = 0; // Kollar vilken fråga man är på just nu
@@ -51,12 +52,10 @@ namespace Quizprojekt
         int fragaNummer;
         int antalRatt;
 
-        
-
+       
         // Läser in alla frågeIDn från en specifik kategori.
         private void readQuestion()
         {
-            
             //Query för att hämta alla för en viss kategori
             DBconnect.openDB("SELECT * FROM Fragor WHERE KategoriID = " + kategoriID);
 
@@ -84,31 +83,85 @@ namespace Quizprojekt
 
                 timer.Stop();
 
+                //-------------------------------------------------
+                // Här ska vi sätta att en grej så att när man spelat så kan man inte spela igen.
+                // Efteråt. 
+                // De får ett värde i databastabellen "Spelare1 eller 2 Spelat"
+                //-------------------------------------------------
+
+                
+                //DBconnect.openDB("UPDATE `Match` SET Runda = Runda+" + 1 + " WHERE MatchID = " + UserName.MatchID);
+                //DBconnect.DataReader.Read();
+                //DBconnect.Connection.Close();
+
                 Switcher.Switch(new Meny());
             }
 
-            // Hämtar ny fråga om man svarat på första frågan
+            // Hämtar ny fråga om man svarat på första frågan.
             else if (fraga > 0)
-                setQuestion(idFragaArray[fraga]);
+            {
+                //---------------------------------
+                // Här får man hämta en till fråga från antingen databasen eller göra som vi gör nu
+
+                //---------------------------------
+                setQuestion(arrayFragorRunda[fraga]);
+            }
 
             // Slumpar ut tre frågor från en lista som skapats i readQuestion()
             else
             {
-                for (int i = 0; i < 3; i++)
+
+
+                // ---------------------------------------------
+                // Ifall man väljer kategori skall det läggas in frågor i databasen här
+                // så att motståndaren får samma frågor.
+                // Måste också hålla koll på vem som valt kategori och vem som inte har, så
+                // att denna får frågor från databasen om den inte valt kategori.
+                // ---------------------------------------------
+
+                DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
+                DBconnect.DataReader.Read();
+
+                if (Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]) != "TOM")
                 {
-                    Random random = new Random();
-                    int num = random.Next(antalID);
-
-                    //Tar FragorID på positionen num
-                    idFragaArray[i] = idList.ElementAtOrDefault(num);
-                    idList.RemoveAt(num);
-                    antalID--;
-
-
+                    splitFragor();          
                 }
+                else if (Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]) == "TOM")
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        Random random = new Random();
+                        int num = random.Next(antalID);
 
-                setQuestion(idFragaArray[fraga]);
+                        //Tar FragorID på positionen num
+                        idFragaArray[i] = idList.ElementAtOrDefault(num);
+                        idList.RemoveAt(num);
+                        antalID--;
+
+                    }
+
+                    DBconnect.openDB("UPDATE `Match` SET FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"]) + " = '" + idFragaArray[0] + "_" + idFragaArray[1] + "_" + idFragaArray[2] + "' WHERE MatchID = " + UserName.MatchID);
+                    DBconnect.DataReader.Read();
+                    splitFragor();
+                }
+                
+
+                DBconnect.Connection.Close();
+
+                setQuestion(arrayFragorRunda[fraga]);
             }
+        }
+
+        private void splitFragor()
+        {
+            DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
+            DBconnect.DataReader.Read();
+
+            string fragorTillArray = Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]);
+
+            arrayFragorRunda = fragorTillArray.Split('_');
+
+            DBconnect.Connection.Close();
         }
 
         // Skriver ut frågan + svarsalternativen
@@ -152,7 +205,6 @@ namespace Quizprojekt
 
             DBconnect.DataReader.Close();
             DBconnect.Connection.Close();
-    
 
             //Startar om progressbaren
             startAniProg();
@@ -185,9 +237,6 @@ namespace Quizprojekt
 
                 FargaknapparRoda();
             }
-
-
-         
 
             fragaOver();
         }
@@ -362,7 +411,6 @@ namespace Quizprojekt
         }
 
 
-
         // Knapp som sätter värdet till ett och ändrar till mute
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -419,7 +467,6 @@ namespace Quizprojekt
             fragaOver();
         }
 
-        
 
         // Ändrar färgerna på fel svar till rött och rätt svar till grönt
         private void changeBtnCol(string svar)

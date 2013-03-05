@@ -27,17 +27,9 @@ namespace Quizprojekt
 
         public kategori()
         {
-            
             InitializeComponent();
-
-
             SetKategori();
-
-          
         }
-
-
-
 
 
 
@@ -80,7 +72,7 @@ namespace Quizprojekt
                     i++;
                 }
             }
-        
+
         }
 
 
@@ -91,7 +83,7 @@ namespace Quizprojekt
             id = id1 + 1;
 
             Switcher.Switch(new match());
-          
+
         }
 
         private void btn_Kat2_Click(object sender, RoutedEventArgs e)
@@ -108,6 +100,11 @@ namespace Quizprojekt
             Switcher.Switch(new match());
         }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Switcher.Switch(new Meny());
+        }
+
         #region ISwitchable Members
 
         public void UtilizeState(object state)
@@ -116,11 +113,6 @@ namespace Quizprojekt
         }
 
         #endregion
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Switcher.Switch(new Meny());
-        }
 
     }
 }

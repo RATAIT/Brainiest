@@ -131,9 +131,6 @@ namespace Quizprojekt
                         // Skriver ut ställningen.
                         txt_resultat[i].Text = (Convert.ToString(DBconnect.DataReader["ResultatSpelare2"]) + "-" + Convert.ToString(DBconnect.DataReader["ResultatSpelare1"]));
                     }
-
-
-
                 }
             }
 
@@ -203,8 +200,6 @@ namespace Quizprojekt
             VemsTur();
         }
 
-
-
         private void VemsTur()
         {
 
@@ -225,9 +220,6 @@ namespace Quizprojekt
                 {
                     if (Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]) != "TOM")
                     {
-                        DBconnect.Connection.Close();
-                        DBconnect.openDB("UPDATE `Match` SET Runda = Runda+" + 1 + " WHERE MatchID = " + UserName.MatchID);
-                        DBconnect.DataReader.Read();
                         DBconnect.Connection.Close();
                         Switcher.Switch(new match());
                     }
@@ -251,9 +243,6 @@ namespace Quizprojekt
                 {
                     if (Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]) != "TOM")
                     {
-                        DBconnect.Connection.Close();
-                        DBconnect.openDB("UPDATE `Match` SET Runda = Runda+" + 1 + " WHERE MatchID = " + UserName.MatchID);
-                        DBconnect.DataReader.Read();
                         DBconnect.Connection.Close();
                         Switcher.Switch(new match());
                     }
