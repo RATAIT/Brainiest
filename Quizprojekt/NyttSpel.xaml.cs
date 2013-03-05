@@ -61,7 +61,6 @@ namespace Quizprojekt
             com.Parameters.Add("@Spel2", MySqlDbType.Int16);
             com.Parameters.Add("@Res1", MySqlDbType.Int16);
             com.Parameters.Add("@Res2", MySqlDbType.Int16);
-            com.Parameters.Add("@Frag1", MySqlDbType.Int16);
             com.Parameters["@Runda"].Value = 1;
             com.Parameters["@Spel1"].Value = spelare1;
             com.Parameters["@Spel2"].Value = spelare2;

@@ -31,7 +31,15 @@ namespace Quizprojekt
             get { return m_matchID; }
             set { m_matchID = value; }
         }
-    
+
+
+        private static string m_spelarNummer = "";
+
+        public static string spelarNummer
+        {
+            get { return m_spelarNummer; }
+            set { m_spelarNummer = value; }
+        }
       
 
     }

@@ -30,6 +30,9 @@ namespace Quizprojekt
 
         public Meny()
         {
+
+            
+
             InitializeComponent();
 
             txt_spelare[0] = txtbox_Spelare1;
@@ -52,7 +55,8 @@ namespace Quizprojekt
 
             
             kollaMatcher();
-
+            DBconnect.Connection.Close();
+            DBconnect.DataReader.Close();
 
         }
 
@@ -63,7 +67,7 @@ namespace Quizprojekt
             try
             {
                 // Kollar vilka matcher som den inloggade har igång.
-                DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare1 = " + UserName.userID + " OR Spelare2 = " + UserName.userID + " AND Runda < 4");
+                DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare1 = " + UserName.userID + " AND Runda < 3 OR Spelare2 = " + UserName.userID + " AND Runda < 3");
 
                 // Läser alla rader i databasen med kommandot givet ovan.
                 while (DBconnect.DataReader.Read())
@@ -207,55 +211,74 @@ namespace Quizprojekt
             DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
             DBconnect.DataReader.Read();
 
-            if (Convert.ToInt16(DBconnect.DataReader["Runda"]) == 1 || Convert.ToInt16(DBconnect.DataReader["Runda"]) == 3)
+            if ((Convert.ToString(DBconnect.DataReader["Spelare1"]) == UserName.userID && Convert.ToString(DBconnect.DataReader["Spelare1Spelat"]) != "1")
+                || (Convert.ToString(DBconnect.DataReader["Spelare2"]) == UserName.userID && Convert.ToString(DBconnect.DataReader["Spelare2Spelat"]) != "1"))
             {
-
-                if (Convert.ToString(DBconnect.DataReader["Spelare1"]) == UserName.userID)
+                if (Convert.ToInt16(DBconnect.DataReader["Runda"]) == 0 || Convert.ToInt16(DBconnect.DataReader["Runda"]) == 2)
                 {
-                    DBconnect.Connection.Close();
-                    Switcher.Switch(new kategori());
-                }
 
-                else
-                {
-                    if (Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]) != "TOM")
+                    if (Convert.ToString(DBconnect.DataReader["Spelare1"]) == UserName.userID)
                     {
+
                         DBconnect.Connection.Close();
-                        Switcher.Switch(new match());
+
+                        UserName.spelarNummer = "1";
+                        Switcher.Switch(new kategori());
+
                     }
 
                     else
                     {
-                        MessageBox.Show("Inte din tur än!");
+                        if (Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]) != "TOM")
+                        {
+                            DBconnect.Connection.Close();
+
+                            UserName.spelarNummer = "2";
+                            Switcher.Switch(new match());
+                        }
+
+                        else
+                        {
+                            MessageBox.Show("Inte din tur än!");
+                        }
+
                     }
-
                 }
-            }
 
-            else
-            {
-                if (Convert.ToString(DBconnect.DataReader["Spelare2"]) == UserName.userID)
-                {
-                    DBconnect.Connection.Close();
-                    Switcher.Switch(new kategori());
-                }
                 else
                 {
-                    if (Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]) != "TOM")
+                    if (Convert.ToString(DBconnect.DataReader["Spelare2"]) == UserName.userID)
                     {
                         DBconnect.Connection.Close();
-                        Switcher.Switch(new match());
+
+                        UserName.spelarNummer = "2";
+                        Switcher.Switch(new kategori());
                     }
                     else
                     {
-                        MessageBox.Show("Inte din tur än!");
+                        if (Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]) != "TOM")
+                        {
+                            DBconnect.Connection.Close();
+
+                            UserName.spelarNummer = "1";
+                            Switcher.Switch(new match());
+                        }
+                        else
+                        {
+                            MessageBox.Show("Inte din tur än!");
+                        }
                     }
+
+                    DBconnect.Connection.Close();
+
                 }
-
-                DBconnect.Connection.Close();
-
             }
 
+            else {
+
+                MessageBox.Show("Inte din tur");
+            
+            }
         }
     }
 }

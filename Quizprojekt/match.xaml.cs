@@ -83,10 +83,63 @@ namespace Quizprojekt
 
                 timer.Stop();
 
+
+                DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
+                DBconnect.DataReader.Read();
+             
+                if (UserName.spelarNummer == "1")
+                {
+                    DBconnect.DataReader.Close();
+                    DBconnect.Connection.Close();
+                    DBconnect.openDB("UPDATE `Match` SET Spelare1Spelat = 1 WHERE MatchID = " + UserName.MatchID);
+                    DBconnect.DataReader.Read();
+                    DBconnect.DataReader.Close();
+                    DBconnect.Connection.Close();
+                }
+
+                else // Spelare2
+                {
+                    DBconnect.DataReader.Close();
+                    DBconnect.Connection.Close();
+                    DBconnect.openDB("UPDATE `Match` SET Spelare2Spelat = 1 WHERE MatchID = " + UserName.MatchID);
+                    DBconnect.DataReader.Read();
+                    DBconnect.DataReader.Close();
+                    DBconnect.Connection.Close();
+                
+                }
+
+                DBconnect.DataReader.Close();
+                DBconnect.Connection.Close();
+                DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
+                DBconnect.DataReader.Read();
+
+                if (Convert.ToString(DBconnect.DataReader["Spelare1Spelat"]) == "1" && Convert.ToString(DBconnect.DataReader["Spelare2Spelat"]) == "1")
+                {
+
+                    DBconnect.openDB("UPDATE `Match` SET Runda = Runda+" + 1 + " WHERE MatchID = " + UserName.MatchID);
+                    DBconnect.DataReader.Read();
+                
+                    DBconnect.DataReader.Close();
+                    DBconnect.Connection.Close();
+                    DBconnect.openDB("UPDATE `Match` SET Spelare1Spelat = 0 WHERE MatchID = " + UserName.MatchID);
+                    DBconnect.DataReader.Read();
+
+                    DBconnect.DataReader.Close();
+                    DBconnect.Connection.Close();
+                    DBconnect.openDB("UPDATE `Match` SET Spelare2Spelat = 0 WHERE MatchID = " + UserName.MatchID);
+                    DBconnect.DataReader.Read();
+                
+                }
+
+
+
                 //-------------------------------------------------
                 // Här ska vi sätta att en grej så att när man spelat så kan man inte spela igen.
                 // Efteråt. 
                 // De får ett värde i databastabellen "Spelare1 eller 2 Spelat"
+
+                // OM du är spelare1 skall spelare1spelat få en etta.
+                // Om du är spelare2 och spelare 1 har en etta så skall 1an nollställas och tvärtom och skall rundan plussas med 1!!!
                 //-------------------------------------------------
 
                 
