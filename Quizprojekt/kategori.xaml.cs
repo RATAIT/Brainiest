@@ -80,7 +80,7 @@ namespace Quizprojekt
         // Vid klick skickas valt kategoriID vidare till matchklassen
         private void btn_Kat1_Click(object sender, RoutedEventArgs e)
         {
-            id = id1 + 1;
+            UserName.kategoriID = id1 + 1;
 
             Switcher.Switch(new match());
 
@@ -88,14 +88,14 @@ namespace Quizprojekt
 
         private void btn_Kat2_Click(object sender, RoutedEventArgs e)
         {
-            id = id2 + 1;
+            UserName.kategoriID = id2 + 1;
 
             Switcher.Switch(new match());
         }
 
         private void btn_Kat3_Click(object sender, RoutedEventArgs e)
         {
-            id = id3 + 1;
+            UserName.kategoriID = id3 + 1;
 
             Switcher.Switch(new match());
         }

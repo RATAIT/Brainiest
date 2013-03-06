@@ -67,7 +67,7 @@ namespace Quizprojekt
             try
             {
                 // Kollar vilka matcher som den inloggade har igång.
-                DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare1 = " + UserName.userID + " AND Runda < 3 OR Spelare2 = " + UserName.userID + " AND Runda < 3");
+                DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare1 = " + UserName.userID + " AND Runda < 4 OR Spelare2 = " + UserName.userID + " AND Runda < 4");
 
                 // Läser alla rader i databasen med kommandot givet ovan.
                 while (DBconnect.DataReader.Read())
@@ -108,32 +108,44 @@ namespace Quizprojekt
                     if (Convert.ToString(DBconnect.DataReader["Spelare1"]) == UserName.userID)
                     {
                         spelare2 = Convert.ToInt16(DBconnect.DataReader["Spelare2"]);
+                        DBconnect.DataReader.Close();
+
                         // Kollar vad den inloggades motståndare har för användarnamn.
                         DBconnect.openDB("SELECT * FROM `Medlemmar` WHERE MedlemmarID = " + spelare2);
                         DBconnect.DataReader.Read();
+
                         txt_spelare[i].Text = Convert.ToString(DBconnect.DataReader["Anvandarnamn"]);
+
+                        DBconnect.DataReader.Close();
                         DBconnect.Connection.Close();
 
 
                         DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + matchList[i]);
                         DBconnect.DataReader.Read();
+
                         // Skriver ut ställningen.
                         txt_resultat[i].Text = (Convert.ToString(DBconnect.DataReader["ResultatSpelare1"]) + "-" + Convert.ToString(DBconnect.DataReader["ResultatSpelare2"]));
+                        DBconnect.DataReader.Close();
                     }
 
                     else
                     {
                         spelare2 = Convert.ToInt16(DBconnect.DataReader["Spelare1"]);
+                        DBconnect.DataReader.Close();
+
                         // Kollar vad den inloggades motståndare har för användarnamn.
                         DBconnect.openDB("SELECT * FROM `Medlemmar` WHERE MedlemmarID = " + spelare2);
                         DBconnect.DataReader.Read();
+
                         txt_spelare[i].Text = Convert.ToString(DBconnect.DataReader["Anvandarnamn"]);
+                        DBconnect.DataReader.Close();
                         DBconnect.Connection.Close();
 
                         DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + matchList[i]);
                         DBconnect.DataReader.Read();
                         // Skriver ut ställningen.
                         txt_resultat[i].Text = (Convert.ToString(DBconnect.DataReader["ResultatSpelare2"]) + "-" + Convert.ToString(DBconnect.DataReader["ResultatSpelare1"]));
+                        DBconnect.DataReader.Close();
                     }
                 }
             }
@@ -143,6 +155,7 @@ namespace Quizprojekt
 
             }
 
+            DBconnect.DataReader.Close();
             DBconnect.Connection.Close();
 
         }
@@ -214,12 +227,13 @@ namespace Quizprojekt
             if ((Convert.ToString(DBconnect.DataReader["Spelare1"]) == UserName.userID && Convert.ToString(DBconnect.DataReader["Spelare1Spelat"]) != "1")
                 || (Convert.ToString(DBconnect.DataReader["Spelare2"]) == UserName.userID && Convert.ToString(DBconnect.DataReader["Spelare2Spelat"]) != "1"))
             {
+
                 if (Convert.ToInt16(DBconnect.DataReader["Runda"]) == 0 || Convert.ToInt16(DBconnect.DataReader["Runda"]) == 2)
                 {
 
                     if (Convert.ToString(DBconnect.DataReader["Spelare1"]) == UserName.userID)
                     {
-
+                        DBconnect.DataReader.Close();
                         DBconnect.Connection.Close();
 
                         UserName.spelarNummer = "1";
@@ -231,6 +245,7 @@ namespace Quizprojekt
                     {
                         if (Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]) != "TOM")
                         {
+                            DBconnect.DataReader.Close();
                             DBconnect.Connection.Close();
 
                             UserName.spelarNummer = "2";
@@ -239,6 +254,9 @@ namespace Quizprojekt
 
                         else
                         {
+                            DBconnect.DataReader.Close();
+                            DBconnect.Connection.Close();
+
                             MessageBox.Show("Inte din tur än!");
                         }
 
@@ -249,6 +267,7 @@ namespace Quizprojekt
                 {
                     if (Convert.ToString(DBconnect.DataReader["Spelare2"]) == UserName.userID)
                     {
+                        DBconnect.DataReader.Close();
                         DBconnect.Connection.Close();
 
                         UserName.spelarNummer = "2";
@@ -258,6 +277,7 @@ namespace Quizprojekt
                     {
                         if (Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]) != "TOM")
                         {
+                            DBconnect.DataReader.Close();
                             DBconnect.Connection.Close();
 
                             UserName.spelarNummer = "1";
@@ -265,10 +285,13 @@ namespace Quizprojekt
                         }
                         else
                         {
+                            DBconnect.DataReader.Close();
+                            DBconnect.Connection.Close();
                             MessageBox.Show("Inte din tur än!");
                         }
                     }
 
+                    DBconnect.DataReader.Close();
                     DBconnect.Connection.Close();
 
                 }
@@ -276,6 +299,8 @@ namespace Quizprojekt
 
             else {
 
+                DBconnect.DataReader.Close();
+                DBconnect.Connection.Close();
                 MessageBox.Show("Inte din tur");
             
             }

@@ -40,6 +40,14 @@ namespace Quizprojekt
             get { return m_spelarNummer; }
             set { m_spelarNummer = value; }
         }
+
+        private static int m_kategoriID;
+
+        public static int kategoriID
+        {
+            get { return m_kategoriID; }
+            set { m_kategoriID = value; }
+        }
       
 
     }

@@ -51,7 +51,7 @@ namespace Quizprojekt
 
         private void btn_BliMedlem_Click(object sender, RoutedEventArgs e)
         {
-            int numRow = countRows();
+
 
             // Öppnar connection med databasen.
             MySqlConnection connection = new MySqlConnection(@"Server=83.168.226.169;Database=db1131745_BrainiestDB;Uid=u1131745_admin;Pwd=kidco[0lao;Port=3306;");
@@ -73,30 +73,6 @@ namespace Quizprojekt
             newMain.txtbox_Password.Password = txtbox_Password.Password;
             Switcher.Switch(newMain);
         }
-
-        // Kollar vad den sista raden har för ID.
-        private int countRows()
-        {
-            int count;
-
-            DBconnect.openDB("SELECT * FROM Medlemmar WHERE MedlemmarID = (SELECT MAX(MedlemmarID)  FROM Medlemmar)");
-            DBconnect.DataReader.Read();
-
-            if (DBconnect.DataReader["MedlemmarID"] == null)
-            {
-                count = 1;
-            }
-            else
-            {
-                count = Convert.ToInt16(DBconnect.DataReader["MedlemmarID"]);
-            }
-
-
-            DBconnect.Connection.Close();
-
-            return count;
-        }
-
 
 
         #region ISwitchable Members
@@ -164,6 +140,8 @@ namespace Quizprojekt
                 if (anvFinns == true || losenOk == false)
                     btn_BliMedlem.Visibility = Visibility.Hidden;
             }
+            DBconnect.DataReader.Close();
+            DBconnect.Connection.Close();
         }      
 
         private void kolla()

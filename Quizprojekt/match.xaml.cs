@@ -41,16 +41,16 @@ namespace Quizprojekt
         }
 
         string[] idFragaArray = new string[3]; // Array för pickThreeQuestions
-        public string[] arrayFragorRunda = new string[3];
-        int kategoriID = kategori.id;
+        public string[] arrayFragorRunda = new string[3]; // Array för att fylla frågor, valda av en spelare, från databasen för att sedan visas
+        int kategoriID = UserName.kategoriID; // Hämtar vilken kategori som valts
         string corAns; // Rätta svaret
         int fraga = 0; // Kollar vilken fråga man är på just nu
         List<string> idList = new List<string>(); // Lista med frågor från en viss kategori
-        int antalID = 0;
-        int questAnswered = 0;
-        int mute = 0;
-        int fragaNummer;
-        int antalRatt;
+        int antalID = 0; // Används för att kolla hur många frågor som är lagda i listan
+        int questAnswered = 0; // Variabel för att kolla om frågan är svarad
+        int mute = 0; // För mute-funktion
+        int fragaNummer; // Kollar vilken fråga du är på just nu ( till indikatorn )
+        int antalRatt; // Kollar hur många rätt man har just nu i denna rundan, för att fylla databasen med antal rätt
 
        
         // Läser in alla frågeIDn från en specifik kategori.
@@ -66,6 +66,8 @@ namespace Quizprojekt
                 idList.Add(Convert.ToString(DBconnect.DataReader["FragorID"]));
                 antalID++;
             }
+
+            DBconnect.Connection.Close();
 
             // Skickar vidare idList, antalID och fraga (vilken av de tre frågorna som ska skickas) till pickThreeQuestions metoden
             pickThreeQuestions(idList, antalID, fraga);
@@ -83,7 +85,7 @@ namespace Quizprojekt
 
                 timer.Stop();
 
-
+                // En lång if-sats för att kolla vem som har spelat och vem som inte har, allt för logiken när vi spelar
                 DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
                 DBconnect.DataReader.Read();
              
@@ -115,7 +117,7 @@ namespace Quizprojekt
 
                 if (Convert.ToString(DBconnect.DataReader["Spelare1Spelat"]) == "1" && Convert.ToString(DBconnect.DataReader["Spelare2Spelat"]) == "1")
                 {
-
+                    DBconnect.DataReader.Close();
                     DBconnect.openDB("UPDATE `Match` SET Runda = Runda+" + 1 + " WHERE MatchID = " + UserName.MatchID);
                     DBconnect.DataReader.Read();
                 
@@ -131,52 +133,24 @@ namespace Quizprojekt
                 
                 }
 
-
-
-                //-------------------------------------------------
-                // Här ska vi sätta att en grej så att när man spelat så kan man inte spela igen.
-                // Efteråt. 
-                // De får ett värde i databastabellen "Spelare1 eller 2 Spelat"
-
-                // OM du är spelare1 skall spelare1spelat få en etta.
-                // Om du är spelare2 och spelare 1 har en etta så skall 1an nollställas och tvärtom och skall rundan plussas med 1!!!
-                //-------------------------------------------------
-
-                
-                //DBconnect.openDB("UPDATE `Match` SET Runda = Runda+" + 1 + " WHERE MatchID = " + UserName.MatchID);
-                //DBconnect.DataReader.Read();
-                //DBconnect.Connection.Close();
-
                 Switcher.Switch(new Meny());
             }
 
             // Hämtar ny fråga om man svarat på första frågan.
             else if (fraga > 0)
             {
-                //---------------------------------
-                // Här får man hämta en till fråga från antingen databasen eller göra som vi gör nu
-
-                //---------------------------------
                 setQuestion(arrayFragorRunda[fraga]);
             }
 
             // Slumpar ut tre frågor från en lista som skapats i readQuestion()
             else
             {
-
-
-                // ---------------------------------------------
-                // Ifall man väljer kategori skall det läggas in frågor i databasen här
-                // så att motståndaren får samma frågor.
-                // Måste också hålla koll på vem som valt kategori och vem som inte har, så
-                // att denna får frågor från databasen om den inte valt kategori.
-                // ---------------------------------------------
-
                 DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
                 DBconnect.DataReader.Read();
 
                 if (Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]) != "TOM")
                 {
+                    DBconnect.DataReader.Close();
                     splitFragor();          
                 }
                 else if (Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]) == "TOM")
@@ -197,8 +171,8 @@ namespace Quizprojekt
                     DBconnect.DataReader.Read();
                     splitFragor();
                 }
-                
 
+                DBconnect.DataReader.Close();
                 DBconnect.Connection.Close();
 
                 setQuestion(arrayFragorRunda[fraga]);
@@ -214,6 +188,7 @@ namespace Quizprojekt
 
             arrayFragorRunda = fragorTillArray.Split('_');
 
+            DBconnect.DataReader.Close();
             DBconnect.Connection.Close();
         }
 
@@ -224,7 +199,6 @@ namespace Quizprojekt
 
             //Query för att hämta alla för en viss kategori
             DBconnect.openDB("SELECT * FROM Fragor WHERE FragorID = " + idFraga);
-
             DBconnect.DataReader.Read();
 
             // Lägger in frågan
@@ -271,7 +245,7 @@ namespace Quizprojekt
             progBarStart.Storyboard.Begin(progressBar1);
         }
 
-        // Sätter alla knappar till röda om man inte redan svarat på frågan.
+        // Sätter alla knappar till röda om man inte redan svarat på frågan. Detta händer när timern är ute.
         private void SetAllRed()
         {
             if (questAnswered == 0)
@@ -297,9 +271,7 @@ namespace Quizprojekt
         // Sätter röd färg på poängvisare
         private void FargaknapparRoda()
         {
-
             fragaNummer++;
-
 
             if (fragaNummer == 1)
             {
@@ -321,7 +293,6 @@ namespace Quizprojekt
         }
 
         // Sätter grön färg på poängvisare
-
         private void FargaknapparnaGrona()
         {
             fragaNummer++;
@@ -349,7 +320,6 @@ namespace Quizprojekt
             }
         }
 
-
         private DispatcherTimer timer;
 
         // När match-objectet skapas startar ett timerobject på 15 sek
@@ -368,42 +338,48 @@ namespace Quizprojekt
             timer.Stop();
             SetAllRed();
         }
-
-
       
         // När man svarat på en fråga ska detta hända
         private void fragaOver()
         {
-
-            
-            // Om man ännu inte svarat på 3 frågor visas "Nästa fråga"-knappen
+            // Om du svarat på 3 frågor kommer du tillbaka till Menyn vid klick på knappen
             if (fraga < 3)
             {
+                // Om man ännu inte svarat på 3 frågor visas "Nästa fråga"-knappen
                 if (fraga < 2)
                 {
+                    // Progressbar och "Tid kvar:" försvinner och en Nästa Fråga-knapp kommer fram
                     progressBar1.Visibility = Visibility.Collapsed;
                     btn_NastaFraga.Visibility = Visibility.Visible;
                     lbl_TidKvar.Visibility = Visibility.Hidden;
                 }
-                else
+                else // Knappens content ändras till tillbaka
                 {
+                    // Lägger till resultatet i databasen för de båda spelarna
+                    DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
+                    DBconnect.DataReader.Read();
+                    if (Convert.ToString(DBconnect.DataReader["Spelare1"]) == UserName.userID)
+                    {
+
+                        DBconnect.DataReader.Close();
+                        DBconnect.openDB("UPDATE `Match` SET ResultatSpelare1 = ResultatSpelare1+" + antalRatt + " WHERE MatchID = " + UserName.MatchID);
+                        DBconnect.DataReader.Close();
+                    }
+                    else
+                    {
+                        DBconnect.DataReader.Close();
+                        DBconnect.openDB("UPDATE `Match` SET ResultatSpelare2 = ResultatSpelare2+" + antalRatt + " WHERE MatchID = " + UserName.MatchID);
+                        DBconnect.DataReader.Close();
+                    }
+
+
+                    // Progressbar och "Tid kvar:" försvinner och en Tillbaka-knapp kommer fram
                     progressBar1.Visibility = Visibility.Hidden;
                     btn_NastaFraga.Visibility = Visibility.Visible;
                     lbl_TidKvar.Visibility = Visibility.Hidden;
                     btn_NastaFraga.Content = "Tillbaka";
 
-                    DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
-                    DBconnect.DataReader.Read();
-                    if (Convert.ToString(DBconnect.DataReader["Spelare1"]) == UserName.userID)
-                    {
-                        DBconnect.openDB("UPDATE `Match` SET ResultatSpelare1 = ResultatSpelare1+" + antalRatt + " WHERE MatchID = " + UserName.MatchID);
-                        DBconnect.DataReader.Read();
-                    }
-                    else
-                    {
-                        DBconnect.openDB("UPDATE `Match` SET ResultatSpelare2 = ResultatSpelare2+" + antalRatt + " WHERE MatchID = " + UserName.MatchID);
-                        DBconnect.DataReader.Read();
-                    }
+
 
                     DBconnect.Connection.Close();
                 }
@@ -425,12 +401,13 @@ namespace Quizprojekt
         {
             timer.Stop();
             timer.Start();
+
             // Knappen döljs och progressbar+tidkvar kommer tillbaka
             progressBar1.Visibility = System.Windows.Visibility.Visible;
             btn_NastaFraga.Visibility = System.Windows.Visibility.Collapsed;
             lbl_TidKvar.Visibility = Visibility.Visible;
-           
 
+            // Nummer på fråga ökar
             fraga++;
 
             // En ny fråga kommer fram
@@ -445,18 +422,21 @@ namespace Quizprojekt
             checkAnswer(content, "1");
         }
 
+        //Beroende på vad man svarat så skickas denna text till checkAnswer()
         private void btn_Svar2_Click(object sender, RoutedEventArgs e)
         {
             string content = Convert.ToString(btn_Svar2.Content);
             checkAnswer(content, "2");
         }
 
+        //Beroende på vad man svarat så skickas denna text till checkAnswer()
         private void btn_Svar3_Click(object sender, RoutedEventArgs e)
         { 
             string content = Convert.ToString(btn_Svar3.Content);
             checkAnswer(content, "3");
         }
 
+        //Beroende på vad man svarat så skickas denna text till checkAnswer()
         private void btn_Svar4_Click(object sender, RoutedEventArgs e)
         {
             string content = Convert.ToString(btn_Svar4.Content);
@@ -475,15 +455,13 @@ namespace Quizprojekt
         }
 
         
-        //Kollar om ditt svar och det rätta svaret är samma
+        //Kollar om ditt svar och det rätta svaret är samma och spelar ljud därefter
         private void checkAnswer(string btnAnswer, string btnID)
         {
             timer.Stop();
-            
 
             // Är värdet noll spelas något av ljuden
-           
-                
+
                 if (questAnswered == 0)
                 {
                     if (btnAnswer == corAns)
@@ -597,7 +575,7 @@ namespace Quizprojekt
 
         #endregion
 
-
+        // Ljud på igen (muteknapp)
         private void Off1_Click(object sender, RoutedEventArgs e)
         {
             mute = 0;
