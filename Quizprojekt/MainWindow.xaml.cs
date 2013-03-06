@@ -102,7 +102,6 @@ namespace Quizprojekt
             Command.Parameters.AddWithValue("@password", losenord);
             Connection.Open();
 
-
             MySqlDataReader DataReader = Command.ExecuteReader();
 
             DataReader.Read();
@@ -116,6 +115,7 @@ namespace Quizprojekt
                     UserName.userName = Convert.ToString(DataReader["Anvandarnamn"]);
                     UserName.userID = Convert.ToString(DataReader["MedlemmarID"]);
 
+                    DataReader.Close();
                     Connection.Close();
 
                     Meny meny = new Meny();
@@ -132,6 +132,7 @@ namespace Quizprojekt
                     Storyboard lbl_felAnvLos_ani = (Storyboard)gridMainWindow.Resources["lbl_felAnvLos_ani"];
                     lbl_felAnvLos_ani.Begin(lbl_felAnvLos);
 
+                    DataReader.Close();
                     Connection.Close();
                 }
                 else
@@ -139,6 +140,7 @@ namespace Quizprojekt
                     Storyboard lbl_felAnvLos_ani2 = (Storyboard)gridMainWindow.Resources["lbl_felAnvLos_ani2"];
                     lbl_felAnvLos_ani2.Begin(lbl_felAnvLos);
 
+                    DataReader.Close();
                     Connection.Close();
                 }
             }

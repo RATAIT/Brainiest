@@ -118,9 +118,13 @@ namespace Quizprojekt
                 if (Convert.ToString(DBconnect.DataReader["Spelare1Spelat"]) == "1" && Convert.ToString(DBconnect.DataReader["Spelare2Spelat"]) == "1")
                 {
                     DBconnect.DataReader.Close();
+                    DBconnect.Connection.Close();
                     DBconnect.openDB("UPDATE `Match` SET Runda = Runda+" + 1 + " WHERE MatchID = " + UserName.MatchID);
                     DBconnect.DataReader.Read();
-                
+
+                    DBconnect.DataReader.Close();
+                    changeRating();
+
                     DBconnect.DataReader.Close();
                     DBconnect.Connection.Close();
                     DBconnect.openDB("UPDATE `Match` SET Spelare1Spelat = 0 WHERE MatchID = " + UserName.MatchID);
@@ -176,6 +180,55 @@ namespace Quizprojekt
                 DBconnect.Connection.Close();
 
                 setQuestion(arrayFragorRunda[fraga]);
+            }
+        }
+
+        // Metod för att ändra rating
+        private void changeRating()
+        {
+            DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
+            DBconnect.DataReader.Read();
+
+            if (Convert.ToString(DBconnect.DataReader["Runda"]) == "4")
+            {
+
+                if (Convert.ToInt16(DBconnect.DataReader["ResultatSpelare1"]) > Convert.ToInt16(DBconnect.DataReader["ResultatSpelare2"]))
+                {
+
+                    // Lägg till rating till spelare1
+                    DBconnect.openDB("UPDATE `Medlemmar` SET Rating = Rating+" + (Convert.ToInt16(DBconnect.DataReader["ResultatSpelare1"]) - Convert.ToInt16(DBconnect.DataReader["ResultatSpelare2"])) * 10 + " WHERE MedlemmarID = " + Convert.ToInt16(DBconnect.DataReader["Spelare1"]));
+                    DBconnect.DataReader.Read();
+
+                    DBconnect.DataReader.Close();
+                    DBconnect.Connection.Close();
+                    DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
+                    DBconnect.DataReader.Read();
+
+                    // Tar bort rating från spelare2
+                    DBconnect.openDB("UPDATE `Medlemmar` SET Rating = Rating-" + (Convert.ToInt16(DBconnect.DataReader["ResultatSpelare1"]) - Convert.ToInt16(DBconnect.DataReader["ResultatSpelare2"])) * 10 + " WHERE MedlemmarID = " + Convert.ToInt16(DBconnect.DataReader["Spelare2"]));
+                    DBconnect.DataReader.Read();
+
+                    DBconnect.DataReader.Close();
+                    DBconnect.Connection.Close();
+                }
+                else
+                {
+                    // Lägg till rating till spelare2
+                    DBconnect.openDB("UPDATE `Medlemmar` SET Rating = Rating+" + (Convert.ToInt16(DBconnect.DataReader["ResultatSpelare2"]) - Convert.ToInt16(DBconnect.DataReader["ResultatSpelare1"])) * 10 + " WHERE MedlemmarID = " + Convert.ToInt16(DBconnect.DataReader["Spelare2"]));
+                    DBconnect.DataReader.Read();
+
+                    DBconnect.DataReader.Close();
+                    DBconnect.Connection.Close();
+                    DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
+                    DBconnect.DataReader.Read();
+
+                    // Tar bort rating från spelare1
+                    DBconnect.openDB("UPDATE `Medlemmar` SET Rating = Rating-" + (Convert.ToInt16(DBconnect.DataReader["ResultatSpelare2"]) - Convert.ToInt16(DBconnect.DataReader["ResultatSpelare1"])) * 10 + " WHERE MedlemmarID = " + Convert.ToInt16(DBconnect.DataReader["Spelare1"]));
+                    DBconnect.DataReader.Read();
+
+                    DBconnect.DataReader.Close();
+                    DBconnect.Connection.Close();
+                }
             }
         }
 
@@ -360,7 +413,6 @@ namespace Quizprojekt
                     DBconnect.DataReader.Read();
                     if (Convert.ToString(DBconnect.DataReader["Spelare1"]) == UserName.userID)
                     {
-
                         DBconnect.DataReader.Close();
                         DBconnect.openDB("UPDATE `Match` SET ResultatSpelare1 = ResultatSpelare1+" + antalRatt + " WHERE MatchID = " + UserName.MatchID);
                         DBconnect.DataReader.Close();
