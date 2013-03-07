@@ -47,8 +47,8 @@
 
 
             <StackPanel Orientation="Horizontal" Width="260" Height="220">
-                <ListBox Margin="5,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Background="Transparent" Name="List_anv" Height="204" Width="110"/>
-                <ListBox Margin="0,4,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="#5ef677" Background="Transparent" Height="204" Width="110" Name="List_rating" />
+                <ListBox Margin="5,4,0,0" IsHitTestVisible="False" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Background="Transparent" Name="List_anv" Height="204" Width="110" BorderThickness="0" Focusable="True"/>
+                <ListBox Margin="0,4,0,0" IsHitTestVisible="False"  VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="#5ef677" Background="Transparent" Height="204" Width="110" Name="List_rating" BorderThickness="0" Focusable="True"/>
             </StackPanel>
             
         </StackPanel>

@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("speakerrmute.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("refresh.png")]
 
 

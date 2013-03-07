@@ -289,3 +289,5 @@ C:\Users\Tobias\Documents\GitHub\Brainiest\Quizprojekt\bin\Debug\Quizprojekt.exe
 C:\Users\Tobias\Documents\GitHub\Brainiest\Quizprojekt\bin\Debug\Quizprojekt.pdb
 C:\Users\Tobias\Documents\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Statistik.baml
 C:\Users\Tobias\Documents\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Statistik.g.cs
+G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Statistik.baml
+G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Statistik.g.cs

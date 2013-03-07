@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace Quizprojekt
 {
@@ -316,10 +317,30 @@ namespace Quizprojekt
             }
   
     }
-
+        // Gå till statistikfönstret
         private void btn_Statistik_Click(object sender, RoutedEventArgs e)
         {
             Switcher.Switch(new Statistik());
+        }
+
+        // Knapp för att uppdatera fönstret.
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Skapar en animation för uppdateringen
+            DoubleAnimation da = new DoubleAnimation();
+            da.From = 0;
+            da.To = -360;
+            da.Duration = new Duration(TimeSpan.FromSeconds(0.6));
+
+            RotateTransform rt = new RotateTransform();
+            img_Refresh.RenderTransform = rt;
+            rt.CenterX = 14;
+            rt.CenterY = 14.5;
+
+            rt.BeginAnimation(RotateTransform.AngleProperty, da);
+
+            // Metoden för att uppdatera matcher
+            kollaMatcher();
         }
     }
 }

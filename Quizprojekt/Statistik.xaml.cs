@@ -23,7 +23,6 @@ namespace Quizprojekt
             InitializeComponent();
 
             StatistikRatt();
-            StatistikFel();
             DinRating();
             ToppLista();
             MedelVarde();
@@ -33,42 +32,47 @@ namespace Quizprojekt
 
 
         
-        // Hämtar statistik över antaler korrekta svar från databasen
-       
-        private void StatistikRatt()
+        // Hämtar statistik över antalet korrekta svar från databasen
+        private int StatistikRatt()
         {
-            DBconnect.openDB("SELECT * FROM `Medlemmar` WHERE MedlemmarID = '" + UserName.userID + "'");
-            DBconnect.DataReader.Read();
+            int antalRatt = 0;
 
+            DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare1 = " + UserName.userID + " AND Runda > 3");
 
-            lbl_statistik.Content = Convert.ToString((DBconnect.DataReader["AntalRatt"]));
-            DBconnect.Connection.Close();
-        }
-
-        // Hämtar statistik över antalet felaktiga svar från databasen
-
-        private void StatistikFel()
-        {
-            DBconnect.openDB("SELECT * FROM `Medlemmar` WHERE MedlemmarID = '" + UserName.userID + "'");
-            DBconnect.DataReader.Read();
-
-            lbl2_statistik.Content = Convert.ToString((DBconnect.DataReader["AntalFel"]));
+            while (DBconnect.DataReader.Read())
+            {
+                antalRatt += Convert.ToInt16((DBconnect.DataReader["ResultatSpelare1"]));
+            }
             DBconnect.DataReader.Close();
+            DBconnect.Connection.Close();
+
+            DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare2 = " + UserName.userID + " AND Runda > 3");
+
+            while (DBconnect.DataReader.Read())
+            {
+                antalRatt += Convert.ToInt16((DBconnect.DataReader["ResultatSpelare2"]));
+            }
+            DBconnect.DataReader.Close();
+            DBconnect.Connection.Close();
+
+            return antalRatt;
         }
+
+     
 
         // Hämtar personlig rating
-
         private void DinRating()
         {
             DBconnect.openDB("SELECT * FROM `Medlemmar` WHERE MedlemmarID = '" + UserName.userID + "'");
             DBconnect.DataReader.Read();
 
             lbl3_statistik.Content = Convert.ToString((DBconnect.DataReader["Rating"]));
+
             DBconnect.DataReader.Close();
+            DBconnect.Connection.Close();
         }
 
         // Listar topp-10 användare baserat på högst rating
-
         private void ToppLista()
         {
             DBconnect.openDB("SELECT * FROM Medlemmar WHERE Rating IS NOT NULL ORDER BY Rating DESC LIMIT 10");
@@ -83,24 +87,29 @@ namespace Quizprojekt
                 List_rating.Items.Add(rat);
             }
 
+            DBconnect.Connection.Close();
+            DBconnect.DataReader.Close();
 
         }
-        int countrundor;
+
+        int countmatch;
+        
+        // Räknar ut medelvärdet på hur många poäng du får per avslutad match
         private void MedelVarde()
         {
-
+            // Hämtar alla matcher där du är med och har spelat klart
             DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare1 = " + UserName.userID + " AND Runda > 3 OR Spelare2 = " + UserName.userID + " AND Runda > 3");
             while (DBconnect.DataReader.Read())
             {
-                countrundor++;
+                countmatch++;
             }
-            lbl_mdlvarde.Content = Convert.ToString(countrundor);
+
+            int antalRatt = StatistikRatt();
+
+            lbl_mdlvarde.Content = Convert.ToString(antalRatt / countmatch) + "p";
+
             DBconnect.DataReader.Close();
-
-            
-            
-
-            
+            DBconnect.Connection.Close();
             
         }
 
