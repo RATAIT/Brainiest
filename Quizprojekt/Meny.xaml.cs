@@ -316,5 +316,10 @@ namespace Quizprojekt
             }
   
     }
+
+        private void btn_Statistik_Click(object sender, RoutedEventArgs e)
+        {
+            Switcher.Switch(new Statistik());
+        }
     }
 }

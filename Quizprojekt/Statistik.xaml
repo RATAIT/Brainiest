@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="Quizprojekt.Statistik"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="500" Width="700" MinHeight="500" MinWidth="700">
+    <Grid>
+
+        <Image Source="logo.png" Grid.Column="2" Grid.Row="1" VerticalAlignment="Top"/>
+        
+        <StackPanel Height="240" Width="260" Grid.Column="1" Orientation="Vertical" Grid.Row="2">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Din statistik: " Foreground="#5ef677" FontFamily="Berlin Sans FB" FontSize="15" Height="25" Width="110" />
+            </StackPanel>
+
+            <StackPanel Height="30" Orientation="Horizontal">
+
+                <Label Content="Antal vunna matcher: " Foreground="White" FontFamily="Berlin Sans FB" FontSize="15" Height="30" Width="160" />
+                <Label HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="#5ef677" Name="lbl_statistik" FontFamily="Berlin Sans FB" FontSize="15" Width="100" Height="30" />
+            </StackPanel>
+
+
+            <StackPanel Height="30" Orientation="Horizontal">
+
+                <Label Content="Antal förlorade matcher: " Foreground="White" FontFamily="Berlin Sans FB" FontSize="15" Height="30" Width="170" />
+                <Label HorizontalContentAlignment="Right" Foreground="#5ef677" Name="lbl2_statistik" FontFamily="Berlin Sans FB" FontSize="15" Width="90" Height="30" />
+            </StackPanel>
+            
+            <StackPanel Height="30" Orientation="Horizontal">
+
+                <Label Content="Medelvärde antal rätt per match: " Foreground="White" FontFamily="Berlin Sans FB" FontSize="15" Height="30" Width="220" />
+                <Label HorizontalContentAlignment="Right" Foreground="#5ef677" Name="lbl_mdlvarde" FontFamily="Berlin Sans FB" FontSize="15" Width="40" Height="30" />
+            </StackPanel>
+           
+            <StackPanel Height="30" Orientation="Horizontal">
+                <Label Content="Din rating: " Foreground="White" FontFamily="Berlin Sans FB" FontSize="15" Height="30" Width="80" />
+                <Label HorizontalContentAlignment="Right" Foreground="#5ef677" Name="lbl3_statistik" FontFamily="Berlin Sans FB" FontSize="15" Width="180" Height="30" />
+            </StackPanel>
+            
+            
+        </StackPanel>
+
+
+        <StackPanel HorizontalAlignment="Right" Height="245" Width="260" Grid.Column="3" Orientation="Vertical" Grid.Row="2">
+            
+            <StackPanel Orientation="Horizontal">
+                <Label HorizontalContentAlignment="Left" Content="Topplista: " Foreground="#5ef677" FontFamily="Berlin Sans FB" FontSize="15" Height="28" Width="70" />
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal" Width="260" Height="220">
+                <ListBox Margin="5,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Background="Transparent" Name="List_anv" Height="204" Width="110"/>
+                <ListBox Margin="0,4,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="#5ef677" Background="Transparent" Height="204" Width="110" Name="List_rating" />
+            </StackPanel>
+            
+        </StackPanel>
+
+
+        
+        
+
+        <Button AllowDrop="False" BorderBrush="#00000000" BorderThickness="0" Content="Tillbaka" FontFamily="Swis721 BT" Foreground="White" Height="30" VerticalAlignment="Center" Width="80" Grid.Row="3" Grid.Column="2" Click="Button_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5EF677" Offset="0" />
+                    <GradientStop Color="#FF1E7C30" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+        
+  
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="260" />
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="260" />
+            <ColumnDefinition Width="*" />
+            
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="300" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+    
+           
+
+
+    </Grid>
+</UserControl>
