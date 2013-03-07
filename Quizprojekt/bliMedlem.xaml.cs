@@ -43,16 +43,15 @@ namespace Quizprojekt
             return result;
         }
 
-
+        // Går tillbaka till Logga In-fönstret
         private void btn_Avbryt_Click(object sender, RoutedEventArgs e)
         {
             Switcher.Switch(new MainWindow());
         }
 
+        // Medlem läggs in i databasen
         private void btn_BliMedlem_Click(object sender, RoutedEventArgs e)
         {
-
-
             // Öppnar connection med databasen.
             MySqlConnection connection = new MySqlConnection(@"Server=83.168.226.169;Database=db1131745_BrainiestDB;Uid=u1131745_admin;Pwd=kidco[0lao;Port=3306;");
             connection.Open();
@@ -73,7 +72,6 @@ namespace Quizprojekt
             newMain.txtbox_Password.Password = txtbox_Password.Password;
             Switcher.Switch(newMain);
         }
-
 
         #region ISwitchable Members
         public void UtilizeState(object state)
@@ -101,7 +99,6 @@ namespace Quizprojekt
         // Om användarnamnsboxen tappar fokus kollas detta mot användardatabasen för att se om användaren redan finns eller ej
         private void txtbox_Anv_LostFocus(object sender, RoutedEventArgs e)
         {
-
             DBconnect.openDB("SELECT * FROM Medlemmar");
 
             anvFinns = false;
@@ -110,22 +107,23 @@ namespace Quizprojekt
             while (DBconnect.DataReader.Read() && anvFinns == false)
             {
                 // Kollar oberoende på om du har stora eller små bokstäver om användarnamnet finns redan eller inte
-                //txtbox_Anv.Text.IndexOf(Convert.ToString(myOleDbDataReader["Anvandarnamn"]), StringComparison.CurrentCultureIgnoreCase) > -1
                 if (String.Compare(txtbox_Anv.Text, Convert.ToString(DBconnect.DataReader["Anvandarnamn"]), true) == 0)
                 {
+                    // Användaren finns redan i databasen
                     anvFinns = true;
+
+                    // Om lbl_Anv inte är framme kommer den fram
                     if (lbl_AnvFinns.Visibility != Visibility.Visible)
                     {
                         lbl_AnvFinns.Visibility = Visibility.Visible;
                         Storyboard lblAni_kommaIn = (Storyboard)gridBliMedlem.Resources["lblAni_kommaIn"];
                         lblAni_kommaIn.Begin(lbl_AnvFinns);
                     }
-                    else
-                    {
-                    }
+
                     btn_BliMedlem.Visibility = Visibility.Hidden;
                     kolla();
                 }
+                    // Om användaren inte finns i databasen åker labeln ut
                 else
                 {
                     anvFinns = false;
@@ -144,6 +142,7 @@ namespace Quizprojekt
             DBconnect.Connection.Close();
         }      
 
+        // Kollar lösenorden mot varandra
         private void kolla()
         {
             if (txtbox_Password.Password == txtbox_Password2.Password && txtbox_Password.Password.Length > 0)
@@ -182,7 +181,6 @@ namespace Quizprojekt
             if (anvFinns == true || losenOk == false)
                 btn_BliMedlem.Visibility = Visibility.Hidden;
         }
-
 
 
         private void lblAni_akaUt_Completed(object sender, EventArgs e)

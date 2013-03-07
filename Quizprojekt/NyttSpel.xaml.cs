@@ -39,6 +39,7 @@ namespace Quizprojekt
             Switcher.Switch(new Meny());
         }
 
+        // Slumpa fram motståndare
         private void btn_Slumpa_Click(object sender, RoutedEventArgs e)
         {
             DBconnect.openDB("SELECT * FROM Medlemmar ORDER BY rand() LIMIT 1");
@@ -82,6 +83,7 @@ namespace Quizprojekt
 
         }
 
+        // Sök på användare
         private void btn_Soek_Click(object sender, RoutedEventArgs e)
         {
             lstBox_sok.Items.Clear();

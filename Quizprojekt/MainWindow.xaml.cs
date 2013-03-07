@@ -34,6 +34,7 @@ namespace Quizprojekt
         string anvStand = "Användarnamn";
         string passStand = "Password";
     
+        // Om txtbox_Anv får focus
         private void txtbox_Anv_GotFocus(object sender, RoutedEventArgs e)
         {
             // Sätter värdet i Användarnamn-textbox till empty om texten är "Användarnamn"
@@ -44,6 +45,7 @@ namespace Quizprojekt
             txtbox_Anv.GotFocus -= txtbox_Anv_LostFocus;
         }
 
+        // Om txtbox_Anv tappar focus
         private void txtbox_Anv_LostFocus(object sender, RoutedEventArgs e)
         {
             // Om Användarnamnboxen INTE är tom sätts anvStand till det som står där i
@@ -55,6 +57,7 @@ namespace Quizprojekt
                 txtbox_Anv.Text = anvStand;
         }
         
+        // Om txtbox_Password får focus
         private void txtbox_Password_GotFocus(object sender, RoutedEventArgs e)
         {
             // Sätter värdet i Password-textbox till empty
@@ -63,6 +66,7 @@ namespace Quizprojekt
             txtbox_Password.GotFocus -= txtbox_Password_LostFocus;
         }
 
+        // Om txtbox_Password tappar focus
         private void txtbox_Password_LostFocus(object sender, RoutedEventArgs e)
         {
             // Om Passwordboxen INTE är tom sätts passStand till det som står där i
@@ -87,6 +91,7 @@ namespace Quizprojekt
             return result;
         }
 
+        // Klick på Logga in
         private void btn_LoggaIn_Click(object sender, RoutedEventArgs e)
         {
             string anvNamn = txtbox_Anv.Text;
@@ -106,12 +111,11 @@ namespace Quizprojekt
 
             DataReader.Read();
 
+            // Om lösenord är rätt kommer man in
             try
-                // Om lösenord är rätt kommer man in
             {
                 if (losenord == Convert.ToString(DataReader["Losenord"]))
                 {
-
                     UserName.userName = Convert.ToString(DataReader["Anvandarnamn"]);
                     UserName.userID = Convert.ToString(DataReader["MedlemmarID"]);
 
@@ -126,6 +130,7 @@ namespace Quizprojekt
                 // Om lösenord är fel får du reda på detta med animerad label
             catch
             {
+                // Om labeln inte är synlig kommer den fram
                 if (lbl_felAnvLos.Visibility != Visibility.Visible)
                 {
                     lbl_felAnvLos.Visibility = Visibility.Visible;
@@ -135,6 +140,7 @@ namespace Quizprojekt
                     DataReader.Close();
                     Connection.Close();
                 }
+                // Om labeln är synlig skakar den några gånger
                 else
                 {
                     Storyboard lbl_felAnvLos_ani2 = (Storyboard)gridMainWindow.Resources["lbl_felAnvLos_ani2"];
@@ -160,6 +166,7 @@ namespace Quizprojekt
 
         #endregion
 
+        // Vid klick på enter i passwordboxen loggar man in
         private void txtbox_Password_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)

@@ -170,7 +170,7 @@ namespace Quizprojekt
                         antalID--;
 
                     }
-
+                    // Lägger in de utvalda frågorna i databsen till en specifik runda i en specifik match.
                     DBconnect.openDB("UPDATE `Match` SET FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"]) + " = '" + idFragaArray[0] + "_" + idFragaArray[1] + "_" + idFragaArray[2] + "' WHERE MatchID = " + UserName.MatchID);
                     DBconnect.DataReader.Read();
                     splitFragor();
@@ -506,7 +506,6 @@ namespace Quizprojekt
         
         }
 
-        
         //Kollar om ditt svar och det rätta svaret är samma och spelar ljud därefter
         private void checkAnswer(string btnAnswer, string btnID)
         {

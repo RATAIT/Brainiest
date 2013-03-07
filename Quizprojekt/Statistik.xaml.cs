@@ -37,20 +37,11 @@ namespace Quizprojekt
         {
             int antalRatt = 0;
 
-            DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare1 = " + UserName.userID + " AND Runda > 3");
+            DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare1 = " + UserName.userID + " AND Runda > 3 OR Spelare2 = " + UserName.userID + " AND Runda > 3");
 
             while (DBconnect.DataReader.Read())
             {
                 antalRatt += Convert.ToInt16((DBconnect.DataReader["ResultatSpelare1"]));
-            }
-            DBconnect.DataReader.Close();
-            DBconnect.Connection.Close();
-
-            DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare2 = " + UserName.userID + " AND Runda > 3");
-
-            while (DBconnect.DataReader.Read())
-            {
-                antalRatt += Convert.ToInt16((DBconnect.DataReader["ResultatSpelare2"]));
             }
             DBconnect.DataReader.Close();
             DBconnect.Connection.Close();
@@ -97,19 +88,26 @@ namespace Quizprojekt
         // Räknar ut medelvärdet på hur många poäng du får per avslutad match
         private void MedelVarde()
         {
-            // Hämtar alla matcher där du är med och har spelat klart
-            DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare1 = " + UserName.userID + " AND Runda > 3 OR Spelare2 = " + UserName.userID + " AND Runda > 3");
-            while (DBconnect.DataReader.Read())
+            try
             {
-                countmatch++;
+                // Hämtar alla matcher där du är med och har spelat klart
+                DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare1 = " + UserName.userID + " AND Runda > 3 OR Spelare2 = " + UserName.userID + " AND Runda > 3");
+                while (DBconnect.DataReader.Read())
+                {
+                    countmatch++;
+                }
+
+                int antalRatt = StatistikRatt();
+
+                lbl_mdlvarde.Content = Convert.ToString(antalRatt / countmatch) + "p";
+
+                DBconnect.DataReader.Close();
+                DBconnect.Connection.Close();
             }
-
-            int antalRatt = StatistikRatt();
-
-            lbl_mdlvarde.Content = Convert.ToString(antalRatt / countmatch) + "p";
-
-            DBconnect.DataReader.Close();
-            DBconnect.Connection.Close();
+            catch
+            {
+                lbl_mdlvarde.Content = "0";
+            }
             
         }
 

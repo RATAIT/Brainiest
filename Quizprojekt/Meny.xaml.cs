@@ -53,8 +53,6 @@ namespace Quizprojekt
             btn_LoggaUt.Content = "Logga ut " + anvNamn;
             btn_LoggaUt.Width = ("Logga ut " + anvNamn).Length * 8;
 
-
-
             kollaMatcher();
             DBconnect.Connection.Close();
             DBconnect.DataReader.Close();
@@ -161,14 +159,9 @@ namespace Quizprojekt
 
         }
 
-
-
-
         // Loggar ut
         private void btn_LoggaUt_Click(object sender, RoutedEventArgs e)
         {
-
-
             Switcher.Switch(new MainWindow());
         }
 
@@ -177,9 +170,6 @@ namespace Quizprojekt
         // Nytt spel tar dig till "NyttSpel"-fönstret
         private void btn_NyttSpel_Click(object sender, RoutedEventArgs e)
         {
-
-
-
             Switcher.Switch(new NyttSpel());
         }
 
@@ -218,23 +208,22 @@ namespace Quizprojekt
             VemsTur();
         }
 
+        // Titta vems tur det är.
         private void VemsTur()
         {
 
             try
             {
-                // Titta vems tur det är.
                 DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
                 DBconnect.DataReader.Read();
 
-
+                // Kollar om någon av spelarna inte har spelat nuvarande runda
                 if ((Convert.ToString(DBconnect.DataReader["Spelare1"]) == UserName.userID && Convert.ToString(DBconnect.DataReader["Spelare1Spelat"]) != "1")
                     || (Convert.ToString(DBconnect.DataReader["Spelare2"]) == UserName.userID && Convert.ToString(DBconnect.DataReader["Spelare2Spelat"]) != "1"))
                 {
-
+                    // Om runda är 0 eller 2 är det Spelare1 som ska välja kategori
                     if (Convert.ToInt16(DBconnect.DataReader["Runda"]) == 0 || Convert.ToInt16(DBconnect.DataReader["Runda"]) == 2)
                     {
-
                         if (Convert.ToString(DBconnect.DataReader["Spelare1"]) == UserName.userID)
                         {
                             DBconnect.DataReader.Close();
@@ -244,9 +233,9 @@ namespace Quizprojekt
                             Switcher.Switch(new kategori());
 
                         }
-
-                        else
+                        else // Om spelare2
                         {
+                            // Om frågor redan valts till den nuvarande rundan får Spelare2 spela dessa
                             if (Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]) != "TOM")
                             {
                                 DBconnect.DataReader.Close();
@@ -255,8 +244,7 @@ namespace Quizprojekt
                                 UserName.spelarNummer = "2";
                                 Switcher.Switch(new match());
                             }
-
-                            else
+                            else // Om frågor inte är valda så måste Spelare1 välja dessa först innan Spelare2 kan spela
                             {
                                 DBconnect.DataReader.Close();
                                 DBconnect.Connection.Close();
@@ -267,7 +255,7 @@ namespace Quizprojekt
                         }
                     }
 
-                    else
+                    else // Om runda är 1 eller 3 är det Spelare2 som ska välja kategori
                     {
                         if (Convert.ToString(DBconnect.DataReader["Spelare2"]) == UserName.userID)
                         {
@@ -277,8 +265,9 @@ namespace Quizprojekt
                             UserName.spelarNummer = "2";
                             Switcher.Switch(new kategori());
                         }
-                        else
+                        else // Om spelare1
                         {
+                            // Om frågor redan valts till den nuvarande rundan får Spelare1 spela dessa
                             if (Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]) != "TOM")
                             {
                                 DBconnect.DataReader.Close();
@@ -287,27 +276,23 @@ namespace Quizprojekt
                                 UserName.spelarNummer = "1";
                                 Switcher.Switch(new match());
                             }
-                            else
+                            else // Om frågor inte är valda så måste Spelare1 välja dessa först innan Spelare2 kan spela
                             {
                                 DBconnect.DataReader.Close();
                                 DBconnect.Connection.Close();
                                 MessageBox.Show("Inte din tur än!");
                             }
                         }
-
                         DBconnect.DataReader.Close();
                         DBconnect.Connection.Close();
-
                     }
                 }
 
                 else
                 {
-
                     DBconnect.DataReader.Close();
                     DBconnect.Connection.Close();
-                    MessageBox.Show("Inte din tur");
-
+                    MessageBox.Show("Inte din tur än!");
                 }
 
             }
