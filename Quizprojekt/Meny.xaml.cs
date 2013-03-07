@@ -31,7 +31,7 @@ namespace Quizprojekt
         public Meny()
         {
 
-            
+
 
             InitializeComponent();
 
@@ -53,7 +53,7 @@ namespace Quizprojekt
             btn_LoggaUt.Width = ("Logga ut " + anvNamn).Length * 8;
 
 
-            
+
             kollaMatcher();
             DBconnect.Connection.Close();
             DBconnect.DataReader.Close();
@@ -220,90 +220,101 @@ namespace Quizprojekt
         private void VemsTur()
         {
 
-            // Titta vems tur det är.
-            DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
-            DBconnect.DataReader.Read();
-
-            if ((Convert.ToString(DBconnect.DataReader["Spelare1"]) == UserName.userID && Convert.ToString(DBconnect.DataReader["Spelare1Spelat"]) != "1")
-                || (Convert.ToString(DBconnect.DataReader["Spelare2"]) == UserName.userID && Convert.ToString(DBconnect.DataReader["Spelare2Spelat"]) != "1"))
+            try
             {
+                // Titta vems tur det är.
+                DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
+                DBconnect.DataReader.Read();
 
-                if (Convert.ToInt16(DBconnect.DataReader["Runda"]) == 0 || Convert.ToInt16(DBconnect.DataReader["Runda"]) == 2)
+
+                if ((Convert.ToString(DBconnect.DataReader["Spelare1"]) == UserName.userID && Convert.ToString(DBconnect.DataReader["Spelare1Spelat"]) != "1")
+                    || (Convert.ToString(DBconnect.DataReader["Spelare2"]) == UserName.userID && Convert.ToString(DBconnect.DataReader["Spelare2Spelat"]) != "1"))
                 {
 
-                    if (Convert.ToString(DBconnect.DataReader["Spelare1"]) == UserName.userID)
+                    if (Convert.ToInt16(DBconnect.DataReader["Runda"]) == 0 || Convert.ToInt16(DBconnect.DataReader["Runda"]) == 2)
                     {
-                        DBconnect.DataReader.Close();
-                        DBconnect.Connection.Close();
 
-                        UserName.spelarNummer = "1";
-                        Switcher.Switch(new kategori());
+                        if (Convert.ToString(DBconnect.DataReader["Spelare1"]) == UserName.userID)
+                        {
+                            DBconnect.DataReader.Close();
+                            DBconnect.Connection.Close();
 
+                            UserName.spelarNummer = "1";
+                            Switcher.Switch(new kategori());
+
+                        }
+
+                        else
+                        {
+                            if (Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]) != "TOM")
+                            {
+                                DBconnect.DataReader.Close();
+                                DBconnect.Connection.Close();
+
+                                UserName.spelarNummer = "2";
+                                Switcher.Switch(new match());
+                            }
+
+                            else
+                            {
+                                DBconnect.DataReader.Close();
+                                DBconnect.Connection.Close();
+
+                                MessageBox.Show("Inte din tur än!");
+                            }
+
+                        }
                     }
 
                     else
                     {
-                        if (Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]) != "TOM")
+                        if (Convert.ToString(DBconnect.DataReader["Spelare2"]) == UserName.userID)
                         {
                             DBconnect.DataReader.Close();
                             DBconnect.Connection.Close();
 
                             UserName.spelarNummer = "2";
-                            Switcher.Switch(new match());
+                            Switcher.Switch(new kategori());
                         }
-
                         else
                         {
-                            DBconnect.DataReader.Close();
-                            DBconnect.Connection.Close();
+                            if (Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]) != "TOM")
+                            {
+                                DBconnect.DataReader.Close();
+                                DBconnect.Connection.Close();
 
-                            MessageBox.Show("Inte din tur än!");
+                                UserName.spelarNummer = "1";
+                                Switcher.Switch(new match());
+                            }
+                            else
+                            {
+                                DBconnect.DataReader.Close();
+                                DBconnect.Connection.Close();
+                                MessageBox.Show("Inte din tur än!");
+                            }
                         }
+
+                        DBconnect.DataReader.Close();
+                        DBconnect.Connection.Close();
 
                     }
                 }
 
                 else
                 {
-                    if (Convert.ToString(DBconnect.DataReader["Spelare2"]) == UserName.userID)
-                    {
-                        DBconnect.DataReader.Close();
-                        DBconnect.Connection.Close();
-
-                        UserName.spelarNummer = "2";
-                        Switcher.Switch(new kategori());
-                    }
-                    else
-                    {
-                        if (Convert.ToString(DBconnect.DataReader["FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"])]) != "TOM")
-                        {
-                            DBconnect.DataReader.Close();
-                            DBconnect.Connection.Close();
-
-                            UserName.spelarNummer = "1";
-                            Switcher.Switch(new match());
-                        }
-                        else
-                        {
-                            DBconnect.DataReader.Close();
-                            DBconnect.Connection.Close();
-                            MessageBox.Show("Inte din tur än!");
-                        }
-                    }
 
                     DBconnect.DataReader.Close();
                     DBconnect.Connection.Close();
+                    MessageBox.Show("Inte din tur");
 
                 }
-            }
 
-            else {
-
-                DBconnect.DataReader.Close();
-                DBconnect.Connection.Close();
-                MessageBox.Show("Inte din tur");
-            
             }
-        }
+            catch
+            {
+                MessageBox.Show("Vänligen starta en match först!");
+            }
+  
+    }
     }
 }

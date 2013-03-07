@@ -108,7 +108,7 @@
                 </TextBox.Effect>
             </TextBox>
             <!-- Lägger till spela-knappen   -->
-            <Button Width="80" Content="Spela" Height="30" Foreground="White" FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_Spela1" Margin="5" Click="btn_Spela1_Click">
+            <Button Width="80" Content="Spela" Height="30" Foreground="White" FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_Spela1" Margin="5" Click="btn_Spela1_Click" Focusable="False">
                 <!-- LinearGradientBrush på knappen -->
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -139,7 +139,7 @@
                 </TextBox.Effect>
             </TextBox>
             <!-- Lägger till spela-knappen   -->
-            <Button Width="80" Content="Spela" Height="30" Foreground="White" FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_Spela2" Margin="5" Click="btn_Spela2_Click">
+            <Button Width="80" Content="Spela" Height="30" Foreground="White" FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_Spela2" Margin="5" Click="btn_Spela2_Click" Focusable="False">
                 <!-- LinearGradientBrush på knappen -->
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -170,7 +170,7 @@
                 </TextBox.Effect>
             </TextBox>
             <!-- Lägger till spela-knappen   -->
-            <Button Width="80" Content="Spela" Height="30" Foreground="White" FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_Spela3" Margin="5" Click="btn_Spela3_Click">
+            <Button Width="80" Content="Spela" Height="30" Foreground="White" FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_Spela3" Margin="5" Click="btn_Spela3_Click" Focusable="False">
                 <!-- LinearGradientBrush på knappen -->
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
