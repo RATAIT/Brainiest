@@ -6,33 +6,32 @@
 
         <Image Source="logo.png" Grid.Column="2" Grid.Row="1" VerticalAlignment="Top"/>
         
-        <StackPanel Height="240" Width="260" Grid.Column="1" Orientation="Vertical" Grid.Row="2">
+        <StackPanel Height="240" Grid.Column="1" Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="2" Margin="78,30,0,30">
             <StackPanel Orientation="Horizontal">
-                <Label Content="Din statistik: " Foreground="#5ef677" FontFamily="Berlin Sans FB" FontSize="15" Height="25" Width="110" />
+                <Label Content="Din statistik: " Foreground="#5ef677" FontFamily="Swis721 BT" FontSize="15" Height="25" Width="110" />
             </StackPanel>
 
-            <StackPanel Height="30" Orientation="Horizontal">
+            <StackPanel Height="30" Orientation="Horizontal" VerticalAlignment="Top">
 
-                <Label Content="Antal vunna matcher: " Foreground="White" FontFamily="Berlin Sans FB" FontSize="15" Height="30" Width="160" />
-                <Label HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="#5ef677" Name="lbl_statistik" FontFamily="Berlin Sans FB" FontSize="15" Width="100" Height="30" />
+                <Label Content="Antal vunna matcher: " Foreground="White" FontFamily="Swis721 BT" FontSize="15"/>
+                <Label HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="#5ef677" Name="lbl_statistik" FontFamily="Swis721 BT" FontSize="15" />
             </StackPanel>
 
 
             <StackPanel Height="30" Orientation="Horizontal">
-
-                <Label Content="Antal förlorade matcher: " Foreground="White" FontFamily="Berlin Sans FB" FontSize="15" Height="30" Width="170" />
-                <Label HorizontalContentAlignment="Right" Foreground="#5ef677" Name="lbl2_statistik" FontFamily="Berlin Sans FB" FontSize="15" Width="90" Height="30" />
+                <Label Content="Antal spelade matcher: " Foreground="White" FontFamily="Swis721 BT" FontSize="15"/>
+                <Label HorizontalContentAlignment="Right" Foreground="#5ef677" Name="lbl2_statistik" FontFamily="Swis721 BT" FontSize="15"/>
             </StackPanel>
             
             <StackPanel Height="30" Orientation="Horizontal">
 
-                <Label Content="Medelvärde antal rätt per match: " Foreground="White" FontFamily="Berlin Sans FB" FontSize="15" Height="30" Width="220" />
-                <Label HorizontalContentAlignment="Right" Foreground="#5ef677" Name="lbl_mdlvarde" FontFamily="Berlin Sans FB" FontSize="15" Width="40" Height="30" />
+                <Label Content="Medelvärde antal rätt per match: " Foreground="White" FontFamily="Swis721 BT" FontSize="15" />
+                <Label HorizontalContentAlignment="Right" Foreground="#5ef677" Name="lbl_mdlvarde" FontFamily="Swis721 BT" FontSize="15"/>
             </StackPanel>
            
             <StackPanel Height="30" Orientation="Horizontal">
-                <Label Content="Din rating: " Foreground="White" FontFamily="Berlin Sans FB" FontSize="15" Height="30" Width="80" />
-                <Label HorizontalContentAlignment="Right" Foreground="#5ef677" Name="lbl3_statistik" FontFamily="Berlin Sans FB" FontSize="15" Width="180" Height="30" />
+                <Label Content="Din rating: " Foreground="White" FontFamily="Berlin Sans FB" FontSize="15"/>
+                <Label HorizontalContentAlignment="Right" Foreground="#5ef677" Name="lbl3_statistik" FontFamily="Swis721 BT" FontSize="15"/>
             </StackPanel>
             
             
@@ -42,7 +41,7 @@
         <StackPanel HorizontalAlignment="Right" Height="245" Width="260" Grid.Column="3" Orientation="Vertical" Grid.Row="2">
             
             <StackPanel Orientation="Horizontal">
-                <Label HorizontalContentAlignment="Left" Content="Topplista: " Foreground="#5ef677" FontFamily="Berlin Sans FB" FontSize="15" Height="28" Width="70" />
+                <Label HorizontalContentAlignment="Left" Content="Topplista: " Foreground="#5ef677" FontFamily="Swis721 BT" FontSize="15" />
             </StackPanel>
 
 

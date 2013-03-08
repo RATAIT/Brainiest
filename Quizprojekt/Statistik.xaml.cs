@@ -26,6 +26,8 @@ namespace Quizprojekt
             DinRating();
             ToppLista();
             MedelVarde();
+            SpeladeMatcher();
+            AntalSegrar();
         }
 
 
@@ -84,7 +86,59 @@ namespace Quizprojekt
         }
 
         int countmatch;
-        
+
+
+
+        // Hämtar antal segrar.
+        private void AntalSegrar()
+        {
+            try
+            {
+                // Hämtar alla matcher där du är med och har spelat klart
+                DBconnect.openDB("SELECT * FROM `Medlemmar` WHERE MedlemmarID = " + UserName.userID);
+                DBconnect.DataReader.Read();
+
+                lbl_statistik.Content = Convert.ToString(DBconnect.DataReader["AntalSegrar"]);
+
+                DBconnect.DataReader.Close();
+                DBconnect.Connection.Close();
+            }
+            catch
+            {
+                lbl_statistik.Content = "0";
+            }
+
+        }
+
+
+
+
+
+
+        // Hämtar antal spelade matcher.
+        private void SpeladeMatcher()
+        {
+            try
+            {
+                // Hämtar alla matcher där du är med och har spelat klart
+                DBconnect.openDB("SELECT * FROM `Medlemmar` WHERE MedlemmarID = " + UserName.userID);
+                DBconnect.DataReader.Read();
+
+                lbl2_statistik.Content = Convert.ToString(DBconnect.DataReader["SpeladeMatcher"]);
+
+                DBconnect.DataReader.Close();
+                DBconnect.Connection.Close();
+            }
+            catch
+            {
+                lbl2_statistik.Content = "0";
+            }
+
+        }
+
+
+
+
         // Räknar ut medelvärdet på hur många poäng du får per avslutad match
         private void MedelVarde()
         {
