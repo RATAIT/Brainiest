@@ -191,10 +191,14 @@ namespace Quizprojekt
 
             if (Convert.ToString(DBconnect.DataReader["Runda"]) == "4")
             {
-
-                if (Convert.ToInt16(DBconnect.DataReader["ResultatSpelare1"]) > Convert.ToInt16(DBconnect.DataReader["ResultatSpelare2"]))
+              
+                // Lägger till en match spelad på de som spelat matchen
+                if (Convert.ToInt16(DBconnect.DataReader["Spelare1"]) == Convert.ToInt16(UserName.userID))
                 {
-                    // Lägger till att man har spelat en match.
+                    DBconnect.DataReader.Close();
+                    DBconnect.Connection.Close();
+
+                    // Lägger till en match spelad på de som spelat matchen
                     DBconnect.openDB("UPDATE `Medlemmar` SET SpeladeMatcher = SpeladeMatcher+" + 1 + " WHERE MedlemmarID = " + Convert.ToInt16(UserName.userID));
                     DBconnect.DataReader.Read();
 
@@ -202,13 +206,42 @@ namespace Quizprojekt
                     DBconnect.Connection.Close();
 
 
+                    DBconnect.openDB("UPDATE `Medlemmar` SET SpeladeMatcher = SpeladeMatcher+" + 1 + " WHERE MedlemmarID = " + Convert.ToInt16(DBconnect.DataReader["Spelare2"]));
+                    DBconnect.DataReader.Read();
+
+                    DBconnect.DataReader.Close();
+                    DBconnect.Connection.Close();
+                }
+                else
+                {
+                    DBconnect.DataReader.Close();
+                    DBconnect.Connection.Close();
+
+                    // Lägger till en match spelad på de som spelat matchen
+                    DBconnect.openDB("UPDATE `Medlemmar` SET SpeladeMatcher = SpeladeMatcher+" + 1 + " WHERE MedlemmarID = " + Convert.ToInt16(UserName.userID));
+                    DBconnect.DataReader.Read();
+
+                    DBconnect.DataReader.Close();
+                    DBconnect.Connection.Close();
+
+                    DBconnect.openDB("UPDATE `Medlemmar` SET SpeladeMatcher = SpeladeMatcher+" + 1 + " WHERE MedlemmarID = " + Convert.ToInt16(DBconnect.DataReader["Spelare1"]));
+                    DBconnect.DataReader.Read();
+
+                    DBconnect.DataReader.Close();
+                    DBconnect.Connection.Close();
+
+                }
+
+
+                if (Convert.ToInt16(DBconnect.DataReader["ResultatSpelare1"]) > Convert.ToInt16(DBconnect.DataReader["ResultatSpelare2"]))
+                {
+
                     // Lägger till en seger om man är spelare1 och har vunnit.
                     DBconnect.openDB("UPDATE `Medlemmar` SET AntalSegrar = AntalSegrar+" + 1 + " WHERE MedlemmarID = " + Convert.ToInt16(UserName.userID));
                     DBconnect.DataReader.Read();
 
                     DBconnect.DataReader.Close();
                     DBconnect.Connection.Close();
-
 
                     // Lägg till rating till spelare1
                     DBconnect.openDB("UPDATE `Medlemmar` SET Rating = Rating+" + (Convert.ToInt16(DBconnect.DataReader["ResultatSpelare1"]) - Convert.ToInt16(DBconnect.DataReader["ResultatSpelare2"])) * 10 + " WHERE MedlemmarID = " + Convert.ToInt16(DBconnect.DataReader["Spelare1"]));
@@ -231,14 +264,6 @@ namespace Quizprojekt
 
                     // Lägger till en seger om man är spelare2 och har vunnit.
                     DBconnect.openDB("UPDATE `Medlemmar` SET AntalSegrar = AntalSegrar+" + 1 + " WHERE MedlemmarID = " + Convert.ToInt16(UserName.userID));
-                    DBconnect.DataReader.Read();
-
-                    DBconnect.DataReader.Close();
-                    DBconnect.Connection.Close();
-
-
-                    // Lägger till att man har spelat en match.
-                    DBconnect.openDB("UPDATE `Medlemmar` SET SpeladeMatcher = SpeladeMatcher+" + 1 + " WHERE MedlemmarID = " + Convert.ToInt16(UserName.userID));
                     DBconnect.DataReader.Read();
 
                     DBconnect.DataReader.Close();
