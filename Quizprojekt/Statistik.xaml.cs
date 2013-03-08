@@ -89,7 +89,6 @@ namespace Quizprojekt
 
 
 
-
         // Hämtar antal spelade matcher.
         private void SpeladeMatcher()
         {
