@@ -27,7 +27,7 @@ namespace Quizprojekt
             ToppLista();
             MedelVarde();
             SpeladeMatcher();
-            AntalSegrar();
+        
         }
 
 
@@ -86,31 +86,6 @@ namespace Quizprojekt
         }
 
         int countmatch;
-
-
-
-        // Hämtar antal segrar.
-        private void AntalSegrar()
-        {
-            try
-            {
-                // Hämtar alla matcher där du är med och har spelat klart
-                DBconnect.openDB("SELECT * FROM `Medlemmar` WHERE MedlemmarID = " + UserName.userID);
-                DBconnect.DataReader.Read();
-
-                lbl_statistik.Content = Convert.ToString(DBconnect.DataReader["AntalSegrar"]);
-
-                DBconnect.DataReader.Close();
-                DBconnect.Connection.Close();
-            }
-            catch
-            {
-                lbl_statistik.Content = "0";
-            }
-
-        }
-
-
 
 
 
