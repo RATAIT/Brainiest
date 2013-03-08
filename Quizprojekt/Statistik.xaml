@@ -11,12 +11,6 @@
                 <Label Content="Din statistik: " Foreground="#5ef677" FontFamily="Swis721 BT" FontSize="15" Height="25" Width="110" />
             </StackPanel>
 
-            <StackPanel Height="30" Orientation="Horizontal" VerticalAlignment="Top">
-
-                <Label Content="Antal vunna matcher: " Foreground="White" FontFamily="Swis721 BT" FontSize="15"/>
-                <Label HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="#5ef677" Name="lbl_statistik" FontFamily="Swis721 BT" FontSize="15" />
-            </StackPanel>
-
 
             <StackPanel Height="30" Orientation="Horizontal">
                 <Label Content="Antal spelade matcher: " Foreground="White" FontFamily="Swis721 BT" FontSize="15"/>
