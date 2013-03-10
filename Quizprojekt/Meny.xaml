@@ -74,7 +74,7 @@
         </StackPanel>
 
         <Image Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4" Source="refresh.png" Width="26" Height="26" Margin="0,-90,0,0" HorizontalAlignment="Center" Name="img_Refresh" MouseDown="Image_MouseDown"/>
-        
+
         <!-- Lägger till loggaut-knappen   -->
         <Button Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="4" Content="Logga ut" Height="30" Foreground="White"
                 FontFamily="Swis721 BT" AllowDrop="False" BorderThickness="0" BorderBrush="#00000000" Name="btn_LoggaUt" Margin="5" Click="btn_LoggaUt_Click" Width="80" >

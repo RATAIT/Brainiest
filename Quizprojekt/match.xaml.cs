@@ -86,13 +86,14 @@ namespace Quizprojekt
                 timer.Stop();
 
                 // En lång if-sats för att kolla vem som har spelat och vem som inte har, allt för logiken när vi spelar
-                DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
-                DBconnect.DataReader.Read();
+
+                //DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
+                //DBconnect.DataReader.Read();
              
                 if (UserName.spelarNummer == "1")
                 {
-                    DBconnect.DataReader.Close();
-                    DBconnect.Connection.Close();
+                    //DBconnect.DataReader.Close();
+                    //DBconnect.Connection.Close();
                     DBconnect.openDB("UPDATE `Match` SET Spelare1Spelat = 1 WHERE MatchID = " + UserName.MatchID);
                     DBconnect.DataReader.Read();
                     DBconnect.DataReader.Close();
@@ -101,8 +102,6 @@ namespace Quizprojekt
 
                 else // Spelare2
                 {
-                    DBconnect.DataReader.Close();
-                    DBconnect.Connection.Close();
                     DBconnect.openDB("UPDATE `Match` SET Spelare2Spelat = 1 WHERE MatchID = " + UserName.MatchID);
                     DBconnect.DataReader.Read();
                     DBconnect.DataReader.Close();
@@ -110,8 +109,6 @@ namespace Quizprojekt
                 
                 }
 
-                DBconnect.DataReader.Close();
-                DBconnect.Connection.Close();
                 DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
                 DBconnect.DataReader.Read();
 
@@ -119,21 +116,27 @@ namespace Quizprojekt
                 {
                     DBconnect.DataReader.Close();
                     DBconnect.Connection.Close();
+
                     DBconnect.openDB("UPDATE `Match` SET Runda = Runda+" + 1 + " WHERE MatchID = " + UserName.MatchID);
                     DBconnect.DataReader.Read();
 
+                    DBconnect.Connection.Close();
                     DBconnect.DataReader.Close();
+
                     changeRating();
 
-                    DBconnect.DataReader.Close();
-                    DBconnect.Connection.Close();
+
                     DBconnect.openDB("UPDATE `Match` SET Spelare1Spelat = 0 WHERE MatchID = " + UserName.MatchID);
                     DBconnect.DataReader.Read();
 
                     DBconnect.DataReader.Close();
                     DBconnect.Connection.Close();
+
                     DBconnect.openDB("UPDATE `Match` SET Spelare2Spelat = 0 WHERE MatchID = " + UserName.MatchID);
                     DBconnect.DataReader.Read();
+
+                    DBconnect.DataReader.Close();
+                    DBconnect.Connection.Close();
                 
                 }
 
@@ -196,17 +199,21 @@ namespace Quizprojekt
             {
                 if (Convert.ToInt16(DBconnect.DataReader["ResultatSpelare1"]) > Convert.ToInt16(DBconnect.DataReader["ResultatSpelare2"]))
                 {
-
-                    // Lägger till en seger om man är spelare1 och har vunnit.
-                    DBconnect.openDB("UPDATE `Medlemmar` SET SpeladeMatcher = SpeladeMatcher+" + 1 + " WHERE MedlemmarID = " + spel1);
-                    DBconnect.DataReader.Read();
-
-                    DBconnect.DataReader.Close();
-                    DBconnect.Connection.Close();
-
-                    // Lägger till en seger om man är spelare1 och har vunnit.
-                    DBconnect.openDB("UPDATE `Medlemmar` SET SpeladeMatcher = SpeladeMatcher+" + 1 + " WHERE MedlemmarID = " + spel2);
-                    DBconnect.DataReader.Read();
+                    if (Convert.ToInt16(DBconnect.DataReader["ResultatSpelare1"]) != Convert.ToInt16(DBconnect.DataReader["ResultatSpelare2"]))
+                    {
+                        // Lägger till en seger och en match till spelare1 och en match till spelare2
+                        DBconnect.openDB("UPDATE `Medlemmar` SET AntalSegrar = AntalSegrar+" + 1 + " WHERE MedlemmarID = " + spel1 + "; " +
+                        "UPDATE `Medlemmar` SET SpeladeMatcher = SpeladeMatcher+" + 1 + " WHERE MedlemmarID = " + spel1 + "; " +
+                        "UPDATE `Medlemmar` SET SpeladeMatcher = SpeladeMatcher+" + 1 + " WHERE MedlemmarID = " + spel2 + ";");
+                        DBconnect.DataReader.Read();
+                    }
+                    else
+                    {
+                        // Om resultatet är lika läggs endast speladematcher till
+                        DBconnect.openDB("UPDATE `Medlemmar` SET SpeladeMatcher = SpeladeMatcher+" + 1 + " WHERE MedlemmarID = " + spel1 + "; " +
+                        "UPDATE `Medlemmar` SET SpeladeMatcher = SpeladeMatcher+" + 1 + " WHERE MedlemmarID = " + spel2 + ";");
+                        DBconnect.DataReader.Read();
+                    }
 
                     DBconnect.DataReader.Close();
                     DBconnect.Connection.Close();
@@ -221,6 +228,7 @@ namespace Quizprojekt
                     DBconnect.DataReader.Close();
                     DBconnect.Connection.Close();
 
+
                     DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
                     DBconnect.DataReader.Read();
 
@@ -232,17 +240,11 @@ namespace Quizprojekt
                     DBconnect.Connection.Close();
                 }
                 else
-                {
-
-                    // Lägger till en match på spelare1.
-                    DBconnect.openDB("UPDATE `Medlemmar` SET SpeladeMatcher = SpeladeMatcher+" + 1 + " WHERE MedlemmarID = " + spel1);
-                    DBconnect.DataReader.Read();
-
-                    DBconnect.DataReader.Close();
-                    DBconnect.Connection.Close();
-
-                    // Lägger till en match på spelare2.
-                    DBconnect.openDB("UPDATE `Medlemmar` SET SpeladeMatcher = SpeladeMatcher+" + 1 + " WHERE MedlemmarID = " + spel2);
+                { 
+                    // Lägger till en seger och en match till spelare2 och en match till spelare1
+                    DBconnect.openDB("UPDATE `Medlemmar` SET AntalSegrar = AntalSegrar+" + 1 + " WHERE MedlemmarID = " + spel2 + "; " +
+                                        "UPDATE `Medlemmar` SET SpeladeMatcher = SpeladeMatcher+" + 1 + " WHERE MedlemmarID = " + spel1 + "; " +
+                                        "UPDATE `Medlemmar` SET SpeladeMatcher = SpeladeMatcher+" + 1 + " WHERE MedlemmarID = " + spel2 + ";");
                     DBconnect.DataReader.Read();
 
                     DBconnect.DataReader.Close();

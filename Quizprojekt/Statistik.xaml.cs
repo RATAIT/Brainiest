@@ -22,15 +22,27 @@ namespace Quizprojekt
         {
             InitializeComponent();
 
+            AntalSegrar();
             StatistikRatt();
             DinRating();
             ToppLista();
             MedelVarde();
             SpeladeMatcher();
+            FemSenaste();
         
         }
 
 
+        private void AntalSegrar()
+        {
+            DBconnect.openDB("SELECT AntalSegrar FROM Medlemmar where MedlemmarID = " + UserName.userID);
+            DBconnect.DataReader.Read();
+
+            lbl_statistik.Content = Convert.ToInt16(DBconnect.DataReader["AntalSegrar"]);
+
+            DBconnect.DataReader.Close();
+            DBconnect.Connection.Close();
+        }
 
 
         
@@ -43,7 +55,7 @@ namespace Quizprojekt
 
             while (DBconnect.DataReader.Read())
             {
-                antalRatt += Convert.ToInt16((DBconnect.DataReader["ResultatSpelare1"]));
+                antalRatt += Convert.ToInt16(DBconnect.DataReader["ResultatSpelare1"]);
             }
             DBconnect.DataReader.Close();
             DBconnect.Connection.Close();
@@ -137,6 +149,49 @@ namespace Quizprojekt
                 lbl_mdlvarde.Content = "0";
             }
             
+        }
+
+        string spelare1id;
+        string spelare2id;
+        string spelare1;
+        string spelare2;
+
+        // Visar de fem senaste avslutade matcherna!
+        private void FemSenaste()
+        {
+                DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare1 = " + UserName.userID + " AND Runda > 3 OR Spelare2 = " + UserName.userID + " AND Runda > 3 ORDER BY MatchID DESC LIMIT 5");
+                while (DBconnect.DataReader.Read())
+                {
+                    spelare1id = Convert.ToString(DBconnect.DataReader["Spelare1"]);
+                    spelare2id = Convert.ToString(DBconnect.DataReader["Spelare2"]);
+                    string res1 = Convert.ToString(DBconnect.DataReader["ResultatSpelare1"]);
+                    string res2 = Convert.ToString(DBconnect.DataReader["ResultatSpelare2"]);
+
+                    kollaAnvandarnamn();
+
+                    list_femsenaste.Items.Add(spelare1 + " " + res1 + " - " + res2 + " " + spelare2);
+                }
+                DBconnect.DataReader.Close();
+                DBconnect.Connection.Close();
+        }
+
+
+        // Kollar en vilka ID som hör ihop med vilka Namn, för att visas vid Fem senaste matcherna. 
+        private void kollaAnvandarnamn()
+        {
+            DBconnect2.openDB("SELECT Anvandarnamn FROM Medlemmar WHERE MedlemmarID = " + spelare1id);
+            DBconnect2.DataReader.Read();
+            spelare1 = Convert.ToString(DBconnect2.DataReader["Anvandarnamn"]);
+
+            DBconnect2.DataReader.Close();
+            DBconnect2.Connection.Close();
+
+            DBconnect2.openDB("SELECT Anvandarnamn FROM Medlemmar WHERE MedlemmarID = " + spelare2id);
+            DBconnect2.DataReader.Read();
+            spelare2 = Convert.ToString(DBconnect2.DataReader["Anvandarnamn"]);
+
+            DBconnect2.DataReader.Close();
+            DBconnect2.Connection.Close();
         }
 
 

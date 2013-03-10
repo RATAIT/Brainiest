@@ -293,3 +293,5 @@ G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Statistik.baml
 G:\Dokument\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Statistik.g.cs
 C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\Statistik.baml
 C:\Users\liad11am\Desktop\Brainiest\Quizprojekt\obj\x86\Debug\Statistik.g.cs
+C:\Users\Andreas\Documents\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Statistik.baml
+C:\Users\Andreas\Documents\GitHub\Brainiest\Quizprojekt\obj\x86\Debug\Statistik.g.cs

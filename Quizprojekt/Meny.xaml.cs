@@ -255,7 +255,7 @@ namespace Quizprojekt
                         }
                     }
 
-                    else // Om runda är 1 eller 3 är det Spelare2 som ska välja kategori
+                    else if (Convert.ToInt16(DBconnect.DataReader["Runda"]) != 4) // Om runda är 1 eller 3 är det Spelare2 som ska välja kategori
                     {
                         if (Convert.ToString(DBconnect.DataReader["Spelare2"]) == UserName.userID)
                         {
@@ -286,6 +286,8 @@ namespace Quizprojekt
                         DBconnect.DataReader.Close();
                         DBconnect.Connection.Close();
                     }
+                    else
+                        MessageBox.Show("Oops, något blev fel! Det är inte din tur egentligen, testa att uppdatera!");
                 }
 
                 else
