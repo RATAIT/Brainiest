@@ -5,52 +5,51 @@
     <Grid>
 
         <Image Source="logo.png" Grid.Column="2" Grid.Row="1" VerticalAlignment="Top"/>
-        
+
         <StackPanel Height="300" Grid.Column="1" Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="2" Margin="78,30,0,30">
             <StackPanel Orientation="Horizontal">
-                <Label Content="Din statistik: " Foreground="#5ef677" FontFamily="Swis721 BT" FontSize="15" Height="25" Width="110" />
+                <Label Content="Din statistik: " Foreground="#5ef677" FontFamily="Swis721 BT" FontSize="12" Height="25" Width="110" />
             </StackPanel>
 
-            <StackPanel Height="30" Orientation="Horizontal" VerticalAlignment="Top">
+            <StackPanel Height="25" Orientation="Horizontal" VerticalAlignment="Top">
 
-                <Label Content="Antal vunna matcher: " Foreground="White" FontFamily="Swis721 BT" FontSize="13"/>
-                <Label HorizontalContentAlignment="Right" Foreground="#5ef677" Name="lbl_statistik" Content="In progress" FontFamily="Swis721 BT" FontSize="13" />
+                <Label Content="Antal vunna matcher: " Foreground="White" FontFamily="Swis721 BT" FontSize="12"/>
+                <Label HorizontalContentAlignment="Right" Foreground="#5ef677" Name="lbl_statistik" FontFamily="Swis721 BT" FontSize="12" />
             </StackPanel>
 
 
-            <StackPanel Height="30" Orientation="Horizontal">
-                <Label Content="Antal spelade matcher: " Foreground="White" FontFamily="Swis721 BT" FontSize="13"/>
-                <Label HorizontalContentAlignment="Right" Foreground="#5ef677" Name="lbl2_statistik" FontFamily="Swis721 BT" FontSize="13"/>
+            <StackPanel Height="25" Orientation="Horizontal">
+                <Label Content="Antal spelade matcher: " Foreground="White" FontFamily="Swis721 BT" FontSize="12"/>
+                <Label Foreground="#5ef677" Name="lbl2_statistik" FontFamily="Swis721 BT" FontSize="12"/>
             </StackPanel>
-            
-            <StackPanel Height="30" Orientation="Horizontal">
 
-                <Label Content="Medelvärde antal rätt per match: " Foreground="White" FontFamily="Swis721 BT" FontSize="13" />
-                <Label HorizontalContentAlignment="Right" Foreground="#5ef677" Name="lbl_mdlvarde" FontFamily="Swis721 BT" FontSize="13"/>
+            <StackPanel Height="25" Orientation="Horizontal">
+
+                <Label Content="Medelvärde antal rätt per match: " Foreground="White" FontFamily="Swis721 BT" FontSize="12" />
+                <Label HorizontalContentAlignment="Right" Foreground="#5ef677" Name="lbl_mdlvarde" FontFamily="Swis721 BT" FontSize="12"/>
             </StackPanel>
-           
-            <StackPanel Height="30" Orientation="Horizontal">
-                <Label Content="Din rating: " Foreground="White" FontFamily="Berlin Sans FB" FontSize="13"/>
+            <StackPanel Height="25" Orientation="Horizontal">
+                <Label Content="Din rating: " Foreground="White" FontFamily="Swis721 BT" FontSize="12"/>
                 <Label HorizontalContentAlignment="Right" Foreground="#5ef677" Name="lbl3_statistik" FontFamily="Swis721 BT" FontSize="13"/>
             </StackPanel>
+            <StackPanel/>
 
-            <Label HorizontalContentAlignment="Left" Margin="0,20,0,0" Content="Dina fem senaste matcher:" Foreground="#5ef677" Name="lbl_femsenaste" FontFamily="Swis721 BT" FontSize="15"/>
-            <ListBox Margin="5,4,0,0" FontFamily="Berlin Sans FB" IsHitTestVisible="False" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Background="Transparent" Name="list_femsenaste" Height="125" Width="214" BorderThickness="0" Focusable="True"/>
-
+            <Label HorizontalContentAlignment="Left" Margin="0,20,0,0" Content="Dina fem senaste matcher:" Foreground="#5ef677" Name="lbl_femsenaste" FontFamily="Swis721 BT" FontSize="12"/>
+            <ListBox FontSize="12" Margin="0,4,0,0" FontFamily="Swis721 BT" IsHitTestVisible="False" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Background="Transparent" Name="list_femsenaste" Height="125" Width="214" BorderThickness="0" Focusable="True"/>
 
         </StackPanel>
 
 
-        <StackPanel HorizontalAlignment="Right" Height="245" Width="260" Grid.Column="3" Orientation="Vertical" Grid.Row="2">
+        <StackPanel HorizontalAlignment="Right" Width="260" Grid.Column="3" Orientation="Vertical" Grid.Row="2" Margin="0,30,0,51">
             
-            <StackPanel Orientation="Horizontal">
-                <Label HorizontalContentAlignment="Left" Content="Topplista: " Foreground="#5ef677" FontFamily="Swis721 BT" FontSize="15" />
+            <StackPanel  Orientation="Horizontal">
+                <Label HorizontalContentAlignment="Left" Content="Topplista: " Foreground="#5ef677" FontFamily="Swis721 BT" FontSize="12" />
             </StackPanel>
 
 
             <StackPanel Orientation="Horizontal" Width="260" Height="220">
-                <ListBox Margin="5,4,0,0" IsHitTestVisible="False" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Background="Transparent" Name="List_anv" Height="204" Width="110" BorderThickness="0" Focusable="True"/>
-                <ListBox Margin="0,4,0,0" IsHitTestVisible="False"  VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="#5ef677" Background="Transparent" Height="204" Width="110" Name="List_rating" BorderThickness="0" Focusable="True"/>
+                <ListBox FontSize="12" Margin="0,4,0,0" IsHitTestVisible="False" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Background="Transparent" Name="List_anv" Height="204" Width="110" BorderThickness="0" Focusable="True"/>
+                <ListBox FontSize="12" Margin="0,4,0,0" IsHitTestVisible="False"  VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="#5ef677" Background="Transparent" Height="204" Width="110" Name="List_rating" BorderThickness="0" Focusable="True"/>
             </StackPanel>
             
         </StackPanel>
@@ -82,7 +81,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
-            <RowDefinition Height="300" />
+            <RowDefinition Height="330" />
             <RowDefinition Height="30" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>

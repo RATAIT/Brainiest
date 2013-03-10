@@ -7,14 +7,16 @@
         <!-- Lägger logo.png på andra raden, andra kolumnen -->
         <Image Grid.Row="1" Grid.Column="1" Source="logo.png" Width="210" HorizontalAlignment="Center"  />
 
-        <TextBlock FontFamily="Berlin Sans FB" FontSize="15" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="700">
-            <Run FontSize="20" Text="Så här spelar du Brainiest" Foreground="#5ef677"/>
+        <TextBlock FontFamily="Swis721 BT" FontSize="12" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="700">
+            <Run FontSize="15" Text="Så här spelar du Brainiest" Foreground="#5ef677"/>
             <Run Text="&#13;&#13;Starta nytt spel: " Foreground="#5ef677"/>
             <Run Text="För att starta ett nytt spel klickar du på knappen Starta nytt spel. &#13;Du får då två val: du kan antingen söka efter valfri motståndare eller slumpa fram en moståndare. " Foreground="White"/>
             <Run Text="&#13;&#13;Statistik:" Foreground="#5ef677" />
             <Run Text="När du spelar lagras även statistik över dina resultat, dessa kommer du åt genom knappen statistik." Foreground="White" />
             <Run Text="&#13;&#13;Matcher:" Foreground="#5ef677" />
             <Run Text="När du startar en match kommer den visas i en lista i din meny.&#13;Varje match du startar kommer synas här tillsammans med resultat.&#13;Som första spelare har man möjligheten att välja kategori.&#13;Denna möjlighet har man tre gånger var." Foreground="White" />
+            <Run Text="&#13;&#13;Rating: " Foreground="#5ef677" />
+            <Run Text="När du skapat en ny användare börjar du med en rating på 1000.&#13;För varje poäng du vinner med får du 10 i rating.&#13;En förlust resulterar i att du förlorar 10 i rating " Foreground="White" />
         </TextBlock>
 
         <Button AllowDrop="False" BorderBrush="#00000000" BorderThickness="0" Content="Tillbaka" FontFamily="Swis721 BT" Foreground="White" Height="30" VerticalAlignment="Center" Width="80" Grid.Row="3" Grid.Column="1" Click="Button_Click">
@@ -29,10 +31,10 @@
 
         <!-- Definierar raderna i grid -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="0.5*" />
             <RowDefinition Height="100" />
-            <RowDefinition Height="200" />
-            <RowDefinition Height="40" />
+            <RowDefinition Height="300" />
+            <RowDefinition Height="35" />
           
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
