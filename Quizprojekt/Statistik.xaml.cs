@@ -51,11 +51,20 @@ namespace Quizprojekt
         {
             int antalRatt = 0;
 
-            DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare1 = " + UserName.userID + " AND Runda > 3 OR Spelare2 = " + UserName.userID + " AND Runda > 3");
+            DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare1 = " + UserName.userID + " AND Runda > 3");
 
             while (DBconnect.DataReader.Read())
             {
                 antalRatt += Convert.ToInt16(DBconnect.DataReader["ResultatSpelare1"]);
+            }
+            DBconnect.DataReader.Close();
+            DBconnect.Connection.Close();
+
+            DBconnect.openDB("SELECT * FROM `Match` WHERE Spelare2 = " + UserName.userID + " AND Runda > 3");
+
+            while (DBconnect.DataReader.Read())
+            {
+                antalRatt += Convert.ToInt16(DBconnect.DataReader["ResultatSpelare2"]);
             }
             DBconnect.DataReader.Close();
             DBconnect.Connection.Close();

@@ -67,6 +67,7 @@ namespace Quizprojekt
                 antalID++;
             }
 
+            DBconnect.DataReader.Close();
             DBconnect.Connection.Close();
 
             // Skickar vidare idList, antalID och fraga (vilken av de tre frågorna som ska skickas) till pickThreeQuestions metoden
@@ -85,15 +86,9 @@ namespace Quizprojekt
 
                 timer.Stop();
 
-                // En lång if-sats för att kolla vem som har spelat och vem som inte har, allt för logiken när vi spelar
-
-                //DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
-                //DBconnect.DataReader.Read();
-             
+                // Några if-satser för att kolla vem som har spelat och vem som inte har, allt för logiken när vi spelar
                 if (UserName.spelarNummer == "1")
                 {
-                    //DBconnect.DataReader.Close();
-                    //DBconnect.Connection.Close();
                     DBconnect.openDB("UPDATE `Match` SET Spelare1Spelat = 1 WHERE MatchID = " + UserName.MatchID);
                     DBconnect.DataReader.Read();
                     DBconnect.DataReader.Close();
@@ -112,32 +107,23 @@ namespace Quizprojekt
                 DBconnect.openDB("SELECT * FROM `Match` WHERE MatchID = " + UserName.MatchID);
                 DBconnect.DataReader.Read();
 
+                // Om båda har spelat denna runda ökar rundan med +1 och att de båda har spelat minskar till 0
                 if (Convert.ToString(DBconnect.DataReader["Spelare1Spelat"]) == "1" && Convert.ToString(DBconnect.DataReader["Spelare2Spelat"]) == "1")
                 {
                     DBconnect.DataReader.Close();
                     DBconnect.Connection.Close();
 
-                    DBconnect.openDB("UPDATE `Match` SET Runda = Runda+" + 1 + " WHERE MatchID = " + UserName.MatchID);
+                    DBconnect.openDB("UPDATE `Match` SET Runda = Runda+" + 1 + " WHERE MatchID = " + UserName.MatchID + "; " +
+                        "UPDATE `Match` SET Spelare1Spelat = 0 WHERE MatchID = " + UserName.MatchID + "; " +
+                        "UPDATE `Match` SET Spelare2Spelat = 0 WHERE MatchID = " + UserName.MatchID + ";");
                     DBconnect.DataReader.Read();
 
                     DBconnect.Connection.Close();
                     DBconnect.DataReader.Close();
 
+                    // Ändrar rating för medlemmen.
                     changeRating();
-
-
-                    DBconnect.openDB("UPDATE `Match` SET Spelare1Spelat = 0 WHERE MatchID = " + UserName.MatchID);
-                    DBconnect.DataReader.Read();
-
-                    DBconnect.DataReader.Close();
-                    DBconnect.Connection.Close();
-
-                    DBconnect.openDB("UPDATE `Match` SET Spelare2Spelat = 0 WHERE MatchID = " + UserName.MatchID);
-                    DBconnect.DataReader.Read();
-
-                    DBconnect.DataReader.Close();
-                    DBconnect.Connection.Close();
-                
+               
                 }
 
                 Switcher.Switch(new Meny());
@@ -173,6 +159,7 @@ namespace Quizprojekt
                         antalID--;
 
                     }
+
                     // Lägger in de utvalda frågorna i databsen till en specifik runda i en specifik match.
                     DBconnect.openDB("UPDATE `Match` SET FragorRunda" + Convert.ToString(DBconnect.DataReader["Runda"]) + " = '" + idFragaArray[0] + "_" + idFragaArray[1] + "_" + idFragaArray[2] + "' WHERE MatchID = " + UserName.MatchID);
                     DBconnect.DataReader.Read();

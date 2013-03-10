@@ -31,9 +31,6 @@ namespace Quizprojekt
 
         public Meny()
         {
-
-
-
             InitializeComponent();
 
             txt_spelare[0] = txtbox_Spelare1;
